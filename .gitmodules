@@ -1,0 +1,3 @@
+[submodule "student_resources"]
+	path = student_resources
+	url = https://github.com/erinshellman/BI-TECH-CP303.git
