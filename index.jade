@@ -1,0 +1,613 @@
+//doctype html
+html
+html(lang="en")
+  head
+    title BI TECH CP303 - Data Mining
+
+    meta(charset="UTF-8")
+    meta(name="fragment", content="!")
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+
+    link(rel="stylesheet", href="css/foundation.min.css")
+    link(rel="stylesheet", href="css/reveal.min.css")
+    // Theme for syntax highlighting
+    link(rel="stylesheet", href="lib/css/zenburn.css")
+    link(rel="stylesheet", href="css/theme/data-mining.css")
+
+  body
+
+    header.full-width.header-area
+      div.row
+        div.large-12.columns
+
+    #main-nav
+    div.contain-to-grid.navigation-area
+      div.row
+        div.large-12.columns
+          nav.top-bar
+            ul.title-area
+              img(src="images/uw_logo.svg" id="logo-image")
+              li.toggle-topbar.menu-icon
+                a(href='#') nav            
+                
+            section.top-bar-section
+              ul.right
+                li.has-dropdown.not-click
+                  a.active(href='#') Week
+                  ul.dropdown
+                    li.active
+                      a.active(href='#/week1') 1: Intro to data mining and R
+                    li.active
+                      a.active(href='#/week2') 2: Linear regression
+                    li.active
+                      a.active(href='#/week3') 3: Linear regression extensions
+                    li.active
+                      a.active(href='#/week4') 4: Classification 1
+                    li.active
+                      a.active(href='#/week5') 5: Classification 2 
+                    li.active
+                      a.active(href='#/week6') 6 
+                    li.active
+                      a.active(href='#/week7') 7
+                    li.active
+                      a.active(href='#/week8') 8
+                    li.active
+                      a.active(href='#/week9') 9
+                    li.active
+                      a.active(href='#/week10') 10
+                li.has-dropdown.not-click
+                  a.active(href='#') Topic 
+                  ul.dropdown
+                    li.active
+                      a.active(href='#') what is data mining?
+                    li.active
+                      a.active(href='#/R_intro') introduction to R
+                    li.active
+                      a.active(href='#/classification') classification
+                    li.active
+                      a.active(href='#') linear regression
+                    li.active
+                      a.active(href='#') association mining
+                    li.active
+                      a.active(href='#') clustering 
+                li.has-dropdown.not-click
+                  a.active(href='#week1references') References
+                  ul.dropdown
+                    li.active
+                      a.active(href='#') Course materials
+                    li.active
+                      a.active(href='#week1references') Week 1
+                    li.active
+                      a.active(href='#week2references') Week 2
+                li.has-dropdown.not-click
+                  a.active(href='#') About 
+                  ul.dropdown
+                    li.active
+                      a.active(href='#') how to use these slides 
+                    li.active
+                      a.active(href='#') the author
+                    li.active
+                      a.active(href='#') acknowledgements
+                li.active.not-click
+                  a.active(href='https://github.com/erinshellman/data-mining-starter-kit/issues') Report a bug
+
+    .reveal
+      .slides
+        section.title-slide
+          h2 BI Tech CP303 - Data Mining
+          h4 Erin Shellman - 
+             a.active(href="mailto:erin.shellman@gmail.com") erin.shellman@gmail.com
+          p Welcome to data mining. These are the lecture notes that accompany an applied course on data mining. Read the 
+            a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/README.md') syllabus 
+            to find details about the assignments and key deadlines.
+
+        section
+          h2 Lecture notes improved with the support of viewers like you!
+          p These slides are a work in progress and I need your help to make them rule. If you see an error or think something is unclear or omitted, please 
+            a(href='https://github.com/erinshellman/data-mining-starter-kit/issues') report it!
+          p I'll do my best to keep the slides as updated and accurate as possible.
+            
+        section(data-transition-speed="fast")
+          h2 Course Philosophy
+          p Data mining is an applied skill and this course focuses on applications. Each class will be a blend of data mining concepts and applications of the concepts using the programming language R. There will be four projects, each consisting of a data mining analysis to solve a business problem and a brief written report of your findings.
+
+          p By the end of this course, my goal is that you will be able to approach unfamiliar data and quickly find and communicate results.
+
+        section(data-transition-speed="fast")
+         h2 Navigating the notes
+         p The material progresses from left to right, and for those interested in exploring more about a topic there are often slides in the up, down direction.
+
+        section(data-transition-speed="fast")
+         h2 Traverse the topics 
+         p You can also dive into topics using the navigation bar at the top.
+
+        section#week1.title-slide
+          h2 Week 1: Introduction to Data Mining and Using R
+          h4 BI Tech CP303 - Data Mining
+          h4 
+            a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/intro-R/introduction-to-r.Rmd') R Notebook
+
+        section(data-background="images/data-explosion.png" data-background-size="100%")
+          h2 We're creating data faster than we can understand it.
+
+        section(data-transition-speed="fast")
+          h2 Data are more heterogenous than ever.
+          p Show json, xml, csv
+          p Show clipart of complex hadoop ecosystem diagram
+
+        section(data-transition-speed="fast")
+          h2 Data are <i>wider</i> than ever.
+          p Not only are we generating more observations, but we're collecting more data about the data. The number of features to explore is too large to do with a traditional data analysis. The data size creates challenges that a traditional analysis does not deal with.  Issues of 
+            li computational efficiency 
+            li data pipelines 
+            li memory use and allocation
+
+          p We need different tool.
+          
+          aside.notes All these issues turn data mining into a highly interdisciplinary subject involving tasks not only of typical data analysts but also of people working with databases, data visualization on high dimensions, etc.
+
+        section(data-transition-speed="fast") 
+          section(data-transition-speed="fast") 
+            h2 Data mining is a process of knowledge discovery 
+            p Data Mining is the process of identifying patterns in large volumes of data for the purposes of prediction. You can think of the process as being the following steps:
+              li data cleaning and preparation
+              li exploratory data analysis
+              li model or pattern discovery
+              li model deployment
+
+          section(data-transition-speed="fast") 
+            p "Data mining is the extraction of implicit, previously unknown, and potentially useful information from data." 
+              a(href='http://www.amazon.com/Data-Mining-Practical-Techniques-Management/dp/0123748569') Witten, Frank and Hall
+            p "The most commonly accepted definition of “data mining” is the discovery of “models” for data." Where 'model' could mean a statistical model, and machine learning model or an algorithm like mapreduce.
+              a(href='http://www.mmds.org/') Leskovec, Rajaraman, Ullman
+            p Data Mining is an analytic process designed to explore data (usually large amounts of data - typically business or market related - also known as "big data") in search of consistent patterns and/or systematic relationships between variables, and then to validate the findings by applying the detected patterns http://www.statsoft.com/Textbook/Data-Mining-Techniques
+
+        section(data-transition-speed="fast") 
+          section(data-transition-speed="fast") 
+            h2 How is statistics, data mining and machine learning related?
+            p Statistics is concerned with estimating the uncertainty of our inferences, machine learning is about characterizing the performance of our predictions.
+
+          section(data-transition-speed="fast")
+            h2 Leo Breiman paper about paradigms.
+            p 
+              a(href='http://faculty.smu.edu/tfomby/eco5385/lecture/Breiman%27s%20Two%20Cultures%20paper.pdf') Statistical Modeling: The Two Cultures.
+
+        section(data-transition-speed="fast")
+          h2 Machine Learning
+          p definition of learning - Things learn when they change their behavior in a way that makes them perform better in the future
+          p This ties learning to performance rather than knowledge. You can test learning by observing present behavior and comparing it with past behavior. 
+
+        section(data-transition-speed="fast")
+          h2 General data mining tasks
+          p There are four basic data mining applications, numerical prediction, classification, association mining and clustering.
+        section(data-transition-speed="fast")
+          h2 Numerical prediction example
+
+        section(data-transition-speed="fast")
+          h2 Classification example
+          p diagnosis
+
+        section(data-transition-speed="fast")
+          h2 Association example
+          p market-basket analysis/recommendations
+
+        section(data-transition-speed="fast")
+          h2 Clustering example
+          p customer segmentation
+
+        section(data-transition-speed="fast")
+          h3 Limitations of data mining
+          p
+            li Many patterns are uninteresting
+            li Some patterns result from coincidences or bias in the data collected
+            li Data are often untidy or missing
+          p How do these limitations influence the inpretation and application of the results of a data mining process? What are our standards for belief?
+
+        section(data-transition-speed="fast")
+          h2 Ethics in data mining
+          p Part of the reason data mining is discussed so often in popular media is the critical role that ethical considerations play when applying data mining techniques. Please read 
+          a(href="http://www.nytimes.com/2012/02/19/magazine/shopping-habits.html") How Companies Learn Your Secrets.
+
+        section(data-transition-speed="fast")
+          h2 Reading questions
+          p Put yourself in the mind of an analyst at Target.  
+            li What data would you need to build a model to predict if a woman is pregnant? 
+            li Is it ethical to merge data from outside of Target's scope in customers' lives (<i>e.g.</i> public birth records).
+            li Does the cost of backlash outweigh the benefits of the knowledge?
+
+        section(data-transition-speed="fast")
+          h2 The business problem:
+          blockquote Specifically, the marketers said they wanted to send specially designed ads to women in their second trimester, which is when most expectant mothers begin buying all sorts of new things, like prenatal vitamins and maternity clothing. “Can you give us a list?” the marketers asked.
+
+        section(data-transition-speed="fast")
+          blockquote Also linked to your Guest ID is demographic information like your age, whether you are married and have kids, which part of town you live in, how long it takes you to drive to the store, your estimated salary, whether you’ve moved recently, what credit cards you carry in your wallet and what Web sites you visit. 
+
+        section(data-transition-speed="fast")
+          p How might Target have met the business goals, without losing customer credibility?
+
+        section 
+          h2 Privacy
+          p 
+            a(href='http://www.forbes.com/sites/kashmirhill/2012/02/16/how-target-figured-out-a-teen-girl-was-pregnant-before-her-father-did/') Target Girl
+          p People frequently live in areas that are associated with particular ethnic identities, and so using a zip code in a data mining study runs the risk of building models that are based on race—even though racial information has been explicitly excluded from the data.
+
+        section
+          blockquote Recent work in what are being called reidentification techniques has provided sobering insights into the difficulty of anonymizing data.  It turns out, for example, that over 85% of Americans can be identified from publicly available records using just three pieces of information: five-digit zip code, birth date (including year), and sex. Don’t know the zip code?—over half of Americans can be identified from just city, birth date, and sex. - data mining book
+
+        section
+          p Netflix, an online movie rental service, released 100 million records of movie ratings (from 1 to 5) with their dates. To their surprise, it turned out to be quite easy to identify people in the database and thus discover all the movies they had rated. For example, if you know approximately when (give or take two weeks) a person in the database rated six movies and you know the ratings, you can identify 99% of the people in the database. By knowing only two movies with their ratings and dates, give or take three days, nearly 70% of people can be identified. From just a little information about your friends (or enemies) you can determine all the movies they have rated on Netflix.
+
+        section(data-transition-speed="fast")
+          h2 Profiling with data
+          p Find and example of police using demographic data to target patroling. 
+          p The concern raised by many is that if you look at so much data, and you try to find within it activities that look like terrorist behavior, are you not going to find many innocent activities – or even illicit activities that are not terrorism – that will result in visits from the police and maybe worse than just a visit? The answer is that it all depends on how narrowly you define the activities that you look for. Statisticians have seen this problem in many guises and have a theory, which we introduce in the next section.
+
+        section(data-transition-speed="fast")
+          section(data-transition-speed="fast")
+            h2 The Bonferroni principle
+            p If we are willing to view as an interesting fea- ture of data something of which many instances can be expected to exist in random data, then we cannot rely on such features being significant. This observation limits our ability to mine data for features that are not sufficiently rare in practice. 
+
+          section(data-transition-speed="fast")
+            h2 Bonferroni correction
+            p Describe the statistical rationale
+            p Calculate the expected number of occurrences of the events you are looking for, on the assumption that data is random. If this number is signifi- cantly larger than the number of real instances you hope to find, then you must expect almost anything you find to be bogus, i.e., a statistical artifact rather than evidence of what you are looking for. This observation is the informal statement of Bonferroni’s principle.
+
+        section(data-transition-speed="fast")
+          h2 Ethical behavior requires constant diligence 
+          p The ethical consequences of data mining isn't a one-time consideration. Everytime we sit down to conduct and analysis we should think about the potential for harm.  We'll return to the discussion of ethics repeatedly throughout the course.
+
+        section#R_intro
+          h2 R for statistical computing
+          figure
+            img(src="images/r-usage-salary.png" align="right" width="40%")
+            figcaption From O'Reilly's 2014 survey of 
+              a(href="http://www.oreilly.com/data/free/2014-data-science-salary-survey.csp") data science salaries. 
+          p R is a leading tool in the industry for statistics and data science.
+            li is free and open-source
+            li has an active community, which means you've got tons of analysis options.
+            li is in demand!
+
+        section(data-transition-speed="fast")
+          h2 Installation
+          p 
+            ol
+              li Install 
+                a(href="http://cran.cnr.berkeley.edu/") R
+              li Install 
+                a(href='http://www.rstudio.com/products/rstudio/download/') R Studio  
+
+        section(data-transition-speed="fast")
+          h2 some kind of exercise here
+          ol Riddle me this...
+            li What is the average of _____?
+            li Create a plot of ________ faceted by ______.
+
+        section
+          h2 References
+          ol
+            li Data Mining with R: Learning with Case Studies
+            li 
+              a(href="https://www.coursera.org/course/rprog") Coursera course on R 
+            li 
+              a(href="https://www.coursera.org/course/exdata") Exploratory Data Analysis from Coursera
+            li 
+              a(href="https://www.udacity.com/course/ud651") Exploratory Data Analysis from Udacity
+            li 
+              a(href="http://www.mmds.org/") Mining of Massive Datasets 
+            li 
+              The Elements of Statistical Learning.  Trevor Hastie, Robert Tibshirani and Jerome Friedman. The entire text is available 
+              a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") from their website.
+
+
+        section#week2
+          h2 Week 2: Linear regression
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section
+          h2 Example
+          p Provide some real example that we will walk through in R
+
+        section(data-transition-speed="fast")
+          h2 Linear regression
+          p Our goal is to predict real-value output.
+
+        section(data-transition-speed="fast")
+          h2 mathematical foundations
+          p $ y = \beta_{0} + \beta_{1}x + \epsilon $
+          p $ x $ is the predictor, or independent, variable, and $ y $ is the response, or dependent, variable.
+
+        section(data-transition-speed="fast")
+          h2 Errors
+          p The data points will not all fit exactly on our straight regression line, and the distance of a point from our line is called the residual error (or just residual, or just error), $ \epsilon $.          
+          p $ \epsilon $ is a random variable that measures the failure of the model to fit the data perfectly.
+          p figure showing errors
+
+        section(data-transition-speed="fast")
+          h2 intuition
+          p are there any nice figures or geometric arguments that can be shown?
+          p "Thus, the true regression model is a line of mean values, that is, the height of the regression line at any value of x is just the expected value of y for that x.
+          p maybe go through example of fixing x, and looking at the y values.
+
+        section(data-transition-speed="fast")
+          h2 interpretation
+          p "The slope of the regression line, $ \beta_{1} $, can be interpreted as the change in the mean of y for a unit change in x.
+          p again show examples
+
+        section(data-transition-speed="fast")
+          h2 how to estimate the parameters?
+          p OLS: minimize the squared errors.
+
+        section(data-transition-speed="fast")
+          h2 generalization
+          p "in general the response variable y may be related to k regressors, $ x_{1},x_{2},...x_{k} $,
+          p $ y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + ... + \beta_{k}x_{k} + \epsilon $
+
+        section(data-transition-speed="fast")
+          h2 test and train
+          p metrics for measuring performance include continuous: RMSE, R squared, categories: accuracy, kappa
+
+        section(data-transition-speed="fast")
+          h2 Bike sharing dataset
+          p https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset
+
+        section#week3
+          h2 Week 3: Linear regression extensions
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section
+          h2 References
+          ol
+            li 
+              a(href="http://research.google.com/pubs/pub43146.html") Machine Learning: The High Interest Credit Card of Technical Debt
+
+        section#week4
+          h2 Week 4: Classification - Logistic Regression 
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section#classification
+          h2 Classification
+          ul 
+            li Spam or not spam
+            li Diseased or not diseased
+            li Fraud or not fraud
+
+        section 
+          h2 Binary classification means we're only dealing with two possible classes
+          p $ y \in {0, 1} $
+
+        section(data-transition="linear" data-transition-speed="fast")
+          h2 Identifying spam
+          p We can construct a decent spam classifier using simple linear regression using the number of occurrences of the character '$' as our predictor.
+          img(src="images/is_it_spam.png")
+
+        section(data-transition="linear" data-transition-speed="fast")
+          h2 Identifying spam
+          p Our decision boundary is at $ y = 0.5 $ and with regression we derive the rule that $ x \geq 7.7 $ indicates spam.
+          img(src="images/is_it_spam_2.png")
+
+        section(data-transition="linear" data-transition-speed="fast")
+          h2 Identifying spam
+          p Our classifier starts misclassifying when we add another observation with a relatively extreme number of $'s.
+          img(src="images/is_it_spam_3.png")
+
+        section
+          section
+            h2 We need a new tool
+            p Our current tool, linear regression, is not going to work in general for a classification application.  Instead of linear regression we're going to use a regression in a family called generalized linear models (GLMs), <b>logistic regression</b>.
+
+          section
+            h2 History of GLM
+            p Articulated in Nelder and Wedderburn in 1972 paper in Journal of the Royal Statistical Society.
+            p GLMs are composed of three parts:
+              ol
+                li An exponential family model for the response
+                li A systematic component via a linear predictor
+                li A link function that connects the means of the response to the linear predictor
+
+          section 
+            h2 Logistic regression GLM parts
+            ol 
+              li Exponential family model:
+              li Linear predictor: $ \eta_{i} = \sum_{k = 1}^{p} X_{ik}\beta_k $
+              li Link: $ g(\mu) = \eta = \log{\mu \over 1-\mu} $
+
+        section
+          p A logit model, or logistic regression is used to model the probability of binary events. The log odds of the outcome is modeled as a linear combination of the predictor variables.
+          // Show equation here?
+
+        section
+          h2 The logistic (or sigmoid) function
+          p $ F(t) = {e^{t} \over e^{t} + 1} = { 1 \over 1 + e^{t}} $
+
+        section
+          h2 What are we actually doing here?
+          p The intuition behind logistic regression is 
+
+        section
+          h2 How do we decide the class?
+          p As we've seen, the outcome of a logistic regression is a probability but how do we classify?
+
+        section
+          h2 Our dataset: 
+          p 
+            a(href="http://archive.ics.uci.edu/ml/machine-learning-databases/census-income-mld/census-income.html") Census Income Data
+
+        section
+          h2 Logistic regression in R
+          p We're going to use the caret (short for <u>c</u>lassification <u>a</u>nd <u>re</u>gression <u>t</u>raining) package.
+
+        section
+          h2 Testing and training
+          p Statistically, the most efficient use of the data is to train the model using all of the samples and use resampling (e.g., cross-validation, the bootstrap etc.) to evaluate the efficacy of the model.
+          p Depending on how the model will be used, an external test/validation sample set may be needed so that the model performance can be characterized on data that were not used in the model training.
+
+          section
+            h2 Sampling notes
+            p In cases where the outcome is numeric, the samples are split into quartiles and the sampling is done within each quartile. 
+            p Although not discussed in this paper, the package also contains method for selecting samples using maximum dissimilarity sampling (Willett 1999). This approach to sampling can be used to partition the samples into training and test sets on the basis of their predictor values.
+
+          section 
+            h2 zero-variance predictors
+            p There are many models where predictors with a single unique value will cause the model to fail. Since we will be tuning models using resampling methods, a random sample of the training set may result in some predictors with more than one unique value to become a zero-variance predictor. These so-called "near zero-variance predictors" can cause numerical problems during resampling for some models, such as linear regression.
+
+          section 
+            h2 handling zero-variance predictors
+            p Identify near zero variance predictors with the function nearZeroVar. It returns an index of the column numbers that violate the two conditions above.
+
+        section
+          h2 Quick question
+          p Why are regression trees resistant to the effects of multicollinearity?
+          p The determination of which predictors are in the model is random.
+
+        section
+          h2 Measuring error: how are we doing?
+
+        section
+          h2 Week 4 Resources
+          ol
+            li 
+              a(href="http://www.ats.ucla.edu/stat/r/dae/logit.htm") R Data Analysis Examples: Logit Regression
+            li 
+              a(href="http://cran.r-project.org/web/packages/caret/vignettes/caret.pdf") A Short Introduction to the caret Package
+            li
+              a(href="http://www.jstatsoft.org/v28/i05/paper") Building Predictive Models in R Using the caret Package 
+
+        section#week5
+          h2 Week 5: Classification - Trees
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section
+          p A “divide-and-conquer” approach to the problem of learning from a set of independent instances leads naturally to a style of representation called a decision tree.
+
+        section
+          p steps of a tree classification method:
+            ol
+              li iteratively split variables into groups
+              li Evalulate "homogeneity" with each group
+              li Split again if necessary
+          p Pros are easy interpretation and good performance in nonlinear setting
+          p Cons are potential for overfitting, can be high variance, harder to estimate uncertainty
+
+        section
+          p basic algoritm
+            ol
+              li Start with all variables in one group
+              li find the variable/split that best separates the outcomes
+              li divide the data into two groups (leave) on that split (node)
+              li within each split, find the best variable/split that separtes the outcomes
+              li continue until the groups are two small or sufficiently "pure"
+
+          p think about where the decisions in this alogoritm need to be made.
+            ul
+              li at the splits based on some criteria for 'best' or 'most homogeneous'
+              li at the point of determining node 'purity'
+
+        section
+          h2 measures of impurity
+          p Misclassification error - 0 perfect purity, 0.5 no purity
+          p Gini index - 0 perfect purity, 0.5 no purity
+          p Deviance/information gain - 0 = perfect purity 1 = no purity
+
+        section
+          section
+            h2 Other methods of classification
+            p We focused on two common methods of classification, logistic regression and classification trees, but there are many methods we could have chosen from depending on our application.
+
+          section
+            h2 Support Vector Machines
+            p Quick description and code in caret
+
+          section
+            h2 Neural networks
+            p Quick description and code in caret
+
+            section 
+              h2 what happens?
+              
+        section
+          h2 Week 3 References
+          ol
+            li coursera practical machine learning
+        section#week6
+          h2 Week 6: Association rule mining
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section
+          h2 the million song dataset
+          p http://blog.echonest.com/post/3639160982/million-song-dataset
+
+        section#week7
+          h2 Week 7: Clustering
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section#week8
+          h2 Week 8: Time series 1
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section#week9
+          h2 Week 9: Time series 2
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section#week10
+          h2 Week 10: Final presentations 
+          h4 BI Tech CP303 - Data Mining
+          h4 Erin Shellman 
+
+        section
+          h2 How can I apply these skills to real problems?
+          p Data Kind
+          p Kaggle Competitions
+
+        section
+          section#week1references
+            h2 References
+            h4 Week 1
+            ol
+              li Data Mining with R: Learning with Case Studies
+              li 
+                a(href="https://www.coursera.org/course/rprog") Coursera course on R 
+              li 
+                a(href="http://www.mmds.org/") Mining of Massive Datasets 
+
+          section#week2references
+            h2 References
+            h4 Week 2
+
+    script(src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.1.2/js/foundation.min.js")
+    script(src="lib/js/head.min.js")
+    script(src="js/reveal.min.js")
+
+    script.
+      Reveal.initialize({
+        width: '90%',
+        height: '90%',
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        math: {
+          mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+          //mathjax: 'js/MathJax.js',
+          config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+        }, 
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
