@@ -1,0 +1,14 @@
+DS_Store
+.map
+*.RData
+*.Rproj.user
+*.Rhistory
+.svn
+*.css
+*.css.map
+log/*.log
+tmp/**
+node_modules
+index.html
+.sass-cache/
+.Rproj.user
