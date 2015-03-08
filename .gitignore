@@ -1,4 +1,4 @@
-DS_Store
+.DS_Store
 .map
 *.RData
 *.Rproj.user
