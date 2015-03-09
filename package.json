@@ -8,11 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/erinshellman/data-mining.git"
+    "url": "://github.com/erinshellman/data-mining-starter-kit"
   },
   "author": "Erin Rachael Shellman",
   "bugs": {
-    "url": "https://github.com/erinshellman/data-mining/issues"
+    "url": "https://github.com/erinshellman/data-mining-starter-kit/issues"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
