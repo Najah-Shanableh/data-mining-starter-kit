@@ -128,28 +128,27 @@ html(lang="en")
             a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/intro-R/introduction-to-r.Rmd') R Notebook
 
         section(data-background="images/data-explosion.png" data-background-size="100%")
-          h2 We're creating data faster than we can understand it.
+          h1 We're creating data faster than we can understand it.
 
-        section(data-transition-speed="fast")
-          h2 Data are more heterogenous than ever.
-          p Show json, xml, csv
-          p Show clipart of complex hadoop ecosystem diagram
+        section(data-background="images/data-variety.png" data-background-size="100%")
+          h1 Data are more heterogenous than ever.
 
         section(data-transition-speed="fast")
           h2 Data are <i>wider</i> than ever.
-          p Not only are we generating more observations, but we're collecting more data about the data. The number of features to explore is too large to do with a traditional data analysis. The data size creates challenges that a traditional analysis does not deal with.  Issues of 
+          p Not only are we generating more observations, we're collecting more data about data. The number of features to explore is too large to do with traditional data analysis techniques. Further, the amount of data create new challenges that analyists historically haven't dealt with. Besides analysis, today analysts need to consider 
+          ul
+            li data pipelines and integrity
             li computational efficiency 
-            li data pipelines 
             li memory use and allocation
+            li ethical consequences of findings
 
-          p We need different tool.
-          
-          aside.notes All these issues turn data mining into a highly interdisciplinary subject involving tasks not only of typical data analysts but also of people working with databases, data visualization on high dimensions, etc.
+          p We need new tools.
 
         section(data-transition-speed="fast") 
           section(data-transition-speed="fast") 
             h2 Data mining is a process of knowledge discovery 
-            p Data Mining is the process of identifying patterns in large volumes of data for the purposes of prediction. You can think of the process as being the following steps:
+            p Data Mining is the process of identifying patterns in large volumes of data <u>for the purposes of prediction</u>. Data mining typically follows these steps:
+            ol
               li data cleaning and preparation
               li exploratory data analysis
               li model or pattern discovery
@@ -197,10 +196,11 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h3 Limitations of data mining
-          p
-            li Many patterns are uninteresting
-            li Some patterns result from coincidences or bias in the data collected
-            li Data are often untidy or missing
+          p Like any analysis, and arguably more so than traditional statistical analysis, data mining has limitations.
+            ul 
+              li Many patterns are uninteresting
+              li Some patterns result from coincidences or bias in the data collected
+              li Data are often untidy or missing
           p How do these limitations influence the inpretation and application of the results of a data mining process? What are our standards for belief?
 
         section(data-transition-speed="fast")
@@ -211,6 +211,7 @@ html(lang="en")
         section(data-transition-speed="fast")
           h2 Reading questions
           p Put yourself in the mind of an analyst at Target.  
+          ul
             li What data would you need to build a model to predict if a woman is pregnant? 
             li Is it ethical to merge data from outside of Target's scope in customers' lives (<i>e.g.</i> public birth records).
             li Does the cost of backlash outweigh the benefits of the knowledge?
@@ -245,7 +246,7 @@ html(lang="en")
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
             h2 The Bonferroni principle
-            p If we are willing to view as an interesting fea- ture of data something of which many instances can be expected to exist in random data, then we cannot rely on such features being significant. This observation limits our ability to mine data for features that are not sufficiently rare in practice. 
+            p If we are willing to view as an interesting feature of data something of which many instances can be expected to exist in random data, then we cannot rely on such features being significant. This observation limits our ability to mine data for features that are not sufficiently rare in practice. 
 
           section(data-transition-speed="fast")
             h2 Bonferroni correction
@@ -275,12 +276,26 @@ html(lang="en")
                 a(href="http://cran.cnr.berkeley.edu/") R
               li Install 
                 a(href='http://www.rstudio.com/products/rstudio/download/') R Studio  
+ 
+        section
+          h2 Project 1
+          p In 
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/problem_statement_project_1.md") project 1 
+            we're going to explore data from Washington D.C.'s Capital Bikeshare program. We want to identify the best predictors of a successful bike station. To complete the project you'll need to:
+          ul
+            li formalize the business problem as a data mining process
+            li define the outcome(s) 
+            li use aggregation and summaries to create model inputs
+            li analyze and interpret your results
+            li write a brief report of your findings
 
         section(data-transition-speed="fast")
-          h2 some kind of exercise here
-          ol Riddle me this...
-            li What is the average of _____?
-            li Create a plot of ________ faceted by ______.
+          h2 project 1 data
+          p I've constructed a dataset for you that includes
+            ul 
+              li Hourly weather for all of 2012
+              li Station details such as long/lat, and nearby amenities
+              li Usage data for all of 2012
 
         section
           h2 References
@@ -309,13 +324,42 @@ html(lang="en")
           p Provide some real example that we will walk through in R
 
         section(data-transition-speed="fast")
+          h2 Why Linear regression?
+          p 
+            ul
+              li Interpretability
+              li Implimentation
+              li Powerful
+              li Flexible
+
+        section(data-transition-speed="fast")
           h2 Linear regression
-          p Our goal is to predict real-value output.
+          p Unlike traditional data analysis where our focus is estimation of means, in data mining our interest is in prediction. So in data mining we apply regression to predict real-value output.
+          ol
+            li Fit a regression model
+            li Plug in new values to predict
+
+        section(data-transition-speed="fast")
+          h2 Linear regression
+          p In prediction settings, linear models can outperform more complex nonlinear techniques, particularly in settings with small training sets or sparse data. 
 
         section(data-transition-speed="fast")
           h2 mathematical foundations
           p $ y = \beta_{0} + \beta_{1}x + \epsilon $
           p $ x $ is the predictor, or independent, variable, and $ y $ is the response, or dependent, variable.
+
+        section(data-transition-speed="fast")
+          h2 Covariates
+          p Model covariates, or parameters, could be:
+          li quantitative measurements
+          li transformations of the measurements, <i>e.g.</i> logs, squares, square roots.
+          li polynomial expansions
+          li dummy variables
+          li interactions
+
+        section(data-transition-speed="fast")
+          h2 Least squares
+          p How to estimate coefficients
 
         section(data-transition-speed="fast")
           h2 Errors
@@ -324,10 +368,19 @@ html(lang="en")
           p figure showing errors
 
         section(data-transition-speed="fast")
+          h2 Assumptions
+          p The assumptions of linear regression are: 
+            li Normality of errors
+            li Independence of errors
+            li Linearity between the outcome and covariates
+          p In a prediction setting we might violate these assumptions and it's application-dependent whether we should be concerned about the violation of assumptions. To the extent that we use values like R-squared as a metric for model selection, then we should be concerned with the way that violating assumptions could change the value of R-squared.
+
+        section(data-transition-speed="fast")
           h2 intuition
           p are there any nice figures or geometric arguments that can be shown?
           p "Thus, the true regression model is a line of mean values, that is, the height of the regression line at any value of x is just the expected value of y for that x.
           p maybe go through example of fixing x, and looking at the y values.
+          p least squares is intuitive even if some assumptions are violated. The criterion measures the average lack of it.
 
         section(data-transition-speed="fast")
           h2 interpretation
