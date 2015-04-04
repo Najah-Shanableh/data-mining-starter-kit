@@ -14,6 +14,16 @@ html(lang="en")
     link(rel="stylesheet", href="lib/css/zenburn.css")
     link(rel="stylesheet", href="css/theme/data-mining.css")
 
+    // For exporting to pdf
+    script(type='text/javascript').
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+
   body
 
     header.full-width.header-area
@@ -33,52 +43,33 @@ html(lang="en")
             section.top-bar-section
               ul.right
                 li.has-dropdown.not-click
-                  a.active(href='#') Week
+                  a.active(href='#') Topic
                   ul.dropdown
                     li.active
-                      a.active(href='#/week1') 1: Intro to data mining and R
+                      a.active(href='#/week1') Intro to data mining and R
                     li.active
-                      a.active(href='#/week2') 2: Linear regression
+                      a.active(href='#/week2') Linear regression
                     li.active
-                      a.active(href='#/week3') 3: Linear regression extensions
+                      a.active(href='#/week4') Logistic regression
                     li.active
-                      a.active(href='#/week4') 4: Classification 1
+                      a.active(href='#/week5') Classification Trees 
                     li.active
-                      a.active(href='#/week5') 5: Classification 2 
+                      a.active(href='#/week6') Association Rules
                     li.active
-                      a.active(href='#/week6') 6 
+                      a.active(href='#/week7') Clustering
                     li.active
-                      a.active(href='#/week7') 7
+                      a.active(href='#/week8') Forecasting
                     li.active
-                      a.active(href='#/week8') 8
-                    li.active
-                      a.active(href='#/week9') 9
-                    li.active
-                      a.active(href='#/week10') 10
-                li.has-dropdown.not-click
-                  a.active(href='#') Topic 
-                  ul.dropdown
-                    li.active
-                      a.active(href='#') what is data mining?
-                    li.active
-                      a.active(href='#/R_intro') introduction to R
-                    li.active
-                      a.active(href='#') linear regression
-                    li.active
-                      a.active(href='#/classification') classification
-                    li.active
-                      a.active(href='#') association mining
-                    li.active
-                      a.active(href='#') clustering 
+                      a.active(href='#/week10') Markdown + Git
                 li.has-dropdown.not-click
                   a.active(href='#') About 
                   ul.dropdown
                     li.active
-                      a.active(href='#') how to use these slides 
+                      a.active(href='#/how_to') how to use these slides 
                     li.active
-                      a.active(href='#') the author
+                      a.active(href='#/author') the author
                     li.active
-                      a.active(href='#') acknowledgements
+                      a.active(href='#/acknowledgements') acknowledgements
                 li.active.not-click
                   a.active(href='https://github.com/erinshellman/data-mining-starter-kit/issues') Report a bug
 
@@ -92,7 +83,7 @@ html(lang="en")
              a.active(href="mailto:rtbrush@uw.edu") rtbrush@uw.edu
           p Welcome! These are lecture notes that accompany an applied course on data mining. Read the #[a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/README.md') syllabus] to find details about assignments and deadlines.
 
-        section
+        section#how_to
           h2 Notes improved with the support of viewers like you!
           p These slides are a work in progress and I need your help to make them rule. If you see an error or think something is unclear or omitted, please #[a(href='https://github.com/erinshellman/data-mining-starter-kit/issues') report it!]
           p I'll do my best to keep the slides as updated and accurate as possible.
@@ -116,11 +107,15 @@ html(lang="en")
           p You can also dive into topics using the navigation bar at the top.
 
         section(data-transition-speed="fast")
-          h2 Students goals
+          h2 Bookmark and check back often!
+          p Data technology is a rapidly growing and changing industry. I chose #[a(href="http://lab.hakim.se/reveal-js/#/") this format] for course notes so that they could be easily maintained and up-to-date. As you apply these skills outside of class, I hope you can use these notes as a reference. 
+
+        section(data-transition-speed="fast")
+          h2 What are you professional goals?
           blockquote R programming and use familiarity with Statistics so I can apply it on other platforms not covered in class, clarity of concepts and familiarity with tool so I have a basis we can build upon.  
 
         section(data-transition-speed="fast")
-          h2 Students goals
+          h2 What are you professional goals?
           blockquote It would be awesome if we are able to publish our work as part of a portfolio.  
 
         section#week1.title-slide(data-background="images/data_miner1.jpg" data-background-size="100%")
@@ -146,21 +141,19 @@ html(lang="en")
           //h1 Data are more heterogenous than ever.
 
           section(data-transition-speed="fast") 
-            h2 Data are more heterogenous than ever.
-            p Not only do we have more data, we have more way to represent data. Technology like Hadoop revolutionized the way we handle <i>unstructured data</i> like free text or collections of weblogs. Likewise the efforts of personalization generates many types of data about a single person: demographics, transactional histories, social media activities and clickstream. To create personalized experiences these disperate data are combined into a single customer profile. 
+            h2 Data representation and storage is more heterogeneous than ever
+            p Not only are we generating more data faster, we're developing more ways to represent and store data. Marketing personalization combines disperate data about a single person or household: demographics, transactional histories, social media activities and clickstream. Personalizatin efforts require the ability to ingest and combine data from many sources across many formats. Graph databases like #[a(href="http://thinkaurelius.github.io/titan/") Titan] or #[a(href="http://neo4j.com/") neo4j] represent complex interactions as network graphs and analysts query the network with traversal patterns. Algorithms like mapreduce on the other hand, revolutionized the way we query #[a(href="http://en.wikipedia.org/wiki/Unstructured_data") unstructured data], like text and weblogs.
 
         section(data-transition-speed="fast")
-          h2 Data are <i>wider</i> than ever.
-          p Not only are we generating more observations, we're collecting more data about data. The number of features to explore is too large to do with traditional data analysis techniques. Further, the amount of data create new challenges that analyists historically haven't dealt with. Besides analysis, today analysts need to consider 
+          h2 We need new tools
+          p In the context of big, heterogeneous data, the number of features to explore is too large to do with traditional analysis techniques. Further, the volume of data create new challenges that analyists historically haven't dealt with such as
           ul
+            li computational efficiency, <i>i.e.</i> speed
+            li memory use and allocation, <i>i.e.</i> computing resources
             li data pipelines and integrity
-            li computational efficiency 
-            li memory use and allocation
-            li ethical consequences of findings
+            li the ethical consequences of findings
 
-          p We need new tools.
-
-        section(data-transition-speed="fast") 
+        section#what_is(data-transition-speed="fast") 
           section(data-transition-speed="fast") 
             h2 Data mining is a process of knowledge discovery 
             p Data Mining is the process of identifying patterns in large volumes of data <u>for the purposes of prediction</u>. Data mining typically follows these steps:
@@ -369,7 +362,7 @@ html(lang="en")
               a(href="http://datamining.togaware.com/") Data mining resources
 
 
-        section#week2
+        section#week2(data-background="images/data_miner2.jpg" data-background-size="100%")
           h2 Week 2: Linear regression
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -387,7 +380,7 @@ html(lang="en")
               li Powerful
               li Flexible
 
-        section(data-transition-speed="fast")
+        section#regression(data-transition-speed="fast")
           h2 Linear regression
           p Unlike traditional data analysis where our focus is estimation of means, in data mining our interest is in prediction. So in data mining we apply regression to predict real-value output.
           ol
@@ -459,7 +452,7 @@ html(lang="en")
           h2 Bike sharing dataset
           p https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset
 
-        section#week3
+        section#week3(data-background="images/data_miner3.jpg" data-background-size="100%")
           h2 Week 3: Linear regression extensions
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -470,7 +463,7 @@ html(lang="en")
             li 
               a(href="http://research.google.com/pubs/pub43146.html") Machine Learning: The High Interest Credit Card of Technical Debt
 
-        section#week4
+        section#week4(data-background="images/data_miner4.jpg" data-background-size="100%")
           h2 Week 4: Classification - Logistic Regression 
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -583,7 +576,7 @@ html(lang="en")
             li
               a(href="http://www.jstatsoft.org/v28/i05/paper") Building Predictive Models in R Using the caret Package 
 
-        section#week5
+        section#week5(data-background="images/data_miner5.jpg" data-background-size="100%")
           h2 Week 5: Classification - Trees
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -640,7 +633,8 @@ html(lang="en")
           h2 Week 3 References
           ol
             li coursera practical machine learning
-        section#week6
+            lllllll
+        section#week6(data-background="images/data_miner6.jpg" data-background-size="100%")
           h2 Week 6: Association rule mining
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -649,45 +643,57 @@ html(lang="en")
           h2 the million song dataset
           p http://blog.echonest.com/post/3639160982/million-song-dataset
 
-        section#week7
+        section#week7(data-background="images/data_miner7.jpg" data-background-size="100%")
           h2 Week 7: Clustering
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
 
-        section#week8
+        section#week8(data-background="images/data_miner8.jpg" data-background-size="100%")
           h2 Week 8: Time series 1
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
 
-        section#week9
+        section#week9(data-background="images/data_miner9.jpg" data-background-size="100%")
           h2 Week 9: Time series 2
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
 
-        section#week10
-          h2 Week 10: Final presentations 
+        section#week10(data-background="images/data_miner10.jpg" data-background-size="100%")
+          h2 Week 10: Sharing is caring!
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
 
-        section
-          h2 How can I apply these skills to real problems?
+        section(data-transition-speed="fast")
+          h2 Share your work!
+          p You've learned a ton about data mining and solving problems with data, and now to make the most of your efforts lets create digital portfolios of our work with Github and Markdown.
+
+        section(data-transition-speed="fast")
+          h2 Intro Git
+
+        section(data-transition-speed="fast")
+          h2 Intro GitHub
+
+        section(data-transition-speed="fast")
+          h2 Intro Markdown
+
+        section(data-transition-speed="fast")
+          h2 You want some more?
           p Data Kind
           p Kaggle Competitions
 
-        section
-          section#week1references
-            h2 References
-            h4 Week 1
-            ol
-              li Data Mining with R: Learning with Case Studies
-              li 
-                a(href="https://www.coursera.org/course/rprog") Coursera course on R 
-              li 
-                a(href="http://www.mmds.org/") Mining of Massive Datasets 
+        section#acknowledgements
+          h2 Thanks buddies!
+          p Creating this course wasn't easy and I couldn't have done it alone. Big ups to #[a(href="http://brianbeck.com/") Brian Beck] who designed and styled the lecture notes. Also huge thanks to my TA Ryan Brush who encouraged and recommended me to teach this class.
+          p Thank you to #[a(href="https://www.flickr.com/photos/boston_public_library/sets/72157627774101436") the Boston Public Library] for posting all the awesome old postcards on Flickr!
 
-          section#week2references
-            h2 References
-            h4 Week 2
+        section
+          section#author
+            h2 But who <i>is</i> #[a(href="http://www.erinshellman.com/") Erin Shellman]?  
+
+            p I’m a programmer and statistician working as a research scientist at #[a(href="http://aws.amazon.com/") Amazon Web Services], and before that I was a Data Scientist in the Nordstrom Data Lab. I mostly code in Python and R, and increasingly use Javascript for visualization and data retrieval through APIs. I’m rigorous, ask good questions and sometimes even answer those questions. I love to teach and speak, and do both often through talks and as co-organizer of #[a(href="http://www.meetup.com/Seattle-PyLadies/") PyLadies-Seattle].
+
+          section
+            p #[a(href="mailto:rtbrush@uw.edu") Ryan Brush] is a data management program manager with Microsoft's Global Foundation Services division. This division delivers the core infrastructure and foundational technologies for Microsoft’s 200-plus online businesses, including Bing, Hotmail, MSN, Office 365, Xbox Live and the Windows Azure platform. Brush has more than seven years of experience in enterprise system development with an emphasis on building scalable data and reporting solutions. His experience includes requirements gathering, creating metric road maps, improving data quality and developing data analytics platforms. He also has experience writing SQL queries against large-scale, complex data sets. Prior to working at Microsoft, Brush was a business intelligence consultant with various organizations in the cloud computing, travel and high-tech industries.
 
     script(src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.1.2/js/foundation.min.js")
     script(src="lib/js/head.min.js")
