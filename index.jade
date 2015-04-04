@@ -63,22 +63,13 @@ html(lang="en")
                     li.active
                       a.active(href='#/R_intro') introduction to R
                     li.active
-                      a.active(href='#/classification') classification
-                    li.active
                       a.active(href='#') linear regression
+                    li.active
+                      a.active(href='#/classification') classification
                     li.active
                       a.active(href='#') association mining
                     li.active
                       a.active(href='#') clustering 
-                li.has-dropdown.not-click
-                  a.active(href='#week1references') References
-                  ul.dropdown
-                    li.active
-                      a.active(href='#') Course materials
-                    li.active
-                      a.active(href='#week1references') Week 1
-                    li.active
-                      a.active(href='#week2references') Week 2
                 li.has-dropdown.not-click
                   a.active(href='#') About 
                   ul.dropdown
@@ -96,42 +87,59 @@ html(lang="en")
         section.title-slide
           h2 BI Tech CP303 - Data Mining
           h4 Erin Shellman - 
-             a.active(href="mailto:erin.shellman@gmail.com") erin.shellman@gmail.com
-          p Welcome to data mining. These are the lecture notes that accompany an applied course on data mining. Read the 
-            a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/README.md') syllabus 
-            to find details about the assignments and key deadlines.
+             a.active(href="mailto:shellman@uw.edu") shellman@uw.edu
+          h5 <b>TA</b>: Ryan Brush - 
+             a.active(href="mailto:rtbrush@uw.edu") rtbrush@uw.edu
+          p Welcome! These are lecture notes that accompany an applied course on data mining. Read the #[a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/README.md') syllabus] to find details about assignments and deadlines.
 
         section
-          h2 Lecture notes improved with the support of viewers like you!
-          p These slides are a work in progress and I need your help to make them rule. If you see an error or think something is unclear or omitted, please 
-            a(href='https://github.com/erinshellman/data-mining-starter-kit/issues') report it!
+          h2 Notes improved with the support of viewers like you!
+          p These slides are a work in progress and I need your help to make them rule. If you see an error or think something is unclear or omitted, please #[a(href='https://github.com/erinshellman/data-mining-starter-kit/issues') report it!]
           p I'll do my best to keep the slides as updated and accurate as possible.
             
         section(data-transition-speed="fast")
           h2 Course Philosophy
-          p Data mining is an applied skill and this course focuses on applications. Each class will be a blend of data mining concepts and applications of the concepts using the programming language R. There will be four projects, each consisting of a data mining analysis to solve a business problem and a brief written report of your findings.
+          p Data mining is an applied skill and this course focuses on applications. Each class will be a blend of concepts and demonstrations of the concepts using the programming language R. There will be four projects, each consisting of a data mining analysis to solve a business problem and a brief written report of your findings.
 
-          p By the end of this course, my goal is that you will be able to approach unfamiliar data and quickly find and communicate results.
-
-        section(data-transition-speed="fast")
-         h2 Navigating the notes
-         p The material progresses from left to right, and for those interested in exploring more about a topic there are often slides in the up, down direction.
+          p By the end of this course, you will be able to approach unfamiliar data and quickly find and communicate results.
 
         section(data-transition-speed="fast")
-         h2 Traverse the topics 
-         p You can also dive into topics using the navigation bar at the top.
+          section(data-transition-speed="fast")
+            h2 Navigating the notes
+            p The notes progress from left to right, and for those interested in exploring more about a topic sometimes there's bonus material in the up, down direction.
 
-        section#week1.title-slide
-          h2 Week 1: Introduction to Data Mining and Using R
+          section(data-transition-speed="fast")
+            h2 Just like this!
+
+        section(data-transition-speed="fast")
+          h2 Traverse the topics 
+          p You can also dive into topics using the navigation bar at the top.
+
+        section#week1.title-slide(data-background="images/data_miner1.jpg" data-background-size="100%")
+          h2 Week 1: Introduction to Data Mining with R
           h4 BI Tech CP303 - Data Mining
           h4 
             a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/intro-R/introduction-to-r.Rmd') R Notebook
 
-        section(data-background="images/data-explosion.png" data-background-size="100%")
-          //h1 We're creating data faster than we can understand it.
+        section(data-transition-speed="fast") 
+          section(data-background="images/data-explosion.png" data-background-size="100%")
+            //h1 We're creating data faster than we can understand it.
 
-        section(data-background="images/data-variety.png" data-background-size="100%")
+          section(data-transition-speed="fast") 
+            h2 We are inundated with data
+            p Governments, corporations, scientists, and individual consumers are creating and collecting more data than ever before. Using clickstream technology, the modern advertiser can follow would-be customers as they browse online. These marketers are searching for clues about your preferences and shopping habits, evidence of your family composition, and even upcoming events in your life, all for the purposes of "personalization." On an individual level, Fitbits, Fuel bands, and Jawbone all allow us to monitor ourselves 24 hours a day, while 23andme gives us data about our genetic make-up. Not only do <i>we</i> consume personal data, but we <i>share</i> it with others on social media. Similarly the #[a(href="https://ropensci.org/blog/2014/11/10/open-data-growth/") biological] and #[a(href="http://earthobservatory.nasa.gov/Features/LandsatBigData/") earth] sciences are exploding with data as the cost of collecting it has plummetted. And the government, of course, wants all the data. 
+
+          section(data-transition-speed="fast") 
+            h2 We are inundated with data
+            p But that's just it, we're <i>collecting</i> data in faster than ever in history, but our growth of <i>understanding</i> of these data has not kept pace.
+
+        section(data-transition-speed="fast") 
+          section(data-background="images/data-variety.png" data-background-size="100%")
           //h1 Data are more heterogenous than ever.
+
+          section(data-transition-speed="fast") 
+            h2 Data are more heterogenous than ever.
+            p Not only do we have more data, we have more way to represent data. Technology like Hadoop revolutionized the way we handle <i>unstructured data</i> like free text or collections of weblogs. Likewise the efforts of personalization generates many types of data about a single person: demographics, transactional histories, social media activities and clickstream. To create personalized experiences these disperate data are combined into a single customer profile. 
 
         section(data-transition-speed="fast")
           h2 Data are <i>wider</i> than ever.
@@ -199,44 +207,77 @@ html(lang="en")
           p Like any analysis, and arguably more so than traditional statistical analysis, data mining has limitations.
             ul 
               li Many patterns are uninteresting
-              li Some patterns result from coincidences or bias in the data collected
-              li Data are often untidy or missing
+              li Patterns can be coincidental or a result of sampling bias
+              li Data are almost always untidy or missing
           p How do these limitations influence the inpretation and application of the results of a data mining process? What are our standards for belief?
 
-        section(data-transition-speed="fast")
+        section
           h2 Ethics in data mining
-          p Part of the reason data mining is discussed so often in popular media is the critical role that ethical considerations play when applying data mining techniques. Please read 
+          p As a result of the volume and speed at which businesses can collect data, conversations about the ethical use of these data are more important than ever. Part of the reason data mining is discussed so often in popular media is the (at least perceived) habitual ethical violations.
+          
+        section(data-transition-speed="fast")
+          h2 Ethics case study: Target
+          p Take 20 minutes and read the following piece from the New York Times Magazine which describes how Target used transactional data to target expectant mothers for marketing campaigns.
           a(href="http://www.nytimes.com/2012/02/19/magazine/shopping-habits.html") How Companies Learn Your Secrets.
 
         section(data-transition-speed="fast")
-          h2 Reading questions
-          p Put yourself in the mind of an analyst at Target.  
-          ul
-            li What data would you need to build a model to predict if a woman is pregnant? 
-            li Is it ethical to merge data from outside of Target's scope in customers' lives (<i>e.g.</i> public birth records).
-            li Does the cost of backlash outweigh the benefits of the knowledge?
-
-        section(data-transition-speed="fast")
           h2 The business problem:
-          blockquote Specifically, the marketers said they wanted to send specially designed ads to women in their second trimester, which is when most expectant mothers begin buying all sorts of new things, like prenatal vitamins and maternity clothing. “Can you give us a list?” the marketers asked.
+          blockquote 
+            p Specifically, the marketers said they wanted to send specially designed ads to women in their second trimester, which is when most expectant mothers begin buying all sorts of new things, like prenatal vitamins and maternity clothing. “Can you give us a list?” the marketers asked.
 
         section(data-transition-speed="fast")
-          blockquote Also linked to your Guest ID is demographic information like your age, whether you are married and have kids, which part of town you live in, how long it takes you to drive to the store, your estimated salary, whether you’ve moved recently, what credit cards you carry in your wallet and what Web sites you visit. 
+          h2 Discussion questions
+          p Put yourself in the role of an analyst at Target.  
+            ul
+              li What data do you need to build a model to predict if a woman is pregnant? 
+              li Is it ethical to merge data from outside of Target's scope in customers' lives (<i>e.g.</i> public birth records).
+              li Why did people get upset?
+              li Does the cost of backlash outweigh the benefits of the knowledge?
+              li How might Target have met the business goals, without losing customer credibility?
+              li To what degree should Andrew Pole be held accountable for how his analyses were used?
+
+          aside.notes Also linked to your Guest ID is demographic information like your age, whether you are married and have kids, which part of town you live in, how long it takes you to drive to the store, your estimated salary, whether you’ve moved recently, what credit cards you carry in your wallet and what Web sites you visit. 
 
         section(data-transition-speed="fast")
-          p How might Target have met the business goals, without losing customer credibility?
+          h2 How should we think about ethics?
+          img(src="images/ethics.png" align="right" width="40%")
+          p When we are faced with a data mining application, what framework should we use to think about ethics?
 
-        section 
+        section(data-transition-speed="fast")
+          h2 Ethical decision points
+          p Ethical decision points provide a framework for exploring the relationship between what values you hold as individuals—and as members of a common enterprise—and aligning those values with the actions you take in building and managing products and services utilizing big data technologies. 
+          ol
+            li Inquiry - What are our values?
+            li Analysis - Review of current data practices
+            li Articulation - explicit expression of alignments and gaps between our values and data practices
+            li Action - tactical plans to close value alignment gaps.
+
+        section(data-transition-speed="fast")
           h2 Privacy
-          p 
-            a(href='http://www.forbes.com/sites/kashmirhill/2012/02/16/how-target-figured-out-a-teen-girl-was-pregnant-before-her-father-did/') Target Girl
           p People frequently live in areas that are associated with particular ethnic identities, and so using a zip code in a data mining study runs the risk of building models that are based on race—even though racial information has been explicitly excluded from the data.
 
-        section
-          blockquote Recent work in what are being called reidentification techniques has provided sobering insights into the difficulty of anonymizing data.  It turns out, for example, that over 85% of Americans can be identified from publicly available records using just three pieces of information: five-digit zip code, birth date (including year), and sex. Don’t know the zip code?—over half of Americans can be identified from just city, birth date, and sex. - data mining book
+        section(data-transition-speed="fast")
+          h2 Protecting privacy doesn't happen by accident 
+          blockquote
+            p Recent work in what are being called reidentification techniques has provided sobering insights into the difficulty of anonymizing data.  It turns out, for example, that over 85% of Americans can be identified from publicly available records using just three pieces of information: five-digit zip code, birth date, and sex. Don’t know the zip code?—over half of Americans can be identified from just city, birth date, and sex.
+            footer 
+              a(href="http://www.amazon.com/Data-Mining-Kaufmann-Management-Systems-ebook/dp/B004H1TB1W/") Witten, Frank and Hall
+            
+        section(data-transition-speed="fast")
+          h2 It needn't be demographic data
+          blockquote
+            p Netflix released 100 million records of movie ratings with their dates. To their surprise, it turned out to be quite easy to identify people in the database and thus discover all the movies they had rated. For example, if you know approximately when a person in the database rated six movies and you know the ratings, you can identify 99% of the people in the database. By knowing only two movies with their ratings and dates, give or take three days, nearly 70% of people can be identified. From just a little information about your friends you can determine all the movies they have rated on Netflix.
+            footer 
+              a(href="http://www.amazon.com/Data-Mining-Kaufmann-Management-Systems-ebook/dp/B004H1TB1W/") Witten, Frank and Hall
 
-        section
-          p Netflix, an online movie rental service, released 100 million records of movie ratings (from 1 to 5) with their dates. To their surprise, it turned out to be quite easy to identify people in the database and thus discover all the movies they had rated. For example, if you know approximately when (give or take two weeks) a person in the database rated six movies and you know the ratings, you can identify 99% of the people in the database. By knowing only two movies with their ratings and dates, give or take three days, nearly 70% of people can be identified. From just a little information about your friends (or enemies) you can determine all the movies they have rated on Netflix.
+        section(data-transition-speed="fast")
+          p “If we send someone a catalog and say, ‘Congratulations on your first child!’ and they’ve never told us they’re pregnant, that’s going to make some people uncomfortable,” Pole told me. “We are very conservative about compliance with all privacy laws. But even if you’re following the law, you can do things where people get queasy.”
+          p She was high school age, a fact that, presumably, Target was aware of. Why then did they proceed with the mailer?
+
+        section(data-transition-speed="fast")
+          p “With the pregnancy products, though, we learned that some women react badly,” the executive said. “Then we started mixing in all these ads for things we knew pregnant women would never buy, so the baby ads looked random. We’d put an ad for a lawn mower next to diapers. We’d put a coupon for wineglasses next to infant clothes. That way, it looked like all the products were chosen by chance.
+
+          p “And we found out that as long as a pregnant woman thinks she hasn’t been spied on, she’ll use the coupons. She just assumes that everyone else on her block got the same mailer for diapers and cribs. As long as we don’t spook her, it works.”
 
         section(data-transition-speed="fast")
           h2 Profiling with data
@@ -280,9 +321,9 @@ html(lang="en")
  
         section
           h2 Project 1
-          p In 
-            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/problem_statement_project_1.md") project 1 
-          we're going to explore data from Washington D.C.'s Capital Bikeshare program. We want to identify the best predictors of a successful bike station. To complete the project you'll need to:
+          p
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/problem_statement_project_1.md") Project 1 
+            will explores data from Washington D.C.'s Capital Bikeshare program. We want to identify the best predictors of a successful bike station. To complete the project you'll need to:
           ul
             li formalize the business problem as a data mining process
             li define the outcome(s) 
@@ -302,6 +343,7 @@ html(lang="en")
           h2 References
           ol
             li Data Mining with R: Learning with Case Studies
+            li a(href="http://www.amazon.com/Ethics-Big-Data-Balancing-Innovation/dp/1449311792") Ethics of Big Data: Balancing Risk and Innovation
             li 
               a(href="https://www.coursera.org/course/rprog") Coursera course on R 
             li 
@@ -313,6 +355,10 @@ html(lang="en")
             li 
               The Elements of Statistical Learning.  Trevor Hastie, Robert Tibshirani and Jerome Friedman. The entire text is available 
               a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") from their website.
+            li 
+              a(href="http://onepager.togaware.com/") Hands-On Data Sciece with R
+            li 
+              a(href="http://datamining.togaware.com/") Data mining resources
 
 
         section#week2
