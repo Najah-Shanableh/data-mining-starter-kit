@@ -333,12 +333,12 @@ html(lang="en")
             li write a brief report of your findings
 
         section(data-transition-speed="fast")
-          h2 project 1 data
-          p I've constructed a dataset for you that includes
+          h2 Project 1 data
+          p I've constructed a dataset from a couple different sources that includes
             ul 
-              li Hourly weather for all of 2012
-              li Station details such as long/lat, and nearby amenities
-              li Usage data for all of 2012
+              li usage data for all of 2012
+              li hourly weather for all of 2012
+              li station details such as long/lat, and nearby amenities
 
         section
           h2 Week 1 Resources
@@ -359,11 +359,12 @@ html(lang="en")
           h4 Erin Shellman 
 
         section
-          h2 Example
-          p Provide some real example that we will walk through in R
+          h2 How many rentals per day?
+          p The ability to predict the expected number of bike rentals from a particular station per day is useful in many applications, like allocating bikes across stations. No need to stock a station that only expects 5 rentals with 30 bikes! Or, maybe we want to budget for monthly bike maintenance, it would be great to know how many times we can expect the bikes will be ridden. 
+          p We can use ordinary least squares (OLS) regression to estimate real-valued outcomes such as number of rentals per day.  
 
         section(data-transition-speed="fast")
-          h2 Why Linear regression?
+          h2 Why linear regression?
           p 
             ul
               li Interpretability
@@ -371,16 +372,21 @@ html(lang="en")
               li Powerful
               li Flexible
 
-        section#regression(data-transition-speed="fast")
-          h2 Linear regression
-          p Unlike traditional data analysis where our focus is estimation of means, in data mining our interest is in prediction. So in data mining we apply regression to predict real-value output.
-          ol
-            li Fit a regression model
-            li Plug in new values to predict
+        section(data-transition-speed="fast")
+          h2 Interpretability
+          p Coefficients of linear regression can be interpreted as the mean change in the outcome y for a unit change in x. 
 
         section(data-transition-speed="fast")
-          h2 Linear regression
-          p In prediction settings, linear models can outperform more complex nonlinear techniques, particularly in settings with small training sets or sparse data. 
+          h2 Implimentation
+          p You can run a quick regression is basically any 
+
+        section(data-transition-speed="fast")
+          h2 Powerful
+          p In prediction settings, linear models can outperform more complex nonlinear techniques, particularly when working with small training sets or sparse data. 
+
+        section(data-transition-speed="fast")
+          h2 Flexible
+          p Even in situations were linearity assumptions fail, we can transform variables using logs or centering and proceed to use linear regression on the transformed variables.
 
         section(data-transition-speed="fast")
           h2 mathematical foundations
