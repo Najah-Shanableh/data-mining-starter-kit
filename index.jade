@@ -67,6 +67,8 @@ html(lang="en")
                     li.active
                       a.active(href='#/how_to') how to use these slides 
                     li.active
+                      a.active(href='#/textbook') textbook
+                    li.active
                       a.active(href='#/author') the author
                     li.active
                       a.active(href='#/acknowledgements') acknowledgements
@@ -83,7 +85,15 @@ html(lang="en")
              a.active(href="mailto:rtbrush@uw.edu") rtbrush@uw.edu
           p Welcome! These are lecture notes that accompany an applied course on data mining. Read the #[a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/README.md') syllabus] to find details about assignments and deadlines.
 
-        section#how_to
+        section#textbook(data-transition-speed="fast")
+          h2 Textbooks
+          p There is no book required for this course, however there are two great texts available for free online.
+          a(href="http://www.mmds.org/")
+            img(src="images/mmds.jpg" align="left" width="35%")
+          a(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques")
+            img(src="images/hill_lewicki.jpg" align="right" width="40%")
+
+        section#how_to(data-transition-speed="fast")
           h2 Notes improved with the support of viewers like you!
           p These slides are a work in progress and I need your help to make them rule. If you see an error or think something is unclear or omitted, please #[a(href='https://github.com/erinshellman/data-mining-starter-kit/issues') report it!]
           p I'll do my best to keep the slides as updated and accurate as possible.
@@ -156,19 +166,15 @@ html(lang="en")
         section#what_is(data-transition-speed="fast") 
           section(data-transition-speed="fast") 
             h2 Data mining is a process of knowledge discovery 
-            p Data Mining is the process of identifying patterns in large volumes of data <u>for the purposes of prediction</u>. Data mining typically follows these steps:
-            ol
-              li data cleaning and preparation
-              li exploratory data analysis
-              li model or pattern discovery
-              li model deployment
+            img(src="images/data_mining_process.png" align="right" width="40%")
+            p Data Mining is the process of identifying patterns in large volumes of data <u>for the purposes of prediction</u>. Realistically, data cleaning and exploratory analysis will occupy the vast majority of your time with the rest left over for model discovery.
+            p Model deployment is optional and depends on the result of the first three steps. After completing the analysis you might find that long-term adoption of your model isn't worthwhile.
 
           section(data-transition-speed="fast") 
-            p "Data mining is the extraction of implicit, previously unknown, and potentially useful information from data." 
-              a(href='http://www.amazon.com/Data-Mining-Practical-Techniques-Management/dp/0123748569') Witten, Frank and Hall
-            p "The most commonly accepted definition of “data mining” is the discovery of “models” for data." Where 'model' could mean a statistical model, and machine learning model or an algorithm like mapreduce.
-              a(href='http://www.mmds.org/') Leskovec, Rajaraman, Ullman
-            p Data Mining is an analytic process designed to explore data (usually large amounts of data - typically business or market related - also known as "big data") in search of consistent patterns and/or systematic relationships between variables, and then to validate the findings by applying the detected patterns http://www.statsoft.com/Textbook/Data-Mining-Techniques
+            h2 Additional definitions
+            blockquote Data mining is the extraction of implicit, previously unknown, and potentially useful information from data. #[a(href='http://www.amazon.com/Data-Mining-Practical-Techniques-Management/dp/0123748569') Witten, Frank and Hall]
+            blockquote The most commonly accepted definition of “data mining” is the discovery of “models” for data." Where 'model' could mean a statistical model, and machine learning model or an algorithm like mapreduce. #[a(href='http://www.mmds.org/') Leskovec, Rajaraman, Ullman]
+            blockquote Data Mining is an analytic process designed to explore data in search of consistent patterns and/or systematic relationships between variables, and then to validate the findings by applying the detected patterns. #[a(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques") Hill & Lewicki]
 
         section(data-transition-speed="fast") 
           section(data-transition-speed="fast") 
