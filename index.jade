@@ -121,11 +121,11 @@ html(lang="en")
           p Data technology is a rapidly growing and changing industry. I chose #[a(href="http://lab.hakim.se/reveal-js/#/") this format] for course notes so that they could be easily maintained and up-to-date. As you apply these skills outside of class, I hope you can use these notes as a reference. 
 
         section(data-transition-speed="fast")
-          h2 What are you professional goals?
+          h2 What are your professional goals?
           blockquote R programming and use familiarity with Statistics so I can apply it on other platforms not covered in class, clarity of concepts and familiarity with tool so I have a basis we can build upon.  
 
         section(data-transition-speed="fast")
-          h2 What are you professional goals?
+          h2 What are your professional goals?
           blockquote It would be awesome if we are able to publish our work as part of a portfolio.  
 
         section#week1.title-slide(data-background="images/data_miner1.jpg" data-background-size="100%")
@@ -156,7 +156,7 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 We need new tools
-          p In the context of big, heterogeneous data, the number of features to explore is too large to do with traditional analysis techniques. Further, the volume of data create new challenges that analyists historically haven't dealt with such as
+          p In the context of big, heterogeneous data, the number of candidate features is too large to explore with traditional analysis techniques. Further, the volume of data create new challenges that analyists historically haven't dealt with such as
           ul
             li computational efficiency, <i>i.e.</i> speed
             li memory use and allocation, <i>i.e.</i> computing resources
@@ -167,8 +167,7 @@ html(lang="en")
           section(data-transition-speed="fast") 
             h2 Data mining is a process of knowledge discovery 
             img(src="images/data_mining_process.png" align="right" width="40%")
-            p Data Mining is the process of identifying patterns in large volumes of data <u>for the purposes of prediction</u>. Realistically, data cleaning and exploratory analysis will occupy the vast majority of your time with the rest left over for model discovery.
-            p Model deployment is optional and depends on the result of the first three steps. After completing the analysis you might find that long-term adoption of your model isn't worthwhile.
+            p Data Mining is the process of identifying patterns in large volumes of data <u>for the purposes of prediction</u>. Realistically, data cleaning and exploratory analysis will occupy the vast majority of your time with the rest left over for model discovery. Model deployment is optional and depends on the result of the first three steps. After completing the analysis you might find that long-term adoption of your model isn't worthwhile.
 
           section(data-transition-speed="fast") 
             h2 Additional definitions
@@ -176,56 +175,70 @@ html(lang="en")
             blockquote The most commonly accepted definition of “data mining” is the discovery of “models” for data." Where 'model' could mean a statistical model, and machine learning model or an algorithm like mapreduce. #[a(href='http://www.mmds.org/') Leskovec, Rajaraman, Ullman]
             blockquote Data Mining is an analytic process designed to explore data in search of consistent patterns and/or systematic relationships between variables, and then to validate the findings by applying the detected patterns. #[a(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques") Hill & Lewicki]
 
+        section(data-transition-speed="fast")
+          h2 Lets look at some examples
+          p Analysis problems generally fall into one of four classes of problem and we're going to try to get some hands-on experience with all four:
+            ol
+              li numerical prediction 
+              li classification (or #[a(href="http://en.wikipedia.org/wiki/Supervised_learning") supervised learning])
+              li clustering and #[a(href="http://en.wikipedia.org/wiki/Unsupervised_learning") unsupervised learning]
+              li time-series
+
+        section(data-transition-speed="fast")
+          h2 Capital Bikeshare 
+          p In project 1 you'll analyze data from Washington D.C.'s bikeshare program to predict locations of successful bike stations. An model for this application could be to predict the number of bike rentals per hour as a function of the number of restaurants nearby.
+
+        section(data-transition-speed="fast")
+          h2 Bot or not?
+          p In project 2, you'll build a classifier to distinguish Twitter bots from humans.
+
+        section(data-transition-speed="fast")
+          h2 Pandora 2.0
+          p In project 3, you'll use association rule mining and clustering to build a song recommender using a subset of the Million Song Dataset.
+
+        section(data-transition-speed="fast")
+          h2 Predicting network traffic
+          p Finally in project 4 you'll forecast network traffic by analyzing historical data.
+
         section(data-transition-speed="fast") 
           section(data-transition-speed="fast") 
-            h2 How is statistics, data mining and machine learning related?
-            p Statistics is concerned with estimating the uncertainty of our inferences, machine learning is about characterizing the performance of our predictions.
+            h2 How do statistics and machine learning relate?
+            p Statistics and machine learning are tools that we employ in our data mining process. Generally the field of statistics is concerned with the analysis and interpretation of data, while the field of machine learning is primarily focused on prediction. Machine learning is less concerned with interpretation and validity of statistical assumptions (to the extent that they don't negatively influence the model's ability to predict).
 
           section(data-transition-speed="fast")
-            h2 Leo Breiman paper about paradigms.
-            p 
-              a(href='http://faculty.smu.edu/tfomby/eco5385/lecture/Breiman%27s%20Two%20Cultures%20paper.pdf') Statistical Modeling: The Two Cultures.
+            p To learn more about the different paradigms of inferential statistics and machine learning I highly recommend #[a(href="http://faculty.smu.edu/tfomby/eco5385/lecture/Breiman%27s%20Two%20Cultures%20paper.pdf") Statistical Modeling: The Two Cultures] by Leo Breiman.
 
         section(data-transition-speed="fast")
           h2 Machine Learning
-          p definition of learning - Things learn when they change their behavior in a way that makes them perform better in the future
-          p This ties learning to performance rather than knowledge. You can test learning by observing present behavior and comparing it with past behavior. 
+          p #[a(href="http://en.wikipedia.org/wiki/Machine_learning") Machine learning] is a discipline originating in artificial intelligence that creates and investigates algorithms that help machines <i>learn</i> from data. A machine can be said to learn if its behavior changes such that it performs better in the future.
+          p Applications of machine learning are often in automated systems spam detectors, or recommendation engines.
 
         section(data-transition-speed="fast")
-          h2 General data mining tasks
-          p There are four basic data mining applications, numerical prediction, classification, association mining and clustering.
-        section(data-transition-speed="fast")
-          h2 Numerical prediction example
-
-        section(data-transition-speed="fast")
-          h2 Classification example
-          p diagnosis
-
-        section(data-transition-speed="fast")
-          h2 Association example
-          p market-basket analysis/recommendations
-
-        section(data-transition-speed="fast")
-          h2 Clustering example
-          p customer segmentation
+          p You'll find that many of the techniques you've used in an analysis setting are identical to those used in machine learning, for example, linear and logistic regression. The key difference is that in machine learning, we'll judge our model quality by assessing its ability to predict on hold-out data, rather than through goodness-of-fit metrics like $ R^2 $ or AIC.
 
         section(data-transition-speed="fast")
           h3 Limitations of data mining
-          p Like any analysis, and arguably more so than traditional statistical analysis, data mining has limitations.
+          p Like any analytical technique, and arguably more so than traditional analysis, data mining has limitations:
             ul 
-              li Many patterns are uninteresting
-              li Patterns can be coincidental or a result of sampling bias
-              li Data are almost always untidy or missing
+              li many patterns are uninteresting
+              li patterns can be coincidental or a result of sampling bias
+              li data are almost always untidy or missing
           p How do these limitations influence the inpretation and application of the results of a data mining process? What are our standards for belief?
 
         section
-          h2 Ethics in data mining
-          p As a result of the volume and speed at which businesses can collect data, conversations about the ethical use of these data are more important than ever. Part of the reason data mining is discussed so often in popular media is the (at least perceived) habitual ethical violations.
+          section
+            h2 Ethical data mining
+            p As a result of the volume and speed at which businesses can collect data, conversations about the ethical use of these data are more important than ever. We're used to reading headlines about ethical violations in big data, but often these incidents can be anticipated and avoided.
+
+          section(data-transition-speed="fast")
+            p Here's a fairly horrifying list of articles about data mining and potential ethical violoations.
+            ul
+              li #[a(href="http://www.nytimes.com/roomfordebate/2014/08/06/is-big-data-spreading-inequality/losing-out-on-employment-because-of-big-data-mining") Losing Out on Employment Because of Big Data Mining]
+              li #[a(href="http://arstechnica.com/gadgets/2012/05/on-facebook-deleting-an-app-doesnt-delete-your-data-from-their-system/") On Facebook, deleting an app doesn’t delete your data from their system]
           
         section(data-transition-speed="fast")
           h2 Ethics case study: Target
-          p Take 20 minutes and read the following piece from the New York Times Magazine which describes how Target used transactional data to target expectant mothers for marketing campaigns.
-          a(href="http://www.nytimes.com/2012/02/19/magazine/shopping-habits.html") How Companies Learn Your Secrets.
+          p Take 20 minutes and read the following piece from the New York Times Magazine which describes how Target used transactional data to target expectant mothers for marketing campaigns: #[a(href="http://www.nytimes.com/2012/02/19/magazine/shopping-habits.html") How Companies Learn Your Secrets]
 
         section(data-transition-speed="fast")
           h2 The business problem:
@@ -253,53 +266,34 @@ html(lang="en")
         section(data-transition-speed="fast")
           h2 Ethical decision points
           p Ethical decision points provide a framework for exploring the relationship between what values you hold as individuals—and as members of a common enterprise—and aligning those values with the actions you take in building and managing products and services utilizing big data technologies. 
-          ol
-            li Inquiry - What are our values?
-            li Analysis - Review of current data practices
-            li Articulation - explicit expression of alignments and gaps between our values and data practices
-            li Action - tactical plans to close value alignment gaps.
+            ol
+              li <b>Inquiry</b>: what are are my organization's values? What are my values?
+              li <b>Analysis</b>: what are the practice standards in my industry?
+              li <b>Articulation</b>: where are there alignments and gaps between our values and proposed data practices?
+              li <b>Action</b>: what must we do to close value alignment gaps?
 
         section(data-transition-speed="fast")
-          h2 Privacy
-          p People frequently live in areas that are associated with particular ethnic identities, and so using a zip code in a data mining study runs the risk of building models that are based on race—even though racial information has been explicitly excluded from the data.
+          h2 Inquiry: what are my values?
+          p Target has a #[a(href="https://corporate.target.com/about/mission-values") values page] on their website, but more relevant to this discussion is the #[a(href="http://www.target.com/spot/privacy-policy") privacy policy].
+            blockquote At Target, we want you to know how we collect, use, share and protect information about you. By interacting with Target, you consent to use of information that is collected or submitted as described in this privacy policy. We may change or add to this privacy policy, so we encourage you to review it periodically. To help you track the changes, we include a history of changes below.
 
         section(data-transition-speed="fast")
-          h2 Protecting privacy doesn't happen by accident 
-          blockquote
-            p Recent work in what are being called reidentification techniques has provided sobering insights into the difficulty of anonymizing data.  It turns out, for example, that over 85% of Americans can be identified from publicly available records using just three pieces of information: five-digit zip code, birth date, and sex. Don’t know the zip code?—over half of Americans can be identified from just city, birth date, and sex.
-            footer 
-              a(href="http://www.amazon.com/Data-Mining-Kaufmann-Management-Systems-ebook/dp/B004H1TB1W/") Witten, Frank and Hall
-            
-        section(data-transition-speed="fast")
-          h2 It needn't be demographic data
-          blockquote
-            p Netflix released 100 million records of movie ratings with their dates. To their surprise, it turned out to be quite easy to identify people in the database and thus discover all the movies they had rated. For example, if you know approximately when a person in the database rated six movies and you know the ratings, you can identify 99% of the people in the database. By knowing only two movies with their ratings and dates, give or take three days, nearly 70% of people can be identified. From just a little information about your friends you can determine all the movies they have rated on Netflix.
-            footer 
-              a(href="http://www.amazon.com/Data-Mining-Kaufmann-Management-Systems-ebook/dp/B004H1TB1W/") Witten, Frank and Hall
+          h2 Analysis: what are the standards of my industry?
+          p In marketing a great place to start is the Digital Marketing Association's #[a(href="http://thedma.org/centers-of-excellence/dma-ethics-and-compliance-program/") Ethics and Compliance Program] and #[a(href="http://thedma.org/wp-content/uploads/DMA_Guidelines_January_2014.pdf") Guidelines for ethical business practice] the latter of which covers privacy and marketing to children, something Target did whether they knew it or not, in depth.
 
         section(data-transition-speed="fast")
-          p “If we send someone a catalog and say, ‘Congratulations on your first child!’ and they’ve never told us they’re pregnant, that’s going to make some people uncomfortable,” Pole told me. “We are very conservative about compliance with all privacy laws. But even if you’re following the law, you can do things where people get queasy.”
-          p She was high school age, a fact that, presumably, Target was aware of. Why then did they proceed with the mailer?
-
-        section(data-transition-speed="fast")
-          p “With the pregnancy products, though, we learned that some women react badly,” the executive said. “Then we started mixing in all these ads for things we knew pregnant women would never buy, so the baby ads looked random. We’d put an ad for a lawn mower next to diapers. We’d put a coupon for wineglasses next to infant clothes. That way, it looked like all the products were chosen by chance.
-
-          p “And we found out that as long as a pregnant woman thinks she hasn’t been spied on, she’ll use the coupons. She just assumes that everyone else on her block got the same mailer for diapers and cribs. As long as we don’t spook her, it works.”
-
-        section(data-transition-speed="fast")
-          h2 Profiling with data
-          p Find and example of police using demographic data to target patroling. 
-          p The concern raised by many is that if you look at so much data, and you try to find within it activities that look like terrorist behavior, are you not going to find many innocent activities – or even illicit activities that are not terrorism – that will result in visits from the police and maybe worse than just a visit? The answer is that it all depends on how narrowly you define the activities that you look for. Statisticians have seen this problem in many guises and have a theory, which we introduce in the next section.
+          h2 Articulation: are there value gaps? 
+          blockquote If we send someone a catalog and say, ‘Congratulations on your first child!’ and they’ve never told us they’re pregnant, that’s going to make some people uncomfortable,” Pole told me. “We are very conservative about compliance with all privacy laws. But even if you’re following the law, you can do things where people get queasy.
+          p The girl was high school age, a fact that, presumably, Target knew. Why then did they choose to proceed with the mailer?
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
-            h2 The Bonferroni principle
-            p If we are willing to view as an interesting feature of data something of which many instances can be expected to exist in random data, then we cannot rely on such features being significant. This observation limits our ability to mine data for features that are not sufficiently rare in practice. 
+            h2 Action: how do we close the value gaps?
+            blockquote With the pregnancy products, though, we learned that some women react badly. Then we started mixing in all these ads for things we knew pregnant women would never buy, so the baby ads looked random. We’d put an ad for a lawn mower next to diapers. We’d put a coupon for wineglasses next to infant clothes. That way, it looked like all the products were chosen by chance.
 
           section(data-transition-speed="fast")
-            h2 Bonferroni correction
-            p Describe the statistical rationale
-            p Calculate the expected number of occurrences of the events you are looking for, on the assumption that data is random. If this number is signifi- cantly larger than the number of real instances you hope to find, then you must expect almost anything you find to be bogus, i.e., a statistical artifact rather than evidence of what you are looking for. This observation is the informal statement of Bonferroni’s principle.
+            p ... and then of course they say this dehumanizing thing.
+            blockquote And we found out that as long as a pregnant woman thinks she hasn’t been spied on, she’ll use the coupons. She just assumes that everyone else on her block got the same mailer for diapers and cribs. As long as we don’t spook her, it works.
 
         section(data-transition-speed="fast")
           h2 Ethical behavior requires constant diligence 
@@ -347,26 +341,17 @@ html(lang="en")
               li Usage data for all of 2012
 
         section
-          h2 References
+          h2 Week 1 Resources
           ol
-            li Data Mining with R: Learning with Case Studies
-            li a(href="http://www.amazon.com/Ethics-Big-Data-Balancing-Innovation/dp/1449311792") Ethics of Big Data: Balancing Risk and Innovation
-            li 
-              a(href="https://www.coursera.org/course/rprog") Coursera course on R 
-            li 
-              a(href="https://www.coursera.org/course/exdata") Exploratory Data Analysis from Coursera
-            li 
-              a(href="https://www.udacity.com/course/ud651") Exploratory Data Analysis from Udacity
-            li 
-              a(href="http://www.mmds.org/") Mining of Massive Datasets 
-            li 
-              The Elements of Statistical Learning.  Trevor Hastie, Robert Tibshirani and Jerome Friedman. The entire text is available 
-              a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") from their website.
-            li 
-              a(href="http://onepager.togaware.com/") Hands-On Data Sciece with R
-            li 
-              a(href="http://datamining.togaware.com/") Data mining resources
-
+            li #[a(href="http://www.dcc.fc.up.pt/~ltorgo/DataMiningWithR/") Data Mining with R: Learning with Case Studies]
+            li #[a(href="http://www.amazon.com/Ethics-Big-Data-Balancing-Innovation/dp/1449311792") Ethics of Big Data: Balancing Risk and Innovation]
+            li #[a(href="https://www.coursera.org/course/rprog") Coursera course on R]
+            li #[a(href="https://www.coursera.org/course/exdata") Exploratory Data Analysis from Coursera]
+            li #[a(href="https://www.udacity.com/course/ud651") Exploratory Data Analysis from Udacity]
+            li #[a(href="http://www.mmds.org/") Mining of Massive Datasets]
+            li The Elements of Statistical Learning. Trevor Hastie, Robert Tibshirani and Jerome Friedman. This is a classic text available #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") from their website]
+            li #[a(href="http://onepager.togaware.com/") Hands-On Data Sciece with R]
+            li #[a(href="http://datamining.togaware.com/") Data mining resources]
 
         section#week2(data-background="images/data_miner2.jpg" data-background-size="100%")
           h2 Week 2: Linear regression
@@ -653,6 +638,11 @@ html(lang="en")
           h2 Week 7: Clustering
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
+
+        section
+          h2 Week 7 Resources
+          ol
+            li Nice presentation by #[a(href="http://www.slideshare.net/PhamCuong/clustering-technique-for-collaborative-filtering-recommendation-and-application-to-venue-recommendation") Pham Cuong] about clustering techniques for recommendations.
 
         section#week8(data-background="images/data_miner8.jpg" data-background-size="100%")
           h2 Week 8: Time series 1
