@@ -35,7 +35,7 @@ body {
   margin: 0 0 20px 0;
   color: #111;
   font-family: "Montserrat", Impact, sans-serif;
-  line-height: 0.9em;
+  line-height: 1.2em;
   letter-spacing: -0.03em;
   text-transform: none;
   text-shadow: none;
@@ -143,16 +143,13 @@ body {
 .top-bar {
   background: #111; }
 
-.reveal h1 h2 h3 h4 h5 h6 #title-slide {
-  padding: 5px; }
-
 .reveal p {
   text-align: left;
   font-size: 40px;
-  padding: 30px;
-  margin: 5px 50px 5px 50px; }
+  padding: 20px 30px;
+  margin: 0 50px; }
 
-.reavel ul li {
+.reveal ul li {
   text-align: left; }
 
 .reveal section img {
@@ -191,7 +188,6 @@ body {
 
 img#logo-image {
   height: 100%;
-  width: 100%;
   background-repeat: no-repeat; }
 
 figure {
@@ -206,5 +202,33 @@ figure img {
 figure figcaption {
   border: 1px dotted blue;
   text-align: center; }
+
+.flex-row {
+  display: flex;
+  justify-content: space-around; }
+
+/*
+ * Make text on postcard slides slightly more legible by decreasing the image
+ * opacity and adding a text-shadow.
+ */
+.reveal .slide-background.present[data-background-hash^="images/data_miner"] {
+  opacity: 0.7; }
+
+.reveal [data-background^="images/data_miner"] h2 {
+  text-shadow: 1px 2px 0 rgba(221, 221, 170, 0.7); }
+
+.reveal [data-background^="images/data_miner"] h4 {
+  text-shadow: 0 1px 0 rgba(221, 221, 170, 0.7); }
+
+.reveal [data-background^="images/data_miner"] h4 a:link {
+  text-shadow: 0 -1px 0 rgba(68, 68, 17, 0.7); }
+
+/*
+ * Instead of using align=right, use Reveal's ".right" class. Add onto it by
+ * including some left margin for any images or figures floated right.
+ */
+.reveal section img.right,
+.reveal section figure.right {
+  margin-left: 5%; }
 
 /*# sourceMappingURL=data-mining.css.map */
