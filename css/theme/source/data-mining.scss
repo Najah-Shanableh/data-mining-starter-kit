@@ -24,7 +24,7 @@ $headingFont: 'Montserrat', Impact, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: -0.03em;
 $headingTextTransform: none;
-$headingLineHeight: 0.9em;
+$headingLineHeight: 1.2em;
 $heading1TextShadow: $headingTextShadow;
 
 // Links and actions
@@ -38,96 +38,125 @@ $selectionColor: #fff;
 // Generates the presentation background, can be overridden
 // to return a background image or gradient
 @mixin bodyBackground() {
-	background: $backgroundColor;
+    background: $backgroundColor;
 }
 
 // Theme template ------------------------------
 @import "../template/class-theme";
 // ---------------------------------------------
 .contain-to-grid {
-  width: 100%;
-  background: #111; 
+    width: 100%;
+    background: #111; 
 }
 
 .top-bar {
-  background: #111;
-}
-
-.reveal h1 h2 h3 h4 h5 h6 #title-slide {
-  padding: 5px;
+    background: #111;
 }
 
 .reveal p {
-  text-align: left;
-  font-size: 40px; 
-  //border: 5px solid #111;
-  padding: 30px;
-  margin: 5px 50px 5px 50px;
+    text-align: left;
+    font-size: 40px; 
+    //border: 5px solid #111;
+    padding: 20px 30px;
+    margin: 0 50px;
 }
 
-.reavel ul li {
-  text-align: left;
+.reveal ul li {
+    text-align: left;
 }
 
 .reveal section img {
-  border: none;
+    border: none;
 }
 
 .reveal .controls div.navigate-down,
 .reveal .controls div.navigate-down.enabled {
-	border-top-color: $accentColor;
+    border-top-color: $accentColor;
 }
 
 // Modification of Foundation navigation bar
 .top-bar {
-  background: $mainColor;
+    background: $mainColor;
 }
 
 .top-bar-section ul li {
-  background: $mainColor;
+    background: $mainColor;
 }
 
 .top-bar-section ul li > a {
-  display: block;
-  width: 100%;
-  color: $backgroundColor;
-  padding: 12px 0 12px 0;
-  padding-left: 15px;
-  font-family: $headingFont;
-  font-size: 0.8125rem;
-  font-weight: lighter;
-  text-transform: none;
+    display: block;
+    width: 100%;
+    color: $backgroundColor;
+    padding: 12px 0 12px 0;
+    padding-left: 15px;
+    font-family: $headingFont;
+    font-size: 0.8125rem;
+    font-weight: lighter;
+    text-transform: none;
 }
 
 .top-bar-section li.active:not(.has-form) a:not(.button) {
-  padding: 0 15px;
-  line-height: 45px;
-  color: $backgroundColor;
-  background: $accentColor;
+    padding: 0 15px;
+    line-height: 45px;
+    color: $backgroundColor;
+    background: $accentColor;
 }
 
 .top-bar-section li.active:not(.has-form) a:not(.button):hover {
-  color: $mainColor;
-  background: $navHoverColor;
+    color: $mainColor;
+    background: $navHoverColor;
 }
 
 img#logo-image {
-  height: 100%;
-  width: 100%;
-  background-repeat: no-repeat;
+    height: 100%;
+    background-repeat: no-repeat;
 }
 
 figure {
-
-  display: inline-block;
-  border: 1px dotted gray;
-  margin: 20px; /* adjust as needed */
-
+    display: inline-block;
+    border: 1px dotted gray;
+    margin: 20px; /* adjust as needed */
 }
+
 figure img {
     vertical-align: top;
 }
+
 figure figcaption {
     border: 1px dotted blue;
     text-align: center;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+/*
+ * Make text on postcard slides slightly more legible by decreasing the image
+ * opacity and adding a text-shadow.
+ */
+.reveal .slide-background.present[data-background-hash^="images/data_miner"] {
+    opacity: 0.7;
+}
+
+.reveal [data-background^="images/data_miner"] h2 {
+    text-shadow: 1px 2px 0 transparentize(#dda, 0.3);
+}
+
+.reveal [data-background^="images/data_miner"] h4 {
+    text-shadow: 0 1px 0 transparentize(#dda, 0.3);
+}
+
+.reveal [data-background^="images/data_miner"] h4 a:link {
+    text-shadow: 0 -1px 0 transparentize(#441, 0.3);
+}
+
+/*
+ * Instead of using align=right, use Reveal's ".right" class. Add onto it by
+ * including some left margin for any images or figures floated right.
+ */
+.reveal section img.right,
+.reveal section figure.right {
+    margin-left: 5%;
 }

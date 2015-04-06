@@ -88,10 +88,11 @@ html(lang="en")
         section#textbook(data-transition-speed="fast")
           h2 Textbooks
           p There is no book required for this course, however there are two great texts available for free online.
-          a(href="http://www.mmds.org/")
-            img(src="images/mmds.jpg" align="left" width="35%")
-          a(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques")
-            img(src="images/hill_lewicki.jpg" align="right" width="40%")
+          .flex-row
+            a.left(href="http://www.mmds.org/")
+              img(src="images/mmds.jpg" style="height: 40%")
+            a.right(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques")
+              img(src="images/hill_lewicki.jpg" style="height: 40%")
 
         section#how_to(data-transition-speed="fast")
           h2 Notes improved with the support of viewers like you!
@@ -147,7 +148,7 @@ html(lang="en")
             p But that's just it, we're <i>collecting</i> data in faster than ever in history, but our growth of <i>understanding</i> of these data has not kept pace. 
 
         section(data-transition-speed="fast") 
-          section(data-background="images/data-variety.png" data-background-size="100%")
+          section(data-background="images/data-variety.png" data-background-size="contain")
           //h1 Data are more heterogenous than ever.
 
           section(data-transition-speed="fast") 
@@ -166,7 +167,7 @@ html(lang="en")
         section#what_is(data-transition-speed="fast") 
           section(data-transition-speed="fast") 
             h2 Data mining is a process of knowledge discovery 
-            img(src="images/data_mining_process.png" align="right" width="40%")
+            img.right(src="images/data_mining_process.png" style="height: 45%")
             p Data Mining is the process of identifying patterns in large volumes of data <u>for the purposes of prediction</u>. Realistically, data cleaning and exploratory analysis will occupy the vast majority of your time with the rest left over for model discovery. Model deployment is optional and depends on the result of the first three steps. After completing the analysis you might find that long-term adoption of your model isn't worthwhile.
 
           section(data-transition-speed="fast") 
@@ -260,7 +261,7 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 How should we think about ethics?
-          img(src="images/ethics.png" align="right" width="40%")
+          img.right(src="images/ethics.png" style="width: 38%")
           p When we are faced with a data mining application, what framework should we use to think about ethics?
 
         section(data-transition-speed="fast")
@@ -301,15 +302,14 @@ html(lang="en")
 
         section#R_intro
           h2 R for statistical computing
-          figure
-            img(src="images/r-usage-salary.png" align="right" width="40%")
-            figcaption From O'Reilly's 2014 survey of 
-              a(href="http://www.oreilly.com/data/free/2014-data-science-salary-survey.csp") data science salaries. 
+          figure.right(style="width: 35%")
+            img(src="images/r-usage-salary.png" style="width: 100%")
+            figcaption From O'Reilly's 2014 survey of #[a(href="http://www.oreilly.com/data/free/2014-data-science-salary-survey.csp") data science salaries].
           p R is a leading tool in the industry for statistics and data science.
-            ul
-              li is free and open-source
-              li has an active community, which means you've got tons of analysis options.
-              li is in demand!
+          ul(style="display: block")
+            li is free and open-source
+            li has an active community, which means you've got tons of analysis options.
+            li is in demand!
 
         section(data-transition-speed="fast")
           h2 Installation
@@ -664,8 +664,8 @@ html(lang="en")
 
     script.
       Reveal.initialize({
-        width: '90%',
-        height: '90%',
+        width: 1200,
+        height: 900,
 
         controls: true,
         progress: true,
