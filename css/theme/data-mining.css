@@ -140,9 +140,6 @@ body {
   width: 100%;
   background: #111; }
 
-.top-bar {
-  background: #111; }
-
 .reveal p {
   text-align: left;
   font-size: 40px;
@@ -159,10 +156,9 @@ body {
 .reveal .controls div.navigate-down.enabled {
   border-top-color: #6352e7; }
 
-.top-bar {
-  background: #111; }
-
-.top-bar-section ul li {
+.top-bar,
+.top-bar-section ul li,
+.top-bar-section li:not(.has-form) a:not(.button) {
   background: #111; }
 
 .top-bar-section ul li > a {
@@ -187,7 +183,8 @@ body {
   background: #b4acf3; }
 
 img#logo-image {
-  height: 100%;
+  height: 37px;
+  margin-top: 4px;
   background-repeat: no-repeat; }
 
 figure {
