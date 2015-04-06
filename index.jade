@@ -93,11 +93,6 @@ html(lang="en")
               img(src="images/mmds.jpg" style="height: 40%")
             a.right(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques")
               img(src="images/hill_lewicki.jpg" style="height: 40%")
-
-        section#how_to(data-transition-speed="fast")
-          h2 Notes improved with the support of viewers like you!
-          p These slides are a work in progress and I need your help to make them rule. If you see an error or think something is unclear or omitted, please #[a(href='https://github.com/erinshellman/data-mining-starter-kit/issues') report it!]
-          p I'll do my best to keep the slides as updated and accurate as possible.
             
         section(data-transition-speed="fast")
           h2 Course Philosophy
@@ -120,6 +115,11 @@ html(lang="en")
         section(data-transition-speed="fast")
           h2 Bookmark and check back often!
           p Data technology is a rapidly growing and changing industry. I chose #[a(href="http://lab.hakim.se/reveal-js/#/") this format] for course notes so that they could be easily maintained and up-to-date. As you apply these skills outside of class, I hope you can use these notes as a reference.
+
+        section#how_to(data-transition-speed="fast")
+          h2 Notes improved with the support of viewers like you!
+          p These slides are a work in progress and I need your help to make them rule. If you see an error or think something is unclear or omitted, please #[a(href='https://github.com/erinshellman/data-mining-starter-kit/issues') report it!]
+          p I'll do my best to keep the slides as updated and accurate as possible.
 
         section(data-transition-speed="fast")
           h2 What are your professional goals?
@@ -176,31 +176,6 @@ html(lang="en")
             blockquote The most commonly accepted definition of “data mining” is the discovery of “models” for data." Where 'model' could mean a statistical model, and machine learning model or an algorithm like mapreduce. #[a(href='http://www.mmds.org/') Leskovec, Rajaraman, Ullman]
             blockquote Data Mining is an analytic process designed to explore data in search of consistent patterns and/or systematic relationships between variables, and then to validate the findings by applying the detected patterns. #[a(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques") Hill & Lewicki]
 
-        section(data-transition-speed="fast")
-          h2 Lets look at some examples
-          p Analysis problems generally fall into one of four classes of problem and we're going to try to get some hands-on experience with all four:
-            ol
-              li numerical prediction 
-              li classification (or #[a(href="http://en.wikipedia.org/wiki/Supervised_learning") supervised learning])
-              li clustering and #[a(href="http://en.wikipedia.org/wiki/Unsupervised_learning") unsupervised learning]
-              li time-series
-
-        section(data-transition-speed="fast")
-          h2 Capital Bikeshare 
-          p In project 1 you'll analyze data from Washington D.C.'s bikeshare program to predict locations of successful bike stations. An model for this application could be to predict the number of bike rentals per hour as a function of the number of restaurants nearby.
-
-        section(data-transition-speed="fast")
-          h2 Bot or not?
-          p In project 2, you'll build a classifier to distinguish Twitter bots from humans.
-
-        section(data-transition-speed="fast")
-          h2 Pandora 2.0
-          p In project 3, you'll use association rule mining and clustering to build a song recommender using a subset of the Million Song Dataset.
-
-        section(data-transition-speed="fast")
-          h2 Predicting network traffic
-          p Finally in project 4 you'll forecast network traffic by analyzing historical data.
-
         section(data-transition-speed="fast") 
           section(data-transition-speed="fast") 
             h2 How do statistics and machine learning relate?
@@ -218,13 +193,39 @@ html(lang="en")
           p You'll find that many of the techniques you've used in an analysis setting are identical to those used in machine learning, for example, linear and logistic regression. The key difference is that in machine learning, we'll judge our model quality by assessing its ability to predict on hold-out data, rather than through goodness-of-fit metrics like $ R^2 $ or AIC.
 
         section(data-transition-speed="fast")
+          h2 Lets look at some examples
+          p Analysis problems generally fall into one of four classes of problem and we're going to try to get some hands-on experience with all four:
+            ol
+              li numerical prediction 
+              li classification (or #[a(href="http://en.wikipedia.org/wiki/Supervised_learning") supervised learning])
+              li clustering and #[a(href="http://en.wikipedia.org/wiki/Unsupervised_learning") unsupervised learning]
+              li time-series
+
+        section(data-transition-speed="fast")
+          h2 Capital Bikeshare 
+          p In project 1 you'll analyze data from Washington D.C.'s bikeshare program to predict locations of successful bike stations. An model for this application could be to predict the number of bike rentals per hour as a function of the number of restaurants nearby.
+          img.center(src="images/crosswalk_lm.png" style="height: 45%")
+
+        section(data-transition-speed="fast")
+          h2 Bot or not?
+          p In project 2, you'll build a classifier to distinguish Twitter bots from humans.
+
+        section(data-transition-speed="fast")
+          h2 Pandora 2.0
+          p In project 3, you'll use association rule mining and clustering to build a song recommender using a subset of the Million Song Dataset.
+
+        section(data-transition-speed="fast")
+          h2 Predicting network traffic
+          p Finally in project 4 you'll forecast network traffic by analyzing historical data.
+
+        section(data-transition-speed="fast")
           h3 Limitations of data mining
           p Like any analytical technique, and arguably more so than traditional analysis, data mining has limitations:
             ul 
               li many patterns are uninteresting
               li patterns can be coincidental or a result of sampling bias
               li data are almost always untidy or missing
-          p How do these limitations influence the inpretation and application of the results of a data mining process? What are our standards for belief?
+          p How do these limitations influence the interpretation and application of the results of a data mining process? What are our standards for belief?
 
         section
           section
@@ -645,7 +646,7 @@ html(lang="en")
         section(data-transition-speed="fast")
           h2 Week 10 Resources
           ol
-            li #[a(href="http://www.noamross.net/blog/2013/1/7/collaborating-with-r.html") Don't R Alone!]
+            li #[a(href="http://www.noamross.net/blog/2013/1/7/collaborating-with-r.html") Noam Ross post]
 
         section#acknowledgements
           h2 Thanks buddies!
