@@ -167,7 +167,7 @@ html(lang="en")
         section#what_is(data-transition-speed="fast") 
           section(data-transition-speed="fast") 
             h2 Data mining is a process of knowledge discovery 
-            img.right(src="images/data_mining_process.png" style="height: 45%")
+            img.right(src="images/data_mining_process.png" style="height: 70%")
             p Data Mining is the process of identifying patterns in large volumes of data <u>for the purposes of prediction</u>. Realistically, data cleaning and exploratory analysis will occupy the vast majority of your time with the rest left over for model discovery. Model deployment is optional and depends on the result of the first three steps. After completing the analysis you might find that long-term adoption of your model isn't worthwhile.
 
           section(data-transition-speed="fast") 
@@ -359,11 +359,9 @@ html(lang="en")
 
         section
           h2 How many rentals per day?
+          img.right(src="images/crosswalk_lm.png" style="width: 40%")
           p The ability to predict the expected number of bike rentals from a particular station per day is useful in many applications, like allocating bikes across stations. No need to stock a station that only expects 5 rentals with 30 bikes! Or, maybe we want to budget for monthly bike maintenance, it would be great to know how many times we can expect the bikes will be ridden. 
           p We can use ordinary least squares (OLS) regression to estimate real-valued outcomes such as number of rentals per day.  
-
-        section(data-transition-speed="fast")
-          img(src="images/crosswalk_lm.png" align="center")
 
         section(data-transition-speed="fast")
           h2 Why linear regression?
@@ -390,10 +388,28 @@ html(lang="en")
           p Even in situations were linearity assumptions fail, we can transform variables using logs or centering and proceed to use linear regression on the transformed variables.
 
         section(data-transition-speed="fast")
-          h2 mathematical foundations
-          p $ y = \beta_{0} + \beta_{1}x + \epsilon $
-          p $ x $ is the predictor, or independent, variable, and $ y $ is the response, or dependent, variable.
+          h2 linear regression is
 
+        section(data-transition-speed="fast")
+          img.center(src="images/crosswalk_lm.png")
+
+        section(data-transition-speed="fast")
+          h2 Mathematical foundations
+          p $ y_i = \beta_{0} + \beta_{1}x_i $
+          p(class="fragment current-visible") Hey, kinda looks like &#8594 $ y = mx + b $
+            img.center(src="images/Linear_Function_Graph.svg" height="40%")
+          (class="fragment highlight-blue")
+
+        section
+          <p class="fragment grow">grow</p>
+          <p class="fragment roll-in">roll-in</p>
+          <p class="fragment fade-out">fade-out</p>
+          <p class="fragment current-visible">visible only once</p>
+          <p class="fragment highlight-current-blue">blue only once</p>
+          <p class="fragment highlight-red">highlight-red</p>
+          <p class="fragment highlight-green">highlight-green</p>
+          <p class="fragment highlight-blue">highlight-blue</p>
+              
         section(data-transition-speed="fast")
           h2 Covariates
           p Model covariates, or parameters, could be:
@@ -489,7 +505,7 @@ html(lang="en")
           p Our classifier starts misclassifying when we add another observation with a relatively extreme number of $'s.
           img(src="images/is_it_spam_3.png")
 
-        section
+        section(data-transition-speed="fast")
           section
             h2 We need a new tool
             p Our current tool, linear regression, is not going to work in general for a classification application.  Instead of linear regression we're going to use a regression in a family called generalized linear models (GLMs), <b>logistic regression</b>.
@@ -599,7 +615,16 @@ html(lang="en")
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
 
-        section
+        section(data-transition-speed="fast")
+          h2 Unsupervised learning
+          p Sometimes you won't really know what your outcome is.
+          p in that case to build a predictor
+          ol 
+            li create clusters
+            li name clusters
+            li build predictor for the cluster
+
+        section(data-transition-speed="fast")
           h2 Week 7 Resources
           ol
             li Nice presentation by #[a(href="http://www.slideshare.net/PhamCuong/clustering-technique-for-collaborative-filtering-recommendation-and-application-to-venue-recommendation") Pham Cuong] about clustering techniques for recommendations.
