@@ -360,56 +360,48 @@ html(lang="en")
         section
           h2 How many rentals per day?
           img.right(src="images/crosswalk_lm.png" style="width: 40%")
-          p The ability to predict the expected number of bike rentals from a particular station per day is useful in many applications, like allocating bikes across stations. No need to stock a station that only expects 5 rentals with 30 bikes! Or, maybe we want to budget for monthly bike maintenance, it would be great to know how many times we can expect the bikes will be ridden. 
+          p Predicting the expected number of bike rentals from a station per day is useful in lots of applications:
+            ul
+              li Allocating bikes across stations. 
+              li Budgeting for monthly bike maintenance. 
+              li Picking the best locations for new stations.
           p We can use ordinary least squares (OLS) regression to estimate real-valued outcomes such as number of rentals per day.  
 
         section(data-transition-speed="fast")
           h2 Why linear regression?
-          p 
-            ul
-              li Interpretability
-              li Ease of implimentation
-              li Powerful
-              li Flexible
+          p There are more complicated methods for predicting numerical outcomes out there, but linear regression is still great to have in your toolbelt because of its interpretability, ease of implimentation, power and flexibility.
 
         section(data-transition-speed="fast")
           h2 Interpretability
-          p Coefficients of linear regression can be interpreted as the mean change in the outcome y for a unit change in x. 
+          p Regression coefficients have a straight-forward interpretation as the average change in the outcome for a unit change in an explanatory variable, all else equal. The coefficients also give a rough indication of what predictors contribute most to the predicted value, which can be helpful in understanding the mechanisms and for variable selection methods.
 
         section(data-transition-speed="fast")
           h2 Ease of implimentation
+          p Virtually all programming languages have implimentations for linear regression, so they can be applied across many applications.
 
         section(data-transition-speed="fast")
           h2 Powerful
-          p In prediction settings, linear models can outperform more complex nonlinear techniques, particularly when working with small training sets or sparse data. 
+          p In prediction settings, linear models can outperform more complex nonlinear techniques, particularly when working with small training sets or sparse data. This is because regression is essentially a conditional averaging technique, which makes it less sensitive to missingness and extreme values.
 
         section(data-transition-speed="fast")
           h2 Flexible
-          p Even in situations were linearity assumptions fail, we can transform variables using logs or centering and proceed to use linear regression on the transformed variables.
-
-        section(data-transition-speed="fast")
-          h2 linear regression is
-
-        section(data-transition-speed="fast")
-          img.center(src="images/crosswalk_lm.png")
+          p Even in situations where linearity assumptions fail, regression can be applied on transformations of variables such as logarithms. 
 
         section(data-transition-speed="fast")
           h2 Mathematical foundations
-          p $ y_i = \beta_{0} + \beta_{1}x_i $
-          p(class="fragment current-visible") Hey, kinda looks like &#8594 $ y = mx + b $
-            img.center(src="images/Linear_Function_Graph.svg" height="30%")
+          p Let's walk through the foundations of regression with just one explanatory variable/#[a(href="http://en.wikipedia.org/wiki/Covariate") covariate]. Regression with just one covariate is called <i>simple linear regression</i>. The reasoning and intuition of an SLR model generalizes to regression with multiple covariates, but the expression requires matrix algebra. 
 
-        section
-          <p class="fragment grow">grow</p>
-          <p class="fragment shrink">shrink</p>
-          <p class="fragment roll-in">roll-in</p>
-          <p class="fragment fade-out">fade-out</p>
-          <p class="fragment current-visible">visible only once</p>
-          <p class="fragment highlight-current-blue">blue only once</p>
-          <p class="fragment highlight-red">highlight-red</p>
-          <p class="fragment highlight-green">highlight-green</p>
-          <p class="fragment highlight-blue">highlight-blue</p>
-              
+        section(data-transition-speed="fast")
+          h2 Mathematical foundations
+          p SLR describes the relationship between an outcome variable (sometimes called the <i>response</i> or <i>dependent variable</i>) and an explanatory variable. That is, how can we express the number of rentals as a function of the number of crosswalks?
+          img.center(src="images/crosswalk_lm.png" style="width: 40%")
+
+        section(data-transition-speed="fast")
+          h2 Mathematical foundations
+          | $ y_i = \beta_{0} + \beta_{1}x_i $
+          p(class="fragment current-visible") Hey, kinda looks like &#8594 $ y = mx + b $
+            img.right(src="images/Linear_Function_Graph.svg" width="30%" height="30%")
+
         section(data-transition-speed="fast")
           h2 Covariates
           p Model covariates, or parameters, could be:
@@ -670,7 +662,7 @@ html(lang="en")
 
         section#acknowledgements
           h2 Thanks buddies!
-          p Creating this course wasn't easy and I couldn't have done it alone. Huge thanks to my TA Ryan Brush who encouraged and recommended me to teach this class. Big ups to #[a(href="http://brianbeck.com/") Brian Beck] who designed and styled the lecture notes. 
+          p Creating this course wasn't easy and I couldn't have done it alone. Huge thanks to my TA Ryan Brush who encouraged and recommended me to teach this class. Big ups to #[a(href="http://brianbeck.com/") Brian Beck] who styled the lecture notes. 
           p Thank you to the #[a(href="https://www.flickr.com/photos/boston_public_library/sets/72157627774101436") Boston Public Library] for posting all the awesome old coal mining postcards on Flickr!
 
         section
