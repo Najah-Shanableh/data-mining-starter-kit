@@ -398,28 +398,22 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Mathematical foundations
-          | $ y_i = \beta_{0} + \beta_{1}x_i $
-          p(class="fragment current-visible") Hey, kinda looks like &#8594 $ y = mx + b $
+          p Given $n$ observations of $x$ and $y$,
+          | $ (x_1, y_1), (x_2, y_2), \ldots , (x_n, y_n) $
+          p the model for a simple linear regression is expressed as
+          | $ y_i = \beta_{0} + \beta_{1}x_i + \epsilon_i $
+          p(class="fragment current-visible") Hey, kinda looks like $y = mx + b$ where $\beta_0$ is the intercept and $\beta_1$ is the slope of the line.
             img.right(src="images/Linear_Function_Graph.svg" width="30%" height="30%")
 
         section(data-transition-speed="fast")
-          h2 Covariates
-          p Model covariates, or parameters, could be:
-          ul
-            li quantitative measurements
-            li transformations of the measurements, <i>e.g.</i> logs, squares, square roots.
-            li polynomial expansions
-            li dummy variables
-            li interactions
+          h2 Errors
+          img.right(src="images/residuals.png" width="40%" height="40%")
+          p Data points will not fall exactly on the straight line. The distance of a point from the fitted line is called the error (or residual), $ \epsilon_i $. The errors are assumed to be independent and normally distributed with mean 0 and standard deviation $\sigma$.
 
         section(data-transition-speed="fast")
           h2 Least squares
           p How to estimate coefficients
-
-        section(data-transition-speed="fast")
-          h2 Errors
-          p Data points will not fall exactly on the straight line. The distance of a point from the line is called the error (or residual), $ \epsilon $.
-            img.center(src="images/residuals.png" height="20%")
+          | $ \hat{y}_i = \beta_{0} + \beta_{1}x_i + \epsilon_i $
 
         section(data-transition-speed="fast")
           h2 Assumptions
@@ -443,7 +437,19 @@ html(lang="en")
           p again show examples
 
         section(data-transition-speed="fast")
+          h2 Covariates
+          p Model covariates, or parameters, could be:
+          ul
+            li quantitative measurements
+            li transformations of the measurements, <i>e.g.</i> logs, squares, square roots.
+            li polynomial expansions
+            li dummy variables
+            li interactions
+
+        section(data-transition-speed="fast")
           h2 Assessing model quality
+          p test/train
+          p cross validation
           p metrics for measuring performance include continuous: RMSE, R squared, categories: accuracy, kappa
 
         section
