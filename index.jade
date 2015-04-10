@@ -397,11 +397,11 @@ html(lang="en")
           h2 Mathematical foundations
           p $ y_i = \beta_{0} + \beta_{1}x_i $
           p(class="fragment current-visible") Hey, kinda looks like &#8594 $ y = mx + b $
-            img.center(src="images/Linear_Function_Graph.svg" height="40%")
-          (class="fragment highlight-blue")
+            img.center(src="images/Linear_Function_Graph.svg" height="30%")
 
         section
           <p class="fragment grow">grow</p>
+          <p class="fragment shrink">shrink</p>
           <p class="fragment roll-in">roll-in</p>
           <p class="fragment fade-out">fade-out</p>
           <p class="fragment current-visible">visible only once</p>
@@ -426,8 +426,8 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Errors
-          p The data points will not all fit exactly on our straight regression line, and the distance of a point from our line is called the residual error (or just residual, or just error), $ \epsilon $.          
-          p $ \epsilon $ is a random variable that measures the failure of the model to fit the data perfectly.
+          p Data points will not fall exactly on the straight line. The distance of a point from the line is called the error (or residual), $ \epsilon $.
+            img.center(src="images/residuals.png" height="20%")
 
         section(data-transition-speed="fast")
           h2 Assumptions
@@ -449,11 +449,6 @@ html(lang="en")
           h2 interpretation
           p "The slope of the regression line, $ \beta_{1} $, can be interpreted as the change in the mean of y for a unit change in x.
           p again show examples
-
-        section(data-transition-speed="fast")
-          h2 generalization
-          p "in general the response variable y may be related to k regressors, $ x_{1},x_{2},...x_{k} $,
-          p $ y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + ... + \beta_{k}x_{k} + \epsilon $
 
         section(data-transition-speed="fast")
           h2 Assessing model quality
