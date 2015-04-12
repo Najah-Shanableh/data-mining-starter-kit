@@ -448,7 +448,47 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Assessing model quality
-          p test/train
+          p We've described one method for numerical prediction
+
+        section(data-transition-speed="fast")
+          h2 Assessing model quality
+          p The <i>in-sample error</i> is the error resulting from predicting on the same data used to build the model, while the <i>out-of-sample error</i> is from new data. When measuring prediction quality, the out-of-sample error most reflects the real-world application of the predictive model. 
+
+        section(data-transition-speed="fast")
+          section(data-transition-speed="fast")
+            h2 Training and testing sets
+            p We measure the model prediction quality by simulating new data coming in. We do that by dividing the original data into a <i>training set</i> and a <i>testing set</i>. The <i>training set</i> is used to fit the predictive model. Following model development, the <i>testing set</i> is used to validate the predictions. Generally construction of the train and test sets should be random.
+
+          section(data-transition-speed="fast")
+            h2 Quick heuristics for study design
+            p  
+              ol.left large sample size
+                li 60% train
+                li 20% test
+                li 20% validation
+              ol.center medium sample size
+                li 60% train
+                li 40% test
+              ol.right small sample size
+                li Do cross validation and describe limitations of the small sample in the communication of your results.
+
+        section(data-transition-speed="fast")
+          section(data-transition-speed="fast")
+            h2 Measuring model quality for continuous outcomes
+              p 
+                | $ mean squared error (MSE) = 1/n \sum_{i = 1}^n (predicted value_i - truth_i)^2 $
+                | $ root mean squared error (RMSE) = \sqrt{1/n \sum_{i = 1}^n (predicted value_i - truth_i)^2} $
+              p We'll talk about other metrics for different applications later.
+
+          section(data-transition-speed="fast")
+            h2 Which metric should I use?
+            p Just try them all, each metric has strengths and weaknesses.
+              ul
+                li MSE and RMSE are sensitive to outliers.
+                li Median absolute deviation is often more sensitive to outliers.
+
+        section(data-transition-speed="fast")
+          h2 
           p cross validation
           p metrics for measuring performance include continuous: RMSE, R squared, categories: accuracy, kappa
 
