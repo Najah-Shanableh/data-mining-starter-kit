@@ -389,7 +389,7 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Mathematical foundations
-          p Let's walk through the foundations of regression with just one explanatory variable/#[a(href="http://en.wikipedia.org/wiki/Covariate") covariate]. Regression with just one covariate is called <i>simple linear regression</i>. The reasoning and intuition behind an SLR is simple to understand and generalizes to regression with multiple covariates.
+          p Let's walk through the foundations of regression with just one explanatory variable/#[a(href="http://en.wikipedia.org/wiki/Covariate") covariate]. Regression with just one covariate is called #[a(href="http://en.wikipedia.org/wiki/Simple_linear_regression") simple linear regression]. The reasoning and intuition behind an SLR is simple to understand and generalizes to regression with multiple covariates.
 
         section(data-transition-speed="fast")
           h2 Mathematical foundations
@@ -407,13 +407,8 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Which line is the best?
-          p With visual inspection alone, there seems to be several lines that could be drawn through the center of the points. We need an algorithm for standardizing and automating the process of finding the best one. How do we pick $\beta_0$ and $\beta_1$?
+          p How do we choose $\beta_0$ and $\beta_1$? With visual inspection alone, there seems to be several lines that could be drawn through the center of the points. We need an algorithm for standardizing and automating the process of finding the best one. 
           img.center(src="images/three_lines.png" width="50%" height="50%")
-
-        section(data-transition-speed="fast")
-          h2 Ordinary least squares ftw
-          p #[a(href="http://en.wikipedia.org/wiki/Ordinary_least_squares") Least squares] selects the line that minimizes the sum of the squares of the errors.
-          | $ \text{minimize} \sum\limits_{i=1}^n (y_i - \beta_{0} - \beta_{1}x_i)^2 $
 
         section(data-transition-speed="fast")
           h2 Errors
@@ -421,25 +416,41 @@ html(lang="en")
           p Data points will not fall exactly on the straight line. The distance of a point from the fitted line is called the error (or residual), $ \epsilon_i $. The errors are assumed to be independent and normally distributed with mean 0 and standard deviation $\sigma$.
 
         section(data-transition-speed="fast")
+          h2 Ordinary least squares ftw
+          p #[a(href="http://en.wikipedia.org/wiki/Ordinary_least_squares") Least squares] selects the line that minimizes the sum of the squares of the errors.
+          | $ \text{minimize} \sum\limits_{i=1}^n (y_i - \beta_{0} - \beta_{1}x_i)^2 $
+
+        section(data-transition-speed="fast")
           h2 Minimize the squared errors
           p
-            | $ \epsilon_i = y_i - \beta_{0} - \beta_{1}x_i $
+            | $ \sum\limits_{i=1}^n\epsilon_i = \sum\limits_{i=1}^n (y_i - \beta_{0} - \beta_{1}x_i)^2 $
           p Choose $\beta_0$ and $\beta_1$ so that $\sum\limits_{i=1}^n\epsilon_i^2$ is minimized.
 
         section(data-transition-speed="fast")
           h2 Intuition
-          p Let's think about what the components of the regression equation represent to gain an intuition. The vector $y_i$ contains the observed values of the outcome variable. $\beta_{0} + \beta_{1}x_i$ is the estimated, or expected, $y_i$ value. So when we minimize the sum of squared errors we're making $observed - expected$ as close to 0 as possible.
+          p Let's think about what the components of the regression equation represent to gain an intuition. The vector $y_i$ contains the observed values of the outcome variable. $\beta_{0} + \beta_{1}x_i$ is the estimated, or expected, $y_i$ value. So when we minimize the sum of squared errors we're making $(observed - expected)^2$ as close to 0 as possible.
 
         section(data-transition-speed="fast")
-          h2 Assumptions
-          p To safely apply linear regression without fear of weird results, some assumptions must be met:
-            ol
-              li Linearity between the outcome and covariates
-              li Independence of the errors (no #[a(href="http://en.wikipedia.org/wiki/Autocorrelation") autocorrelation])
-              li Constant variance (#[a(href="http://en.wikipedia.org/wiki/Homoscedasticity") homoscedasticity]) of the errors
-              li Normality of errors
+          section(data-transition-speed="fast")
+            h2 Assumptions
+            p To safely apply linear regression without fear of weird results, some assumptions must be met:
+              ol
+                li Linearity between the outcome and covariates
+                li Independence of the errors (no #[a(href="http://en.wikipedia.org/wiki/Autocorrelation") autocorrelation])
+                li Constant variance (#[a(href="http://en.wikipedia.org/wiki/Homoscedasticity") homoscedasticity]) of the errors
+                li Normality of errors
 
-          p We might violate some assumptions and it's application-dependent whether we should be concerned about those violations.
+            p We might violate some assumptions and it's application-dependent whether we should be concerned about those violations.
+
+          section(data-transition-speed="fast")
+            h2 Diagnostic plots
+            p In R, if you plot a linear model object, it'll give you a nice collection of diagnostic plots for assessing model assumptions.
+            pre
+              code.r(data-trim, contenteditable).
+                model = lm(rentals ~ crossing, data = data)
+                par(mfrow = c(2, 2)) # make 4 plots in 2 rows, 2 cols
+                plot(model)
+            img.center(src="images/diagnostic_plot.png" width="50%" height="50%")
 
         section(data-transition-speed="fast")
           h2 Interpretation
@@ -453,10 +464,10 @@ html(lang="en")
           pre
             code.r(data-trim, contenteditable).
               model = lm(rentals ~ crossing, data = data)
-              summary(plot_model)
+              summary(model)
 
               Call:
-              lm(formula = mean_rentals ~ crossing, data = x)
+              lm(formula = rentals ~ crossing, data = data)
 
               Residuals:
                   Min      1Q  Median      3Q     Max 
