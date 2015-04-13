@@ -421,7 +421,10 @@ html(lang="en")
           h2 Ordinary least squares ftw
           p The method of #[a(href="http://en.wikipedia.org/wiki/Ordinary_least_squares") Least squares] selects the line that minimizes the sum of the squares of the errors. $\epsilon_i$ is the error of the prediction line for each observation.
           | $ \epsilon_i = (y_i - \beta_{0} - \beta_{1}x_i) $
-          p Choose $\beta_0$ and $\beta_1$ so that $\sum\limits_{i=1}^n\epsilon_i^2$ is minimized.
+          p
+          | $ \epsilon_i^2 = (y_i - \beta_{0} - \beta_{1}x_i)^2 $
+          p 
+          | Choose $\beta_0$ and $\beta_1$ so that $\sum\limits_{i=1}^n\epsilon_i^2$ is minimized.
 
         section(data-transition-speed="fast")
           h2 Intuition
