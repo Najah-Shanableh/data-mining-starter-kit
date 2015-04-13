@@ -371,7 +371,7 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Why linear regression?
-          p Linear regression is a relatively simple method for predicting real-valued variables, but it's great to have in your toolbelt due to the ease of interpretability and implementation, power, and flexibility.
+          p Linear regression is a relatively simple method for predicting real-valued variables. It's great to have in your toolbelt due to the ease of interpretability and implementation, power, and flexibility.
 
         section(data-transition-speed="fast")
           h2 Interpretability
@@ -391,11 +391,11 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Mathematical foundations
-          p Let's walk through the foundations of regression with just one explanatory variable/#[a(href="http://en.wikipedia.org/wiki/Covariate") covariate]. Regression with just one covariate is called #[a(href="http://en.wikipedia.org/wiki/Simple_linear_regression") simple linear regression]. The reasoning and intuition behind an SLR is simple to understand and generalizes to regression with multiple covariates.
+          p Let's walk through the foundations of regression with just one explanatory variable/#[a(href="http://en.wikipedia.org/wiki/Covariate") covariate]. Regression with just one covariate is called #[a(href="http://en.wikipedia.org/wiki/Simple_linear_regression") simple linear regression]. SLR has a simple framework and is fundamental to understanding more complex models.
 
         section(data-transition-speed="fast")
           h2 Mathematical foundations
-          p SLR describes the relationship between an explanatory variable (or <i>independent</i> variable) and an outcome variable (sometimes called the <i>response</i> or <i>dependent variable</i>). It answers the question, how can we express the expected number of rentals as a function of the number of nearby crosswalks?
+          p SLR describes the relationship between an explanatory variable (or <i>independent</i> variable) and an outcome variable (sometimes called the <i>response</i> or <i>dependent variable</i>). It describes how the expected value of an outcome variable changes as the explanatory variable changes. <i>e.g.</i> How does the expected number of rentals change as the number of nearby crosswalks changes?
           img.center(src="images/crosswalk_lm.png" style="width: 40%")
 
         section(data-transition-speed="fast")
@@ -419,18 +419,13 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Ordinary least squares ftw
-          p #[a(href="http://en.wikipedia.org/wiki/Ordinary_least_squares") Least squares] selects the line that minimizes the sum of the squares of the errors.
-          | $ \text{minimize} \sum\limits_{i=1}^n (y_i - \beta_{0} - \beta_{1}x_i)^2 $
-
-        section(data-transition-speed="fast")
-          h2 Minimize the squared errors
-          p
-            | $ \sum\limits_{i=1}^n\epsilon_i = \sum\limits_{i=1}^n (y_i - \beta_{0} - \beta_{1}x_i)^2 $
+          p The method of #[a(href="http://en.wikipedia.org/wiki/Ordinary_least_squares") Least squares] selects the line that minimizes the sum of the squares of the errors. $\epsilon_i$ is the error of the prediction line for each observation.
+          | $ \epsilon_i = (y_i - \beta_{0} - \beta_{1}x_i) $
           p Choose $\beta_0$ and $\beta_1$ so that $\sum\limits_{i=1}^n\epsilon_i^2$ is minimized.
 
         section(data-transition-speed="fast")
           h2 Intuition
-          p Let's think about what the components of the regression equation represent to gain an intuition. The vector $y_i$ contains the observed values of the outcome variable. $\beta_{0} + \beta_{1}x_i$ is the estimated, or expected, $y_i$ value. So when we minimize the sum of squared errors we're making $(observed - expected)^2$ as close to 0 as possible.
+          p Let's think about what the components of the regression equation represent to gain an intuition. Each $y_i$ is an observed value of the outcome variable. $\beta_{0} + \beta_{1}x_i$ is the estimated, or expected, $y_i$ value. So when we minimize the sum of squared errors we're making $(observed - expected)^2$ as close to 0 as possible.
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
