@@ -537,28 +537,85 @@ html(lang="en")
 
         section
           h2 Doing more with regression
-          p In the last section we built a regression model with 117 predictors. Unfortunately that's so many predictors that it's virtually impossible to interpret our results. Not only that, but to use a model that big for prediction would be a nightmare. It means that for every candidate station, we'd have to plug in 117 variables about the location and weather into the model to get the expected number of rentals. Yuck.
-          p This week we'll explore automated methods for reducing model size while maintaining prediction accuracy.
+          p In the last section we built a regression model with 117 predictors, that we'll refer to as the <i>full model</i>. Unfortunately that's so many predictors that it's virtually impossible to interpret the results. Not only that, but to use a model that big for prediction would be a nightmare. It means that for every candidate station, we'd have to plug in 117 variables about the location and weather into the model to get the expected number of rentals. <i>Yuck</i>.
+          p This week we'll explore automated methods for reducing model size while maintaining or improving prediction accuracy.
 
         section(data-transition-speed="fast")
           h2 #[a(href="http://en.wikipedia.org/wiki/Curse_of_dimensionality") The curse of dimensionality]
           img.right(src="images/microarray.jpg" width="30%" height="30%")
-          p Linear regression works well when the number of observations, $n$, is larger than the number of predictors, $p$. In a data mining context we sometimes have data where $p >> n$. An example of this from the biomedical science is microarray technology. One tissue sample can produce over 50,000 observations making $p$ orders of magnitude larger than $n$. 
+          p Linear regression works well when the number of observations, $n$, is larger than the number of predictors, $p$. Often in data mining applications, we have data where $p >> n$. An example of this from the biomedical science is microarray technology. One tissue sample can produce over 50,000 observations making $p$ many orders of magnitude larger than $n$. 
+
         section(data-transition-speed="fast")
           h2 #[a(href="http://en.wikipedia.org/wiki/Curse_of_dimensionality") The curse of dimensionality]
           p When $p$ becomes large, ...
 
         section(data-transition-speed="fast")
-          h2 What a poor modeler to do?
+          h2 What's a modeler to do?
           p Fortunately there are methods for handling this insidious curse. We'll talk about a couple of them:
           ul 
             li shrinkage 
             li feature selection
             li dimension reduction
+
+        section(data-transition-speed="fast")
+          h2 Subset selection
+          p Subset selection methods iteratively add or remove predictors based on a set criteria. For example <i>best subsets regression</i> finds subsets of predictors of a certain size that give the smallest residual sum of squares.
+
+        section(data-transition-speed="fast")
+          h2 Forward selection
+          p The simplest data-driven model building approach is called forward selection. In this approach, one adds variables to the model one at a time. At each step, each variable that is not already in the model is tested for inclusion in the model.
+
+        section(data-transition-speed="fast")
+          h2 Backward selection
+
+        section(data-transition-speed="fast")
+          h2 Hybrid selection
+
+        section(data-transition-speed="fast")
+          h2 Limitations of selection methods
+          p In the previous methods, model predictors are either retained or not. Due to this process, the models can have high variance and might not decrease the prediction error compared to the full model. To combat the high variance we can use <i>shrinkage methods</i>. 
           
         section(data-transition-speed="fast")
           h2 Shrinkage
-          p In our model of daily rentals, many predictors had quite small coefficients. For example, the coefficient on the number of stop signs, <i>stops</i>, is about -0.09. Since the outcome is rentals per day, a coeffcient this small means we'd need about 10 additional stop signs to reduce the expected rentals by 1. In other words, it's not contributing much to our predicted values.
+          p In the full model of daily rentals, many predictors had small coefficients. For example, the coefficient on the number of stop signs, <i>stops</i>, was about -0.09. Since the outcome is rentals per day, a coeffcient this small means we'd need about 10 additional stop signs to reduce the expected rentals by 1. In other words, it's not contributing much to our predicted values.
+
+        section(data-transition-speed="fast")
+          h2 Ridge regression
+          p Ridge regression shrinks the regression coefficients using a penalty on the coefficient size.
+          p When there are many correlated variables in a regression model, their coefficients can become poorly determined and exhibit high variance. A wildly large positive coefficient on one variable can be canceled by a similarly large negative coefficient on its correlated cousin. By impoising a size constraint on the coefficients, this phenomenon is prevented from occurring.
+          p normally standardize inputs
+          p $ \epsilon_i^2 = \sum\limits_{i} (y_i - x^T_i\beta)^2 + \lambda\sum\limits_{j = 1}^p \beta_j^2 $ 
+          p(class="fragment current-visible") OLS + penalty
+
+
+        section(data-transition-speed="fast")
+          h2 Ridge regression
+          p Applying the ridge regression penalty has the effect of shrinking the estimates toward zero – introducing bias but reducing the variance of the estimate.
+
+        section(data-transition-speed="fast")
+          h2 Lasso
+          
+        section(data-transition-speed="fast")
+          h2 Ethics
+          p Read #[a(href="http://www.theatlantic.com/features/archive/2014/07/why-poor-schools-cant-win-at-standardized-testing/374287/") this].
+          
+        section(data-transition-speed="fast")
+          h2 Data are neutral, our conclusions are not.
+          p The Capitol Bikeshare dataset couldn't be more innocuous. It's anonymous and just a bunch of information about riding bikes around Washington D.C. Outside of privacy and security issues, it's almost never the data that create ethical dilemas, it's our application of the data and the conclusions we draw.
+            ul
+              li What if your analysis showed that the best performing bike stations were in the wealthiest neighborhoods? 
+              li What if bikes are frequently used for commmuting in low-income areas?
+              li What effect would removing stations in low-income neighborhoods have on their local economy?
+              li Is it ok to charge more to rent in worse-performing areas to make up the difference?
+
+        section(data-transition-speed="fast")
+          h2 It's not always about the data you've got, it's also what you haven't.
+          p What variables are omitted from your data that could invalidate your findings?
+          p Simpson's paradox.
+
+        section(data-transition-speed="fast")
+          h2 Simpsons example
+          p Imagine you sent out a survey to homes nearby the bike stations and found that only 30% of people near poor-performing stations knew how to ride a bike? How would this change your conclusions and course of action?
 
         section
           h2 Week 3 Resources
