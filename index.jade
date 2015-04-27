@@ -593,6 +593,15 @@ html(lang="en")
           p $\epsilon_i^2 = \sum\limits_{i} (y_i - x^T_i\beta)^2$ subject to $\sum\limits_{j = 1}^p |{\beta_j}| \leq t$   
 
         section(data-transition-speed="fast")
+          h2 Lasso
+          p Making t sufficiently small will cause some of the coefficients to be exactly zero, making the lasso method similar to a subset selection.
+
+        section(data-transition-speed="fast")
+          h2 How to choose the parameter $t$
+          p if $t_0 = \sum\limits_{j = 1}^p |\beta_j|$ then the lasso estimates and the OLS estimates are the same. If $t = t_0/2$ then the least squares coefficients are shrunk by about 50% on average.
+          p pick the t that gives you the lowest test error.
+
+        section(data-transition-speed="fast")
           h2 Subset selection
           
         section(data-transition-speed="fast")
