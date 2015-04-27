@@ -537,7 +537,7 @@ html(lang="en")
 
         section
           section
-            h2 Doing more with regression
+            h2 Simplify
             p In the last section we built a regression model with 117 predictors. Unfortunately that's so many predictors that it's virtually impossible to interpret our results. Not only that, but to use a model that big for prediction would be a nightmare. It means that for every candidate station, we'd have to plug in 117 variables about the location and weather into the model to get the expected number of rentals. Yuck.
             p This week we'll explore automated methods for reducing model size while maintaining prediction accuracy.
 
@@ -551,26 +551,62 @@ html(lang="en")
             p The "curse of dimensionality" is not a problem of high-dimensional data, but a joint problem of the data and the algorithm being applied. It arises when the algorithm does not scale well to high-dimensional data, typically due to needing an amount of time or memory that is exponential in the number of dimensions of the data.
 
         section(data-transition-speed="fast")
+          h2 Improve predictions
+          figure.right(style="width: 35%")
+            img(src="images/bias_variance.png" style="width: 100%")
+            figcaption #[a(href="http://scott.fortmann-roe.com/docs/BiasVariance.html") Understanding the Bias-Variance Tradeoff]
+          p Besides reducing the size of the unwieldy model, we also want to improve prediction accuracy. Accuracy can sometimes be improved by shrinking certain coefficients to zero. When we shrink coefficients we exchange a some bias to reduce the variance of the predicted values, and may improve the overall prediction accuracy.
+
+        section(data-transition-speed="fast")
           h2 What's a poor modeler to do?
-          p We'll talk about a couple methods for reducing our model size:
+          p We'll talk about a couple methods for reducing our model size and improving prediction accuracy:
           ul 
-            li combination of features
-            li shrinkage 
+            li combination of features 
             li feature selection
+            li shrinkage 
 
         section(data-transition-speed="fast")
           h2 Combining features
           p We'll talk about clustering methods that can be used to combine features later on, but for now we can combine some features with simple addition.
           pre
             code.r(data-trim, contenteditable).
+              nightlife = bar + club + pub + nightclub 
+
+        section(data-transition-speed="fast")
+          h2 Subset selection
+          p Subset selection methods use OLS regression, but limit the number of predictors $k$ allowed to remain in the model. They iteratively add dor remove predictors to the model until $k$ predictors are included. 
+
+        section(data-transition-speed="fast")
+          h2 Forward selection
+          p Fitting every possible subset of predictors will take eternity. Forward-stepwise selection (or just forward selection) starts with just the intercept and sequentially adds predictors to the model.  
+
+        section(data-transition-speed="fast")
+          h2 Backward selection
+          p Backward-stepwise selection (or just backward selection) starts with the full model, and sequentially deletes predictors that have the least impact on the fit.
+
+        section(data-transition-speed="fast")
+          h2 How to pick $k$?
+          p These selection methods all rely on the value of $k$, but how do we choose? Cross validation!
+
+        section(data-transition-speed="fast")
+          h2 Use #[a(href="http://en.wikipedia.org/wiki/Cross-validation_(statistics)") Cross validation] to determine the best parameter values
+          figure.right(style="width: 35%")
+            img(src="images/crossvalidation.png" style="width: 100%")
+            figcaption #[a(href="http://scott.fortmann-roe.com/docs/MeasuringError.html") Accurately Measuring Model Prediction Error]
+          p Cross-validation works by splitting the data up into sets of $n$ folds. Your model building and error estimation procedure is then repeated $n$ times. After completing a 5-fold cross-validation you'd have 5 error estimates and can average to obtain a robust estimate of the prediction error.
 
         section(data-transition-speed="fast")
           h2 Shrinkage
           p In our model of daily rentals, many predictors had quite small coefficients. For example, the coefficient on the number of stop signs, <i>stops</i>, is about -0.09. Since the outcome is rentals per day, a coeffcient this small means we'd need about 10 additional stop signs to reduce the expected rentals by 1. In other words, it's not contributing much to our predicted values.
 
         section(data-transition-speed="fast")
-          h2 High variance
-          p You might have also noticed that the coefficients can have quite a high variance. Show example. When there are many correlated variables in a regression model, their coefficients can become poorly determined and exhibit high variance. A wildly large positive coefficient on one variable can be canceled by a similarly large negative coefficient on its correlated cousin. By impoising a size constraint on the coefficients, this phenomenon is prevented from occurring.
+          section(data-transition-speed="fast")
+            h2 High variance
+            p You might have observed some coefficients with high variance. We have a lot of predictors, and when many are correlated, we violate the assumption of independence between predictors and the result is often high variance. A large positive coefficient on one predictor can be canceled by a similarly large negative coefficient on its correlate. Shrinking coefficients alleviates this problem, in part because some predictors will shrink to zero and drop out. 
+
+          section(data-transition-speed="fast")
+            h2 Lower variance, higher bias
+            p Applying the ridge regression penalty has the effect of shrinking the estimates toward zero which reduces variance but introduces bias.
 
         section(data-transition-speed="fast")
           h2 Ridge regression
@@ -581,11 +617,10 @@ html(lang="en")
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
             h2 Choosing $\lambda$
-            p The penalty parameter $\lambda$ is the only value we need to specify.
-
-          section(data-transition-speed="fast")
-            h2 Ridge regression
-            p Applying the ridge regression penalty has the effect of shrinking the estimates toward zero – introducing bias but reducing the variance of the estimate.
+            figure.right(style="width: 35%")
+              img(src="images/ridge_coef.png" style="width: 100%")
+              figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") The Elements of Statistical Learning]
+            p The penalty parameter $\lambda$ controls the level of shrinking. $\lambda = 0$ will give you exactly the same coefficients as OLS. Beyond that, the choice of $\lambda$ will depend on the data and model, and we'll use cross validation to determine the best value.
 
         section(data-transition-speed="fast")
           h2 Lasso
@@ -597,18 +632,11 @@ html(lang="en")
           p Making t sufficiently small will cause some of the coefficients to be exactly zero, making the lasso method similar to a subset selection.
 
         section(data-transition-speed="fast")
-          h2 How to choose the parameter $t$
-          p if $t_0 = \sum\limits_{j = 1}^p |\beta_j|$ then the lasso estimates and the OLS estimates are the same. If $t = t_0/2$ then the least squares coefficients are shrunk by about 50% on average.
-          p pick the t that gives you the lowest test error.
-
-        section(data-transition-speed="fast")
-          h2 Subset selection
-          
-        section(data-transition-speed="fast")
-          h2 Forward selection
-          
-        section(data-transition-speed="fast")
-          h2 Backward selection
+          h2 Choosing $t$
+          figure.right(style="width: 35%")
+            img(src="images/lasso_coef.png" style="width: 100%")
+            figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") The Elements of Statistical Learning]
+          p If $t_0 \geq \sum\limits_{j = 1}^p |\beta_j|$, the lasso estimates and the OLS estimates are identical. If $t = t_0/2$ then the least squares coefficients are shrunk by about 50% on average. Once again we can pick the $t$ that gives the lowest test error, and we'll learn how to do that in <i>caret</i>.
 
         section(data-transition-speed="fast")
           h2 Ethics
@@ -617,16 +645,15 @@ html(lang="en")
         section(data-transition-speed="fast")
           h2 Data are neutral, our conclusions are not.
           p The Capitol Bikeshare dataset couldn't be more innocuous, but outside of privacy and security issues, it's almost never the data that create ethical dilemas, it's our application of the data and the conclusions we draw.
-          ul
-            li What if your analysis showed that the best performing bike stations were in the wealthiest neighborhoods? 
-            li What if bikes are frequently used for commmuting in low-income areas?
-            li What effect would removing stations in low-income neighborhoods have on their local economy?
-            li Is it ok to charge more to rent in worse-performing areas to make up the difference?
+            ul
+              li What if your analysis showed that the best performing bike stations were in the wealthiest neighborhoods? 
+              li What if bikes are frequently used for commmuting in low-income areas?
+              li What effect would removing stations in low-income neighborhoods have on their local economy?
+              li Is it ok to charge more to rent in worse-performing areas to make up the difference?
 
         section(data-transition-speed="fast")
           h2 It's not always about the data you've got, it's also what you haven't.
           p What variables are omitted from your data that could invalidate your findings?
-          p Simpson's paradox.
 
         section(data-transition-speed="fast")
           h2 Simpson's paradox
