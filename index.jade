@@ -536,29 +536,41 @@ html(lang="en")
             a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/linear-regression-in-R.Rmd") R Notebook
 
         section
-          h2 Doing more with regression
-          p In the last section we built a regression model with 117 predictors. Unfortunately that's so many predictors that it's virtually impossible to interpret our results. Not only that, but to use a model that big for prediction would be a nightmare. It means that for every candidate station, we'd have to plug in 117 variables about the location and weather into the model to get the expected number of rentals. Yuck.
-          p This week we'll explore automated methods for reducing model size while maintaining prediction accuracy.
+          section
+            h2 Doing more with regression
+            p In the last section we built a regression model with 117 predictors. Unfortunately that's so many predictors that it's virtually impossible to interpret our results. Not only that, but to use a model that big for prediction would be a nightmare. It means that for every candidate station, we'd have to plug in 117 variables about the location and weather into the model to get the expected number of rentals. Yuck.
+            p This week we'll explore automated methods for reducing model size while maintaining prediction accuracy.
+
+          section(data-transition-speed="fast")
+            h2 #[a(href="http://en.wikipedia.org/wiki/Curse_of_dimensionality") The curse of dimensionality]
+            img.right(src="images/microarray.jpg" width="30%" height="30%")
+            p Linear regression works well when the number of observations, $n$, is larger than the number of predictors, $p$. In a data mining context we sometimes have data where $p >> n$. An example of this from the biomedical science is microarray technology. One tissue sample can produce over 50,000 observations making $p$ orders of magnitude larger than $n$. 
+
+          section(data-transition-speed="fast")
+            h2 
+            p The "curse of dimensionality" is not a problem of high-dimensional data, but a joint problem of the data and the algorithm being applied. It arises when the algorithm does not scale well to high-dimensional data, typically due to needing an amount of time or memory that is exponential in the number of dimensions of the data.
 
         section(data-transition-speed="fast")
-          h2 #[a(href="http://en.wikipedia.org/wiki/Curse_of_dimensionality") The curse of dimensionality]
-          img.right(src="images/microarray.jpg" width="30%" height="30%")
-          p Linear regression works well when the number of observations, $n$, is larger than the number of predictors, $p$. In a data mining context we sometimes have data where $p >> n$. An example of this from the biomedical science is microarray technology. One tissue sample can produce over 50,000 observations making $p$ orders of magnitude larger than $n$. 
-        section(data-transition-speed="fast")
-          h2 #[a(href="http://en.wikipedia.org/wiki/Curse_of_dimensionality") The curse of dimensionality]
-          p When $p$ becomes large, ...
-
-        section(data-transition-speed="fast")
-          h2 What a poor modeler to do?
-          p Fortunately there are methods for handling this insidious curse. We'll talk about a couple of them:
+          h2 What's a poor modeler to do?
+          p We'll talk about a couple methods for reducing our model size:
           ul 
+            li combination of features
             li shrinkage 
             li feature selection
-            li dimension reduction
-          
+
+        section(data-transition-speed="fast")
+          h2 Combining features
+          p We'll talk about clustering methods that can be used to combine features later on, but for now we can combine some features with simple addition.
+          pre
+            code.r(data-trim, contenteditable).
+
         section(data-transition-speed="fast")
           h2 Shrinkage
           p In our model of daily rentals, many predictors had quite small coefficients. For example, the coefficient on the number of stop signs, <i>stops</i>, is about -0.09. Since the outcome is rentals per day, a coeffcient this small means we'd need about 10 additional stop signs to reduce the expected rentals by 1. In other words, it's not contributing much to our predicted values.
+
+        section(data-transition-speed="fast")
+          h2 High variance
+          p You might have also noticed that the coefficients can have quite a high variance. Show example.
 
         section
           h2 Week 3 Resources
