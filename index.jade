@@ -215,10 +215,6 @@ html(lang="en")
           p In project 3, you'll use association rule mining and clustering to build a song recommender using a subset of the Million Song Dataset.
 
         section(data-transition-speed="fast")
-          h2 Predicting network traffic
-          p Finally in project 4 you'll forecast network traffic by analyzing historical data.
-
-        section(data-transition-speed="fast")
           h3 Limitations of data mining
           p Like any analytical technique, and arguably more so than traditional analysis, data mining has limitations:
             ul 
@@ -361,7 +357,8 @@ html(lang="en")
 
         section
           h2 How many rentals per day?
-          img.right(src="images/crosswalk_lm.png" style="width: 40%")
+          figure.right(style="width: 40%")
+            img(src="images/crosswalk_lm.png" style="width: 100%")
           p Predicting the expected number of bike rentals from a station per day is useful in lots of applications:
             ul
               li Allocating bikes across stations
@@ -395,8 +392,9 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Mathematical foundations
+          figure.right(style="width: 40%")
+            img(src="images/crosswalk_lm.png" style="width: 100%")
           p SLR describes the relationship between an explanatory variable (or <i>independent</i> variable) and an outcome variable (sometimes called the <i>response</i> or <i>dependent variable</i>). It describes how the expected value of an outcome variable changes as the explanatory variable changes. <i>e.g.</i> How does the expected number of rentals change as the number of nearby crosswalks changes?
-          img.center(src="images/crosswalk_lm.png" style="width: 40%")
 
         section(data-transition-speed="fast")
           h2 Mathematical foundations
@@ -405,7 +403,8 @@ html(lang="en")
           p the model for a simple linear regression is expressed as
           | $ y_i = \beta_{0} + \beta_{1}x_i + \epsilon_i $
           p(class="fragment current-visible") Hey, kinda looks like $y = mx + b$ where $\beta_0$ is the intercept and $\beta_1$ is the slope of the line.
-            img.right(src="images/Linear_Function_Graph.svg" width="30%" height="30%")
+            figure.right(style="width: 30%")
+              img(src="images/Linear_Function_Graph.svg" style="width: 100%")
 
         section(data-transition-speed="fast")
           h2 Which line is the best?
@@ -510,9 +509,9 @@ html(lang="en")
           section(data-transition-speed="fast")
             h2 Measuring model quality for continuous outcomes
               p 
-                | $ \text{mean squared error (MSE)} = \frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2 $
+                | $\text{mean squared error (MSE)} = \frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2$
               p
-                | $ \text{root mean squared error (RMSE)} = \sqrt{\frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2} $
+                | $\text{root mean squared error (RMSE)} = \sqrt{\frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2}$
 
           section(data-transition-speed="fast")
             h2 Which metric should I use?
@@ -751,28 +750,38 @@ html(lang="en")
             li Spam or not spam
             li Diseased or not diseased
             li Fraud or not fraud
-            li Bot or not a bot
+          p(class="fragment current-visible") Your predictor $y$ is either 0 or 1: $y \in{\{0, 1\}}$
 
         section(data-transition="linear" data-transition-speed="fast")
           h2 Identifying spam
-          p We can construct a decent spam classifier using simple linear regression using the number of occurrences of the character '$' as our predictor.
-          img(src="images/is_it_spam.png")
+          p We could build a spam classifier using a linear regression to predict whether a message is spam using the number of occurrences of the character '$' as our predictor.
+          figure.center(style="width: 45%")
+            img(src="images/is_it_spam.png" width="100%")
 
         section(data-transition="linear" data-transition-speed="fast")
           h2 Identifying spam
-          p Our decision boundary is at $ y = 0.5 $ and with regression we derive the rule that $ x \geq 7.7 $ indicates spam.
-          img(src="images/is_it_spam_2.png")
+          figure.right(style="width: 45%")
+            img(src="images/is_it_spam_2.png" width="100%")
+          p Our decision boundary is at $y = 0.50$.
+            ul(class="fragment")
+              li if $y \geq 0.5$, $y = 1 =$ spam
+              li if $y < 0.5$, $y = 0 =$ not spam
+          p(class="fragment current-visible") Any message with more than eight $, is spam.
 
         section(data-transition="linear" data-transition-speed="fast")
           h2 Identifying spam
-          p Our classifier starts misclassifying when we add another observation with a relatively extreme number of $'s.
-          img(src="images/is_it_spam_3.png")
+          p What if an extreme value was observed later? The current rule isn't violated here, but if we refit the model the classifier begins to misclassify.
+          figure.left(style="width: 45%")
+            img(src="images/is_it_spam_2.png" width="100%")
+          figure.left(style="width: 45%")
+            img(class="fragment current-visible" src="images/is_it_spam_3.png" width="100%")
 
         section(data-transition-speed="fast")
           section
             h2 We need a new tool
-            p Our current tool, linear regression, is not going to work in general for a classification application.  Instead of linear regression we're going to use a regression in a family called generalized linear models (GLMs), <b>logistic regression</b>.
-          section
+            p In a classification setting we know the outcome $y$ can only take the values $0$ or $1$ and in the linear regression setting $y$ could be much larger than $1$ and much smaller than $0$. Our current tool, linear regression, won't work well for classification problems. Instead we can use another type of regression called, #[a(href="http://en.wikipedia.org/wiki/Logistic_regression") logistic regression].
+
+          section(data-transition="linear" data-transition-speed="fast")
             h2 History of GLM
             p Articulated in Nelder and Wedderburn in 1972 paper in Journal of the Royal Statistical Society.
             p GLMs are composed of three parts:
@@ -781,14 +790,14 @@ html(lang="en")
                 li A systematic component via a linear predictor
                 li A link function that connects the means of the response to the linear predictor
 
-          section 
+          section(data-transition-speed="fast")
             h2 Logistic regression GLM parts
             ol 
               li Exponential family model:
               li Linear predictor: $ \eta_{i} = \sum_{k = 1}^{p} X_{ik}\beta_k $
               li Link: $ g(\mu) = \eta = \log{\mu \over 1-\mu} $
 
-        section
+        section(data-transition-speed="fast")
           p A logit model, or logistic regression is used to model the probability of binary events. The log odds of the outcome is modeled as a linear combination of the predictor variables.
           // Show equation here?
 
