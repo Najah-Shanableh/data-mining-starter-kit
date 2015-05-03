@@ -131,13 +131,68 @@ ggplot(df_2, aes(x = count, y = class)) +
     axis.text.y = element_text(size = 25),
     axis.title = element_text(size = 30))
 
+# Sigmoid function
+sig1 = data.frame(x = seq(-10, 10, length.out = 101),
+                  y = sigmoid(x))
 
+# 945 x 813
+ggplot(sig1, aes(x = x, y = y)) +
+  geom_abline(intercept = 0.5, slope = 0, linetype = 2, size = 1.5, alpha = 0.6) + 
+  geom_line(size = 6, color = '#4F2DE5') +
+  theme_minimal() +
+  scale_x_continuous('z') +
+  scale_y_continuous('g(z)', breaks = c(0, 0.5, 1), labels = c(0, 0.5, 1)) +
+  theme(
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_text(size = 25),
+    axis.text.y = element_text(size = 25),
+    axis.title = element_text(size = 30))
 
+sig2 = data.frame(x = rep(seq(-10, 10, length.out = 101), 6),
+                  y = c(sigmoid(x), sigmoid(x, a = 2), sigmoid(x, a = 4), sigmoid(x, a = 10), sigmoid(x, a = 0.5), sigmoid(x, a = 0.25)),
+                  a = c(rep(0, 101), rep(2, 101), rep(4, 101), rep(10, 101), rep(0.5, 101), rep(0.25, 101)))
+legend_label = expression(beta_0 + beta_1x)
 
+ggplot(sig2, aes(x = x, y = y, group = factor(a), color = factor(a))) +
+  geom_abline(intercept = 0.5, slope = 0, linetype = 2, size = 1.5, alpha = 0.6) + 
+  geom_line(size = 4, alpha = 0.50) +
+  theme_minimal() +
+  scale_x_continuous('z') +
+  scale_y_continuous('g(z)', breaks = c(0, 0.5, 1), labels = c(0, 0.5, 1)) +
+  scale_color_discrete(expression(beta[0] + beta[1] * x)) +
+  theme(
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_text(size = 25),
+    axis.text.y = element_text(size = 25),
+    axis.title = element_text(size = 30),
+    legend.title = element_text(size = 30),
+    legend.text = element_text(size = 25))
 
+ggplot(sig1, aes(x = x, y = y)) +
+  annotate('rect', xmin = 0, xmax = Inf, ymin = -Inf, ymax = Inf, fill = alpha('blue', 0.1)) +
+  geom_vline(xintercept = 0, size = 2, alpha = 0.80) + 
+  geom_abline(intercept = 0.5, slope = 0, linetype = 2, size = 1.5, alpha = 0.6) + 
+  geom_line(size = 6, color = '#4F2DE5') +
+  theme_minimal() +
+  scale_x_continuous('z') +
+  scale_y_continuous('g(z)', breaks = c(0, 0.5, 1), labels = c(0, 0.5, 1)) +
+  theme(
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_text(size = 25),
+    axis.text.y = element_text(size = 25),
+    axis.title = element_text(size = 30))
 
-
-
-
-
+ggplot(sig1, aes(x = x, y = y)) +
+  annotate('rect', xmin = -Inf, xmax = 0, ymin = -Inf, ymax = Inf, fill = alpha('blue', 0.1)) +
+  geom_vline(xintercept = 0, size = 2, alpha = 0.80) + 
+  geom_abline(intercept = 0.5, slope = 0, linetype = 2, size = 1.5, alpha = 0.6) + 
+  geom_line(size = 6, color = '#4F2DE5') +
+  theme_minimal() +
+  scale_x_continuous('z') +
+  scale_y_continuous('g(z)', breaks = c(0, 0.5, 1), labels = c(0, 0.5, 1)) +
+  theme(
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_text(size = 25),
+    axis.text.y = element_text(size = 25),
+    axis.title = element_text(size = 30))
 
