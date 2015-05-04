@@ -742,6 +742,8 @@ html(lang="en")
           h2 Week 4: Classification - Logistic Regression 
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
+          h4 
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%202/logistic-regression-in-R.Rmd") R Notebook
 
         section#classification
           h2 Classification
@@ -750,11 +752,11 @@ html(lang="en")
             li Spam or not spam
             li Diseased or not diseased
             li Fraud or not fraud
-          p(class="fragment current-visible") In our case, the predictor $y$ is either 0 or 1: $y \in{\{0, 1\}}$
+          p(class="fragment current-visible") In our case, the outcome $y$ is either 0 or 1: $y \in{\{0, 1\}}$
 
         section(data-transition="linear" data-transition-speed="fast")
           h2 Identifying spam
-          p We could build a spam classifier with a linear regression predicting whether a message is spam. The number of occurrences of the character '$' is the predictive variable.
+          p We could build a spam classifier with a linear regression predicting whether a message is spam. The predictor is the number of occurrences of the character '$' in a message.
           figure(style="width: 45%; margin: 0 auto")
             img(src="images/is_it_spam.png" width="100%")
 
@@ -762,15 +764,15 @@ html(lang="en")
           h2 Identifying spam
           figure.right(style="width: 45%")
             img(src="images/is_it_spam_2.png" width="100%")
-          p The decision boundary is at $y = 0.50$.
+          p Then to predict the class, create a threshold on $y$:
             ul(class="fragment")
-              li if $y \geq 0.5$, $y = 1 =$ spam
-              li if $y < 0.5$, $y = 0 =$ not spam
-          p(class="fragment current-visible") Any message with more than eight $'s, is spam.
+              li if $y \geq 0.5$, spam
+              li if $y < 0.5$, not spam
+          p(class="fragment current-visible") Messages with more than eight '$'s, will be labeled as spam.
 
         section(data-transition="linear" data-transition-speed="fast")
           h2 Identifying spam
-          p What if an extreme value was observed later? The current rule isn't violated here, but if we refit the model the classifier begins to misclassify.
+          p What if an extreme value is observed later? The current rule isn't violated, but when we refit the model with the new data, the classifier begins to misclassify.
           figure.left(style="width: 45%; margin: 0 auto")
             img(src="images/is_it_spam_2.png" width="100%")
           figure.right(style="width: 45%; margin: 0 auto")
@@ -798,24 +800,23 @@ html(lang="en")
               li Link: $ g(\mu) = \eta = \log{\mu \over 1-\mu} $
 
         section(data-transition-speed="fast")
-          p <b>Goal:</b> $0 \leq y \leq 1$
+          h2 Deriving logistic regression
+            p <b>Goal:</b> $0 \leq predictions \leq 1$
             p(class="fragment") $y = \beta_0 + \beta_{1}x$ &#10143 Simple Linear Regression
+            p(class="fragment") How can we transform the right hand size to be between 0 and 1 like the outcome?
+              p(class="fragment") $g(z) = \frac{1}{1+e^{-z}}$ &#10143 Logistic (or sigmoid) function
+            p(class="fragment") $z = \beta_0 + \beta_{1}x$
             p(class="fragment") $y = \frac{1}{1 + e^{-(\beta_0 + \beta_{1}x)}}$ &#10143 Logistic Regression
 
         section(data-transition-speed="fast")
-          h2 The sigmoid function 
+          h2 The logistic function $g(z) = \frac{1}{1+e^{-z}}$
           figure(style="width: 50%; margin: 0 auto")
             img(src="images/logit_function.png" width="100%")
 
         section(data-transition-speed="fast")
-          h2 The sigmoid function 
-          figure(style="width: 50%; margin: 0 auto")
-            img(src="images/multi_logit_function.png" width="100%")
-
-        section(data-transition-speed="fast")
-          h2 How to interpret y?
-          p The outcome is the probability $y = 1$ given the data $x$.
-          p <i>e.g.</i> The probability of a message being spam, given the number of $'s.
+          h2 How to interpret predictions?
+          p Model predictoins represent the probability $y = 1$ given the data $x$.
+          p <i>e.g.</i> The probability of a message being spam, given the number of $\$'s$. If I get a value of 0.70 from my model, then $p(\text{message is spam}\mid 10 \text{\$'s}) = 0.70$.
 
         section(data-transition-speed="fast")
           h2 How do we decide the class?
@@ -828,6 +829,16 @@ html(lang="en")
               img(src="images/lower_decision_boundary.png" width="100%")
             figure.right(style="width: 45%")
               img(src="images/upper_decision_boundary.png" width="100%")
+
+        section(data-transition-speed="fast")
+          h2 How do we decide the class?
+          figure.right(style="width: 35%; margin: 0 auto")
+            img(src="images/decision_boundary.png" width="100%")
+          p $p(\text{spam}) = -0.80 + 0.10*\text{number of \$s}$
+          p predict y = 1, if: $-0.80 + 0.10x \geq 0$
+          p $0.10x \geq 0.80$
+          p $x \geq 8$
+          p The line at $x = 8$ is called the <i>decision boundary</i>.
 
         section(data-transition-speed="fast")
           h2 Bot <i>or</i> Not?
@@ -848,6 +859,7 @@ html(lang="en")
           h2 Week 4 Resources
           ol
             li #[a(href="http://www.ats.ucla.edu/stat/r/dae/logit.htm") R Data Analysis Examples: Logit Regression]
+            li #[a(href="http://www.ats.ucla.edu/stat/mult_pkg/faq/general/odds_ratio.htm") FAQ: How do I interpret odds ratios in logistic regression?]
 
         section#week5(data-background="images/data_miner5.jpg" data-background-size="100%")
           h2 Week 5: Classification - Trees
