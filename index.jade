@@ -46,21 +46,21 @@ html(lang="en")
                   a.active(href='#') Topic
                   ul.dropdown
                     li.active
-                      a.active(href='#/week1') Intro to data mining and R
+                      a.active(href='#/intro') Intro to data mining and R
                     li.active
-                      a.active(href='#/week2') Linear regression
+                      a.active(href='#/regression') Linear regression
                     li.active
-                      a.active(href='#/week4') Logistic regression
+                      a.active(href='#/selection') Feature selection 
                     li.active
-                      a.active(href='#/week5') Classification Trees 
+                      a.active(href='#/logistic') Logistic regression
                     li.active
-                      a.active(href='#/week6') Association Rules
+                      a.active(href='#/trees') Classification Trees 
                     li.active
-                      a.active(href='#/week7') Clustering
+                      a.active(href='#/rules') Association Rules
                     li.active
-                      a.active(href='#/week8') Forecasting
+                      a.active(href='#/clustering') Clustering
                     li.active
-                      a.active(href='#/week10') Markdown + Git
+                      a.active(href='#/share') Markdown + Git
                 li.has-dropdown.not-click
                   a.active(href='#') About 
                   ul.dropdown
@@ -129,8 +129,8 @@ html(lang="en")
           h2 What are your professional goals?
           blockquote It would be awesome if we are able to publish our work as part of a portfolio.  
 
-        section#week1.title-slide(data-background="images/data_miner1.jpg" data-background-size="100%")
-          h2 Week 1: Introduction to Data Mining with R
+        section#intro.title-slide(data-background="images/data_miner1.jpg" data-background-size="100%")
+          h2 Introduction to Data Mining with R
           h4 BI Tech CP303 - Data Mining
           h4 
             a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/intro-R/introduction-to-r.Rmd') R Notebook
@@ -336,7 +336,7 @@ html(lang="en")
               li station details such as long/lat, and nearby amenities
 
         section
-          h2 Week 1 Resources
+          h2 Introductory Resources
           ol
             li #[a(href="http://www.dcc.fc.up.pt/~ltorgo/DataMiningWithR/") Data Mining with R: Learning with Case Studies]
             li #[a(href="http://www.amazon.com/Ethics-Big-Data-Balancing-Innovation/dp/1449311792") Ethics of Big Data: Balancing Risk and Innovation]
@@ -348,8 +348,8 @@ html(lang="en")
             li #[a(href="http://onepager.togaware.com/") Hands-On Data Sciece with R]
             li #[a(href="http://datamining.togaware.com/") Data mining resources]
 
-        section#week2(data-background="images/data_miner2.jpg" data-background-size="100%")
-          h2 Week 2: Linear regression
+        section#regression(data-background="images/data_miner2.jpg" data-background-size="100%")
+          h2 Linear regression
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
           h4 
@@ -521,14 +521,14 @@ html(lang="en")
                 li Median absolute deviation is often more sensitive to outliers.
 
         section
-          h2 Week 2 Resources
+          h2 Linear Regression Resources
           ol
             li #[a(href="https://class.coursera.org/predmachlearn-012") Practical Machine Learning] is a great Coursera course and is part of the data science specialization from Johns Hopkins.
             li #[a(href="http://cran.r-project.org/web/packages/caret/vignettes/caret.pdf") A Short Introduction to the caret Package]
             li #[a(href="http://www.jstatsoft.org/v28/i05/paper") Building Predictive Models in R Using the caret Package]
 
-        section#week3(data-background="images/data_miner3.jpg" data-background-size="100%")
-          h2 Week 3: Linear regression extensions
+        section#selection(data-background="images/data_miner3.jpg" data-background-size="100%")
+          h2 Feature Selection and Model Selection
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
           h4 
@@ -734,12 +734,12 @@ html(lang="en")
           p Imagine you sent out a survey to homes nearby the bike stations and found that only 30% of people near poor-performing stations knew how to ride a bike? How would this change your conclusions and course of action?
 
         section
-          h2 Week 3 Resources
+          h2 Feature Selection Resources
           ol
             li #[a(href="http://topepo.github.io/caret/training.html") Modeling training and tuning with caret]
 
-        section#week4(data-background="images/data_miner4.jpg" data-background-size="100%")
-          h2 Week 4: Classification - Logistic Regression 
+        section#logistic(data-background="images/data_miner4.jpg" data-background-size="100%")
+          h2 Classification with Logistic Regression 
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
           h4 
@@ -856,20 +856,23 @@ html(lang="en")
           h2.right Spot a bot!
 
         section
-          h2 Week 4 Resources
+          h2 Logistic Regression Resources
           ol
             li #[a(href="http://www.ats.ucla.edu/stat/r/dae/logit.htm") R Data Analysis Examples: Logit Regression]
             li #[a(href="http://www.ats.ucla.edu/stat/mult_pkg/faq/general/odds_ratio.htm") FAQ: How do I interpret odds ratios in logistic regression?]
+            li #[a(href="http://rpubs.com/ryankelly/ml_logistic") Classification tutorial in R] from Ryan Kelly
 
-        section#week5(data-background="images/data_miner5.jpg" data-background-size="100%")
-          h2 Week 5: Classification - Trees
+        section#trees(data-background="images/data_miner5.jpg" data-background-size="100%")
+          h2 Classification with Trees
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
+          h4 
+            a(href="#") R Notebook
 
         section
           p A “divide-and-conquer” approach to the problem of learning from a set of independent instances leads naturally to a style of representation called a decision tree.
 
-        section
+        section(data-transition-speed="fast")
           p steps of a tree classification method:
             ol
               li iteratively split variables into groups
@@ -878,7 +881,10 @@ html(lang="en")
           p Pros are easy interpretation and good performance in nonlinear setting
           p Cons are potential for overfitting, can be high variance, harder to estimate uncertainty
 
-        section
+        section(data-transition-speed="fast")
+          p Find an example decision tree
+
+        section(data-transition-speed="fast")
           p basic algoritm
             ol
               li Start with all variables in one group
@@ -892,42 +898,64 @@ html(lang="en")
               li at the splits based on some criteria for 'best' or 'most homogeneous'
               li at the point of determining node 'purity'
 
-        section
+        section(data-transition-speed="fast")
           h2 measures of impurity
           p Misclassification error - 0 perfect purity, 0.5 no purity
           p Gini index - 0 perfect purity, 0.5 no purity
           p Deviance/information gain - 0 = perfect purity 1 = no purity
 
-        section
-          section
+        section(data-transition-speed="fast")
+          p __Gini index_ is a measure of the total variance across K classes.
+
+        section(data-transition-speed="fast")
+          p __Cross-entropy_ will take on a value near zero if the proportion of training observations in the given category are all near zero or one.
+        section(data-transition-speed="fast")
+          section(data-transition-speed="fast")
             h2 Other methods of classification
             p We focused on two common methods of classification, logistic regression and classification trees, but there are many methods we could have chosen from depending on our application.
 
-          section
+          section(data-transition-speed="fast")
             h2 Support Vector Machines
             p Quick description and code in caret
 
-          section
+          section(data-transition-speed="fast")
             h2 Neural networks
             p Quick description and code in caret
               
-        section
-          h2 Week 5 Resources
+        section(data-transition-speed="fast")
+          h2 Pruning
+          p Just like with regression, we can overfit the data, so we need a selection method.
+          p While the model above can produce good prediction on training data, basic tree methods are likely to over fit the data, leading to poor test performance. This is because the resulting trees tend to be too complex. A smaller tree with fewer splits often leads to lower variance, easier interpretation and lower test errors, at the cost of a little bias. One possible way to achieve this is to build a tree only so long as the decrease in RSS due to each split exceeds some (high) threshold. While this will certainly reduce tree size, it is too short sighted. This is because a seemingly worthless split early on in a tree can be followed by a very good split later.
 
-        section#week6(data-background="images/data_miner6.jpg" data-background-size="100%")
-          h2 Week 6: Association rule mining
+        section(data-transition-speed="fast")
+          h2 Pruning
+          p Therefore, a better strategy is to grow a large tree, then prune it back to obtain a better sub tree. Intuitively, our goal is to select a sub tree that leads to the lowest test error rate. To do this, we would normally use cross validation. However it is too cumbersome since there is an extremely large number of possible sub trees.
+
+        section
+          h2 Tree Resources
+          ol
+            li #[a(href="https://rpubs.com/ryankelly/dtrees") Tree-based Methods]. A great tutorial from Ryan Kelly.
+            li #[a(href="https://en.wikipedia.org/wiki/Decision_tree_learning") Decision Tree Learning]
+
+        section#rules(data-background="images/data_miner6.jpg" data-background-size="100%")
+          h2 Association rule mining
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
+          h4 
+            a(href="#") R Notebook
 
         section
           h2 the million song dataset
           p http://blog.echonest.com/post/3639160982/million-song-dataset
+         
 
         section
-          h2 Week 6 Resources
+          h2 Association Rules Resources
+          ol 
+            li #[a(href="http://www.rdatamining.com/examples/association-rules") Association Rule Example]
 
-        section#week7(data-background="images/data_miner7.jpg" data-background-size="100%")
-          h2 Week 7: Clustering
+        section#clustering(data-background="images/data_miner7.jpg" data-background-size="100%")
+          h2 Clustering
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
 
@@ -941,30 +969,16 @@ html(lang="en")
             li build predictor for the cluster
 
         section(data-transition-speed="fast")
-          h2 Week 7 Resources
+          h2 Clustering Resources
           ol
             li Nice presentation by #[a(href="http://www.slideshare.net/PhamCuong/clustering-technique-for-collaborative-filtering-recommendation-and-application-to-venue-recommendation") Pham Cuong] about clustering techniques for recommendations.
 
-        section#week8(data-background="images/data_miner8.jpg" data-background-size="100%")
-          h2 Week 8: Time series 1
+        section#share(data-background="images/data_miner10.jpg" data-background-size="100%")
+          h2 Sharing is caring!
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
-
-        section
-          h2 Week 8 Resources
-
-        section#week9(data-background="images/data_miner9.jpg" data-background-size="100%")
-          h2 Week 9: Time series 2
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
-
-        section
-          h2 Week 9 Resources
-
-        section#week10(data-background="images/data_miner10.jpg" data-background-size="100%")
-          h2 Week 10: Sharing is caring!
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
+          h4 
+            a(href="#") R Notebook
 
         section(data-transition-speed="fast")
           h2 Share your work!
