@@ -112,7 +112,7 @@ ggplot(df_1, aes(x = count, y = class)) +
     axis.title = element_text(size = 30))
 
 ggplot(df_1, aes(x = count, y = class)) +
-  geom_hline(yintercept = 0.50, linetype = 2, alpha = 0.50, size = 1.5) +
+  geom_hline(yintercept = 0.50, linetype = 2, size = 1.5) +
   geom_vline(xintercept = 7.699844, size = 1.5, color = '#e7ad52') +
   geom_line(stat = 'smooth', method = lm, se = FALSE, size = 3, alpha = 0.20) +
   geom_point(size = 10, color = 'Darkslategray') +
