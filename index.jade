@@ -129,7 +129,7 @@ html(lang="en")
           h2 What are your professional goals?
           blockquote It would be awesome if we are able to publish our work as part of a portfolio.  
 
-        section#intro.title-slide(data-background="images/data_miner1.jpg" data-background-size="100%")
+        section#intro.title-slide(data-background="images/data_miner1.jpg" data-background-size="cover")
           h2 Introduction to Data Mining with R
           h4 BI Tech CP303 - Data Mining
           h4 
@@ -348,7 +348,7 @@ html(lang="en")
             li #[a(href="http://onepager.togaware.com/") Hands-On Data Sciece with R]
             li #[a(href="http://datamining.togaware.com/") Data mining resources]
 
-        section#regression(data-background="images/data_miner2.jpg" data-background-size="100%")
+        section#regression(data-background="images/data_miner2.jpg" data-background-size="cover")
           h2 Linear regression
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -527,7 +527,7 @@ html(lang="en")
             li #[a(href="http://cran.r-project.org/web/packages/caret/vignettes/caret.pdf") A Short Introduction to the caret Package]
             li #[a(href="http://www.jstatsoft.org/v28/i05/paper") Building Predictive Models in R Using the caret Package]
 
-        section#selection(data-background="images/data_miner3.jpg" data-background-size="100%")
+        section#selection(data-background="images/data_miner3.jpg" data-background-size="cover")
           h2 Feature and Model Selection
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -738,7 +738,7 @@ html(lang="en")
           ol
             li #[a(href="http://topepo.github.io/caret/training.html") Modeling training and tuning with caret]
 
-        section#logistic(data-background="images/data_miner4.jpg" data-background-size="100%")
+        section#logistic(data-background="images/data_miner4.jpg" data-background-size="cover")
           h2 Classification with Logistic Regression 
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -849,10 +849,10 @@ html(lang="en")
           h2 Bot <i>or</i> Not?
           p For project 2, we'll use Twitter user data to build a classifier for identifying bots.
 
-        section(data-transition-speed="fast" data-background="images/not_a_bot.png" data-background-size="100%")
+        section(data-transition-speed="fast" data-background="images/not_a_bot.png" data-background-size="cover")
           h2.right Not a bot...
 
-        section(data-transition-speed="fast" data-background="images/twitter_bot.png" data-background-size="100%")
+        section(data-transition-speed="fast" data-background="images/twitter_bot.png" data-background-size="cover")
           h2.right Spot a bot!
 
         section
@@ -862,7 +862,7 @@ html(lang="en")
             li #[a(href="http://www.ats.ucla.edu/stat/mult_pkg/faq/general/odds_ratio.htm") FAQ: How do I interpret odds ratios in logistic regression?]
             li #[a(href="http://rpubs.com/ryankelly/ml_logistic") Classification tutorial in R] from Ryan Kelly
 
-        section#trees(data-background="images/data_miner5.jpg" data-background-size="100%")
+        section#trees(data-background="images/data_miner5.jpg" data-background-size="cover")
           h2 Classification with Trees
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -870,17 +870,18 @@ html(lang="en")
             a(href="#") R Notebook
 
         section
-          h2 C
-          p Tree-based methods are a conceptually simple, but powerful method for classification (and regression).
-          p A “divide-and-conquer” approach to the problem of learning from a set of independent instances leads naturally to a style of representation called a decision tree.
+          h2 Classification with trees
+          p Tree-based methods are a conceptually simple but powerful method for classification (and regression). They work well in non-linear settings where regression might underperform.
 
         section(data-transition-speed="fast")
-          p steps of a tree classification method:
+          h2 The construction of trees is iterative
+          p The basic algorithm can be summarized as the following steps: 
             ol
-              li iteratively split variables into groups
-              li Evalulate "homogeneity" with each group
-              li Split again if necessary
-          p Cons are potential for overfitting, can be high variance, harder to estimate uncertainty
+              li Start with all variables
+              li Find the variable/split that best separates the outcomes
+              li Divide the data into two groups (leave) on that split (node)
+              li within each split, find the best variable/split that separtes the outcomes
+              li continue until the groups are two small or sufficiently "pure"
 
         section(data-transition-speed="fast")
           h2 Tree methods are intuitive 
@@ -890,50 +891,26 @@ html(lang="en")
           p An advantage of classification trees is their interpretability. They also perform well in non-linear settings
 
         section(data-transition-speed="fast")
-          p basic algoritm
-            ol
-              li Start with all variables in one group
-              li find the variable/split that best separates the outcomes
-              li divide the data into two groups (leave) on that split (node)
-              li within each split, find the best variable/split that separtes the outcomes
-              li continue until the groups are two small or sufficiently "pure"
-
-          p think about where the decisions in this alogoritm need to be made.
-            ul
-              li at the splits based on some criteria for 'best' or 'most homogeneous'
-              li at the point of determining node 'purity'
+          h2 Tree method cons
+          p Tree methods can suffer from #[a(href="http://en.wikipedia.org/wiki/Overfitting") overfitting], which occurs when our models are too tuned with the training data. When models are overfit, they exhibit high variance and poor prediction accuracy on new data.
 
         section(data-transition-speed="fast")
           h2 How to determine the splitting point?
-
-        section(data-transition-speed="fast")
-          h2 measures of impurity
-          p Misclassification error - 0 perfect purity, 0.5 no purity
-          p Gini index - 0 perfect purity, 0.5 no purity
-          p Deviance/information gain - 0 = perfect purity 1 = no purity
+            p Misclassification error - 0 perfect purity, 0.5 no purity
+            p Gini index - 0 perfect purity, 0.5 no purity
+            p Deviance/information gain - 0 = perfect purity 1 = no purity
 
         section(data-transition-speed="fast")
           p __Gini index_ is a measure of the total variance across K classes.
 
         section(data-transition-speed="fast")
           p __Cross-entropy_ will take on a value near zero if the proportion of training observations in the given category are all near zero or one.
-        section(data-transition-speed="fast")
-          section(data-transition-speed="fast")
-            h2 Other methods of classification
-            p We focused on two common methods of classification, logistic regression and classification trees, but there are many methods we could have chosen from depending on our application.
 
-          section(data-transition-speed="fast")
-            h2 Support Vector Machines
-            p Quick description and code in caret
-
-          section(data-transition-speed="fast")
-            h2 Neural networks
-            p Quick description and code in caret
-              
         section(data-transition-speed="fast")
           h2 Pruning
-          p Just like with regression, we can overfit the data, so we need a selection method.
-          p While the model above can produce good prediction on training data, basic tree methods are likely to over fit the data, leading to poor test performance. This is because the resulting trees tend to be too complex. A smaller tree with fewer splits often leads to lower variance, easier interpretation and lower test errors, at the cost of a little bias. One possible way to achieve this is to build a tree only so long as the decrease in RSS due to each split exceeds some (high) threshold. While this will certainly reduce tree size, it is too short sighted. This is because a seemingly worthless split early on in a tree can be followed by a very good split later.
+          figure.right(style="width: 45%")
+            img(src="images/tree-trimming-pruning-sl.jpg" style="width: 100%")
+          p When we were doing regression, we started by fitting the <i>full model</i>, which had the lowest RMSE, but was also prohibitively complex. Tree methods can suffer a similar weakness in that resulting trees tend to be large and too complex. Just like regression, a smaller tree with fewer splits often leads to lower variance, easier interpretation and lower test errors, at the cost of a little bias.
 
         section(data-transition-speed="fast")
           h2 Pruning
@@ -941,12 +918,14 @@ html(lang="en")
 
         section
           h2 Tree Resources
+          figure.right(style="width: 35%")
+            img(src="images/familyPlantDeciduous.jpg" style="width: 100%")
           ol
             li #[a(href="https://rpubs.com/ryankelly/dtrees") Tree-based Methods]. A great tutorial from Ryan Kelly.
             li #[a(href="https://en.wikipedia.org/wiki/Decision_tree_learning") Decision Tree Learning]
             li #[a(href="https://class.coursera.org/predmachlearn-013") Practical Machine Learning]
 
-        section#rules(data-background="images/data_miner6.jpg" data-background-size="100%")
+        section#rules(data-background="images/data_miner6.jpg" data-background-size="cover")
           h2 Association rule mining
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -963,7 +942,7 @@ html(lang="en")
           ol 
             li #[a(href="http://www.rdatamining.com/examples/association-rules") Association Rule Example]
 
-        section#clustering(data-background="images/data_miner7.jpg" data-background-size="100%")
+        section#clustering(data-background="images/data_miner7.jpg" data-background-size="cover")
           h2 Clustering
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -982,7 +961,7 @@ html(lang="en")
           ol
             li Nice presentation by #[a(href="http://www.slideshare.net/PhamCuong/clustering-technique-for-collaborative-filtering-recommendation-and-application-to-venue-recommendation") Pham Cuong] about clustering techniques for recommendations.
 
-        section#share(data-background="images/data_miner10.jpg" data-background-size="100%")
+        section#share(data-background="images/data_miner9.jpg" data-background-size="cover")
           h2 Sharing is caring!
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
@@ -1008,7 +987,7 @@ html(lang="en")
           p Kaggle Competitions
 
         section(data-transition-speed="fast")
-          h2 Week 10 Resources
+          h2 Sharing Resources
           ol
             li #[a(href="http://www.noamross.net/blog/2013/1/7/collaborating-with-r.html") Noam Ross post]
 
@@ -1020,8 +999,10 @@ html(lang="en")
         section
           section#author
             h2 But who <i>is</i> #[a(href="http://www.erinshellman.com/") Erin Shellman]?  
+            figure.right(style="width: 30%")
+              img(src="images/shellman.jpg" style="width: 100%")
 
-            p I’m a programmer and statistician working as a research scientist at #[a(href="http://aws.amazon.com/") Amazon Web Services], and before that I was a Data Scientist in the Nordstrom Data Lab. I mostly code in Python and R, and increasingly use Javascript for visualization and data retrieval through APIs. I’m rigorous, ask good questions and sometimes even answer those questions. I love to teach and speak, and do both often through talks and as co-organizer of #[a(href="http://www.meetup.com/Seattle-PyLadies/") PyLadies-Seattle].
+            p I’m a programmer and statistician working as a research scientist at #[a(href="http://aws.amazon.com/") Amazon Web Services]. Before AWS, I was a Data Scientist in the Nordstrom Data Lab where I worked on Recommendo, a product recommendations API and Segmento, a custom audience builder for personalized marketing campaigns. My educational background is in biostatistics and bioinformatics and I've had the opportunity to work on data mining problems in lots of different domains. 
 
           section
             p #[a(href="mailto:rtbrush@uw.edu") Ryan Brush] is a data management program manager with Microsoft's Global Foundation Services division. This division delivers the core infrastructure and foundational technologies for Microsoft’s 200-plus online businesses, including Bing, Hotmail, MSN, Office 365, Xbox Live and the Windows Azure platform. Brush has more than seven years of experience in enterprise system development with an emphasis on building scalable data and reporting solutions. His experience includes requirements gathering, creating metric road maps, improving data quality and developing data analytics platforms. He also has experience writing SQL queries against large-scale, complex data sets. Prior to working at Microsoft, Brush was a business intelligence consultant with various organizations in the cloud computing, travel and high-tech industries.
