@@ -210,3 +210,7 @@ ggplot(sig1, aes(x = x, y = y)) +
     axis.text.y = element_text(size = 25),
     axis.title = element_text(size = 30))
 
+## Classification trees
+ggplot(data, aes(y = friends_count, x = followers_count, color = factor(bot))) +
+         geom_point(size = 4, alpha = 0.50)
+

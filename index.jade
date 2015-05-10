@@ -528,7 +528,7 @@ html(lang="en")
             li #[a(href="http://www.jstatsoft.org/v28/i05/paper") Building Predictive Models in R Using the caret Package]
 
         section#selection(data-background="images/data_miner3.jpg" data-background-size="100%")
-          h2 Feature Selection and Model Selection
+          h2 Feature and Model Selection
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
           h4 
@@ -870,6 +870,8 @@ html(lang="en")
             a(href="#") R Notebook
 
         section
+          h2 C
+          p Tree-based methods are a conceptually simple, but powerful method for classification (and regression).
           p A “divide-and-conquer” approach to the problem of learning from a set of independent instances leads naturally to a style of representation called a decision tree.
 
         section(data-transition-speed="fast")
@@ -878,11 +880,14 @@ html(lang="en")
               li iteratively split variables into groups
               li Evalulate "homogeneity" with each group
               li Split again if necessary
-          p Pros are easy interpretation and good performance in nonlinear setting
           p Cons are potential for overfitting, can be high variance, harder to estimate uncertainty
 
         section(data-transition-speed="fast")
-          p Find an example decision tree
+          h2 Tree methods are intuitive 
+          figure.right(style="width: 35%")
+            img(src="images/dtree.gif" style="width: 100%")
+            figcaption Example tree from #[a(href="http://www.cse.unsw.edu.au/~billw/cs9414/notes/ml/06prop/id3/id3.html") here].
+          p An advantage of classification trees is their interpretability. They also perform well in non-linear settings
 
         section(data-transition-speed="fast")
           p basic algoritm
@@ -897,6 +902,9 @@ html(lang="en")
             ul
               li at the splits based on some criteria for 'best' or 'most homogeneous'
               li at the point of determining node 'purity'
+
+        section(data-transition-speed="fast")
+          h2 How to determine the splitting point?
 
         section(data-transition-speed="fast")
           h2 measures of impurity
@@ -936,6 +944,7 @@ html(lang="en")
           ol
             li #[a(href="https://rpubs.com/ryankelly/dtrees") Tree-based Methods]. A great tutorial from Ryan Kelly.
             li #[a(href="https://en.wikipedia.org/wiki/Decision_tree_learning") Decision Tree Learning]
+            li #[a(href="https://class.coursera.org/predmachlearn-013") Practical Machine Learning]
 
         section#rules(data-background="images/data_miner6.jpg" data-background-size="100%")
           h2 Association rule mining
