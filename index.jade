@@ -874,37 +874,31 @@ html(lang="en")
           p Tree-based methods are a conceptually simple but powerful method for classification (and regression). They work well in non-linear settings where regression might underperform.
 
         section(data-transition-speed="fast")
-          h2 The construction of trees is iterative
-          p The basic algorithm can be summarized as the following steps: 
-            ol
-              li Start with all variables
-              li Find the variable/split that best separates the outcomes
-              li Divide the data into two groups (leave) on that split (node)
-              li within each split, find the best variable/split that separtes the outcomes
-              li continue until the groups are two small or sufficiently "pure"
-
-        section(data-transition-speed="fast")
           h2 Tree methods are intuitive 
-          figure.right(style="width: 35%")
-            img(src="images/dtree.gif" style="width: 100%")
-            figcaption Example tree from #[a(href="http://www.cse.unsw.edu.au/~billw/cs9414/notes/ml/06prop/id3/id3.html") here].
-          p An advantage of classification trees is their interpretability. They also perform well in non-linear settings
+          figure.right(style="width: 45%")
+            img(src="images/decision_tree.gif" style="width: 100%")
+            figcaption Example tree from #[a(href="https://onlinecourses.science.psu.edu/stat557/node/83") here].
+          p An advantage of classification trees is their interpretability. For example in a clinical setting, they mirror the way that a clinician might think.
 
         section(data-transition-speed="fast")
-          h2 Tree method cons
-          p Tree methods can suffer from #[a(href="http://en.wikipedia.org/wiki/Overfitting") overfitting], which occurs when our models are too tuned with the training data. When models are overfit, they exhibit high variance and poor prediction accuracy on new data.
+          h2 The construction of trees is iterative
+          p The basic algorithm can be summarized by the following steps: 
+            ol
+              li Start with all the input variables and repeat:
+              li Find the variable and split that best "separates" the outcome
+              li Divide the data into two groups on that split
+          figure(style="width: 35%; margin: 0 auto")
+            img(src="images/tree_splitting.png" style="width: 100%")
+            figcaption Ron Meir's #[a(href="http://webee.technion.ac.il/people/rmeir/BoostingTutorial.pdf") boosting tutorial].
 
         section(data-transition-speed="fast")
           h2 How to determine the splitting point?
-            p Misclassification error - 0 perfect purity, 0.5 no purity
-            p Gini index - 0 perfect purity, 0.5 no purity
-            p Deviance/information gain - 0 = perfect purity 1 = no purity
+          p Pick the split points that yield the greatest 'purity' in the resulting subset. One measure that could be used is the overall misclassification error. 
+          p A misclassification error of 0 implies perfect purity and 0.5 implies an even mixture of both classes and no 'purity.'
 
         section(data-transition-speed="fast")
-          p __Gini index_ is a measure of the total variance across K classes.
-
-        section(data-transition-speed="fast")
-          p __Cross-entropy_ will take on a value near zero if the proportion of training observations in the given category are all near zero or one.
+          h2 Trees get big
+          p Tree methods can suffer from #[a(href="http://en.wikipedia.org/wiki/Overfitting") overfitting], which occurs when our model is too tuned to the training data. When models are overfit they generalize poorly and exhibit high variance and poor prediction accuracy on new data.
 
         section(data-transition-speed="fast")
           h2 Pruning
@@ -914,16 +908,34 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Pruning
-          p Therefore, a better strategy is to grow a large tree, then prune it back to obtain a better sub tree. Intuitively, our goal is to select a sub tree that leads to the lowest test error rate. To do this, we would normally use cross validation. However it is too cumbersome since there is an extremely large number of possible sub trees.
+          p We can grow a large tree then prune it to obtain a better sub tree. The goal is to select a sub-tree with the lowest test error rate.         
+          p Complexity penality
+
+        section(data-transition-speed="fast")
+          h2 The forest for the trees
+          p Single trees are simple to compute and pretty easy to understand, but they are susceptible to high variance when tested on new data. Methods such as boosting, bagging and random forests have been developed to overcome this problem.
+        section(data-transition-speed="fast")
+          h2 Boosting
+          p Boosting works by combining the output of many weak classifiers to produce a powerful committee. A weak classifier is one whose error rate is only slightly better than random guessing.
+
+        section(data-transition-speed="fast")
+          h2 #[a(href="http://en.wikipedia.org/wiki/AdaBoost") AdaBoost]
+          figure.right(style="width: 45%")
+            img(src="images/adaboost.png" style="width: 100%")
+            figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") The Elements of Statistical Learning]
+          p Short for adaptive boosting, AdaBoost. AdaBoost is adaptive in the sense that subsequent weak learners are tweaked in favor of those instances misclassified by previous classifiers.
 
         section
           h2 Tree Resources
-          figure.right(style="width: 35%")
-            img(src="images/familyPlantDeciduous.jpg" style="width: 100%")
           ol
             li #[a(href="https://rpubs.com/ryankelly/dtrees") Tree-based Methods]. A great tutorial from Ryan Kelly.
             li #[a(href="https://en.wikipedia.org/wiki/Decision_tree_learning") Decision Tree Learning]
             li #[a(href="https://class.coursera.org/predmachlearn-013") Practical Machine Learning]
+            li #[a(href="https://onlinecourses.science.psu.edu/stat557/node/83") Penn State Data Mining course notes]. Great intro to decision trees.
+            li #[a(href="http://webee.technion.ac.il/people/rmeir/BoostingTutorial.pdf") Boosting Tutorial] by Ron Meir.
+            li #[a(href="http://www.statsoft.com/Textbook/Classification-Trees") Classification Trees overview] from Statsoft
+          figure(style="width: 35%; margin: 0 auto")
+            img(src="images/familyPlantDeciduous.jpg" style="width: 100%")
 
         section#rules(data-background="images/data_miner6.jpg" data-background-size="cover")
           h2 Association rule mining
