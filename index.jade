@@ -901,29 +901,39 @@ html(lang="en")
           p Tree methods can suffer from #[a(href="http://en.wikipedia.org/wiki/Overfitting") overfitting], which occurs when our model is too tuned to the training data. When models are overfit they generalize poorly and exhibit high variance and poor prediction accuracy on new data.
 
         section(data-transition-speed="fast")
-          h2 Pruning
+          h2 #[a(href="https://onlinecourses.science.psu.edu/stat557/node/93") Pruning]
           figure.right(style="width: 45%")
             img(src="images/tree-trimming-pruning-sl.jpg" style="width: 100%")
-          p When we were doing regression, we started by fitting the <i>full model</i>, which had the lowest RMSE, but was also prohibitively complex. Tree methods can suffer a similar weakness in that resulting trees tend to be large and too complex. Just like regression, a smaller tree with fewer splits often leads to lower variance, easier interpretation and lower test errors, at the cost of a little bias.
+          p When we were doing regression, we started by fitting the <i>full model</i>. The full model had the lowest RMSE, but was also prohibitively complex. Tree methods can suffer a similar weakness in that resulting trees tend to be large and too complex. Just like regression, a smaller tree with fewer splits often leads to lower variance, easier interpretation and lower test errors, at the cost of a little bias.
 
         section(data-transition-speed="fast")
-          h2 Pruning
-          p We can grow a large tree then prune it to obtain a better sub tree. The goal is to select a sub-tree with the lowest test error rate.         
-          p Complexity penality
+          h2 Complexity penalty, $Cp$ 
+          p The complexity penality ranges from 0 to 1 and penalizes the number of terminal nodes in the tree. A high value of $Cp$ corresponds to a decreased likelihood of a branch split and lower $Cp$ penalizes less dramatically. In <i>caret</i>, the <i>train()</i> function will identify an optimal $Cp$ for us.
 
         section(data-transition-speed="fast")
           h2 The forest for the trees
           p Single trees are simple to compute and pretty easy to understand, but they are susceptible to high variance when tested on new data. Methods such as boosting, bagging and random forests have been developed to overcome this problem.
+
         section(data-transition-speed="fast")
           h2 Boosting
-          p Boosting works by combining the output of many weak classifiers to produce a powerful committee. A weak classifier is one whose error rate is only slightly better than random guessing.
+          p Boosting works by combining the output of many weak classifiers to produce a powerful consensus tree. A weak classifier is one whose error rate is only slightly better than random guessing.
 
         section(data-transition-speed="fast")
           h2 #[a(href="http://en.wikipedia.org/wiki/AdaBoost") AdaBoost]
           figure.right(style="width: 45%")
             img(src="images/adaboost.png" style="width: 100%")
             figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") The Elements of Statistical Learning]
-          p Short for adaptive boosting, AdaBoost. AdaBoost is adaptive in the sense that subsequent weak learners are tweaked in favor of those instances misclassified by previous classifiers.
+          p Short for adaptive boosting, AdaBoost is one of the most popular boosting algorithms. AdaBoost is adaptive in the sense that subsequent weak learners are boosted in favor of the cases previously misclassified.
+
+        section(data-transition-speed="fast")
+          h2 Bootstrap aggregating (bagging)
+          figure.right(style="width: 40%")
+            img(src="images/bagging.png" style="width: 100%")
+          p Bagging procedures work by randomly resampling data and refitting the model multiple times. The final model is determined by either averaging or taking a <i>majority vote</i> to form a single model. 
+
+        section(data-transition-speed="fast")
+          h2 Random Forest
+          p Random forest is a special type of bagging algorithm that resamples both the variables and the data used to fit the model. It's one of the best performing classifiers.
 
         section
           h2 Tree Resources
