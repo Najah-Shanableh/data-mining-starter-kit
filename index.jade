@@ -955,14 +955,45 @@ html(lang="en")
             a(href="#") R Notebook
 
         section
-          h2 the million song dataset
-          p http://blog.echonest.com/post/3639160982/million-song-dataset
-         
+          h2 
+          p Mining frequent itemsets and association rules is a popular and well researched method for dis- covering interesting relations between variables in large databases.
+
+        section(data-transition-speed="fast")
+        p To select interesting rules from the set of all possible rules, constraints on various measures of significance and interest can be used. The best-known constraints are minimum thresholds on support and confidence. The support of an itemset X is defined as the proportion of transactions in the data set which contain the itemset. In the example database in Figure 1, the itemset {milk, bread} has a support of 2/5 = 0.4 since it occurs in 40% of all transactions (2 out of 5 transactions).
+
+        section(data-transition-speed="fast")
+          h2 Support
+          p $support(A \Rightarrow B) = P(A \cup B)$
+
+        section(data-transition-speed="fast")
+          h2 Confidence
+          p The confidence of a rule is defined conf(X ⇒ Y ) = supp(X ∪ Y )/supp(X). For example, the rule {milk, bread} ⇒ {butter} has a confidence of 0.2/0.4 = 0.5 in the database in Figure 1, which means that for 50% of the transactions containing milk and bread the rule is correct. Confidence can be interpreted as an estimate of the probability P(Y|X), the probability of finding the RHS of the rule in transactions under the condition that these transactions also contain the LHS
+
+        section(data-transition-speed="fast")
+          h2 Lift
+          p practical solution to the problem of finding too many association rules satisfying the support and confidence constraints is to further filter or rank found rules using additional interest measures. A popular measure for this purpose is lift
+
+        section(data-transition-speed="fast")
+          h2 Support
+          p Association rules are required to satisfy both a minimum support and a minimum confidence constraint at the same time.
+
+        section(data-transition-speed="fast")
+          h2 <i>apriori</i> algorithm
+          p a level-wise, breadth-first algorithm which counts transactions to find frequent itemsets and then derive association rules from them
+          p Apriori, developed by Agrawal and Srikant (1994), is a level-wise, breadth-first algorithm which counts transactions.
+
+        section(data-transition-speed="fast")
+          h2 Market-basket analysis
+
+        section(data-transition-speed="fast")
+          h2 arules
 
         section
           h2 Association Rules Resources
           ol 
             li #[a(href="http://www.rdatamining.com/examples/association-rules") Association Rule Example]
+            li #[a(href="http://www.rdatamining.com/docs/association-rule-mining-with-r") Association Rule Mining in R]
+            li #[a(href="http://www.salemmarafi.com/code/market-basket-analysis-with-r/") Market Basket Analysis with R]
 
         section#clustering(data-background="images/data_miner7.jpg" data-background-size="cover")
           h2 Clustering
