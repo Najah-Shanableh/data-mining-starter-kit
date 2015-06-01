@@ -965,9 +965,8 @@ html(lang="en")
  
         section(data-transition-speed="fast")
           h2 Association Rule Mining
-          p Association rule analysis is a popular tool for discovering patterns between variables in large transactional databases. The goal is to find recurring associations. 
+          p Association rule mining is a popular tool for discovering patterns between variables in large transactional databases. The goal is to find recurring associations. 
           p For example, Nordstom records transaction information from their stores and online. 
-
         section(data-transition-speed="fast")
           h2 Market basket analysis
           p In a retail context, association rule mining is often referred to as "market basket" analysis. In this context the observations are sales transactions, such as those occurring at the checkout counter of a store.
@@ -982,7 +981,7 @@ html(lang="en")
         section(data-transition-speed="fast")
           h2 Rules
           p $X \Rightarrow Y$
-          p The itemsets on the left-hand-side (LHS) are called <i>antecedent</i> the itemsets on the right-hand-side (RHS) are the <i>consequent</i> of the rule.
+          p The itemsets on the left-hand-side (LHS) are called the <i>antecedent</i> and the itemsets on the right-hand-side (RHS) are called the <i>consequent</i> of the rule.
 
         section(data-transition-speed="fast")
           h2 Grocery store example
@@ -1034,7 +1033,6 @@ html(lang="en")
         section(data-transition-speed="fast")
           h2 Confidence
           p The rule $\{milk, bread\} \Rightarrow \{butter\}$ has a confidence of 0.2/0.4 = 0.5, meaning that for 50% of the transactions containing $\{milk, bread\}$ the rule holds.         
-
         section(data-transition-speed="fast")
           h2 Constraining rules
           p When association rules are constructed, they must satisfy both minimal support and confidence thresholds, however even with these requirements we're often left with a long list of candidate rules. We can further reduce the pool of rules using the <i>lift</i> metric.
@@ -1075,63 +1073,58 @@ html(lang="en")
 
         section
           h2 
-          p Last time, we used 'market baskets' from Amazon.com to generate association rules between products. We used purchasing patterns to create rules that can be used to create product recommendations. Suppose that we didn't have any knowledge about purchasing behavior, but only knew about the features of the product themselves <i>e.g.</i> from the product catalog. Could we use that information to create a recommender?
+          p Last time, we used 'market baskets' from Amazon.com to generate association rules between products based on purchasing behavior. We can then use the resulting rules to make product recommendations. Now, suppose we didn't have any knowledge of purchasing behavior and only knew features of the product themselves <i>e.g.</i> from the product catalog. Can we use that information to create a recommender?
 
         section(data-transition-speed="fast")
-          h2 Feature-based recommendations
-          p Feature-based recommendations are those that are created from the characteristics of the products themselves and not purchase behavior.
-
-        section(data-transition-speed="fast")
-          h2
-          p That's cool, but our product catalog as 262,111 items in it, are we supposed to find similar products by hand?
-
-        section(data-transition-speed="fast")
-          h2 Clustering!
-          p Cluster analysis (sometimes called segmentation) aims to group collections of objects into subsets, or clusters, so that the objects within a cluster are more closely related to one another than objects assigned to different clusters. An object can be described by a set of measurements or by its relationship to other objects. Sometimes the goal is to arrange the clusters into a natural hierachy.
+          h2 Content-based recommendations
+          figure.right(style="width: 45%")
+            img(src="images/pandora.png" style="width: 100%")
+            figcaption Pandora uses a #[a(href="http://en.wikipedia.org/wiki/Music_Genome_Project") music genome] with over 450 attritubes to measure song similarity. 
+          p Recommendations based on the attributes, or features, of products are called <i>content-based</i> (or product-based) recommendations. The assumption is that customers are inclined to favor products that are similar to ones they already like.
 
         section(data-transition-speed="fast")
           h2 Clustering
-          p Clustering is the classification of a data object into similarity groups (clusters) according to a defined distance metric.
+          p The goal of cluster analysis (or segmentation) is to group observations into subsets (clusters) such that objects within a cluster are more closely related to one another than observations in different clusters. The clustering is accomplished by grouping observations according to a #[a(href="http://en.wikipedia.org/wiki/Distance") distance metric].
 
         section(data-transition-speed="fast")
-          h2 Dissimilarity
-          p Central to all of the goals of cluster analysis is the notion of the degree of similarity (or dissimilarity) between the individual objects being clustered. A clustering method attempts to group the objects based on the definition of similarity supplied to it. Fundamental to all clustering techniquest is the choice of distance of dissimilarity measure between two objects. 
-
-        section(data-transition-speed="fast")
-          h2 Clustering Algorithms
-          p Clusting algorithms fall into three distinct types: combinatorial, mixture modeling and mode seeking.
-
-        section(data-transition-speed="fast")
-          h2 #[a(href="http://en.wikipedia.org/wiki/K-means_clustering") K-means Clustering]
+          h2 Distance
           figure.right(style="width: 45%")
             img(src="images/euclidean_dist.jpg" style="width: 100%")
             figcaption Look familiar? It's an application of the Pythagorean theorem!
-          p One of the most popular clustering methods. It's intended for situations in which all variables are of the quantitative type and the squared #[a(href="http://en.wikipedia.org/wiki/Euclidean_distance") Euclidean distance] is the dissimilarity measure.
+          p You already know one distance metric: #[a(href="http://en.wikipedia.org/wiki/Euclidean_distance") Euclidean distance]. Distances are often referred to as <i>similarities</i> or <i>dissimilarities</i>.
 
         section(data-transition-speed="fast")
-          h2 Algorithm
+          h2 #[a(href="http://en.wikipedia.org/wiki/K-means_clustering") K-means Clustering]
+          p On of the most popular clustering algorithms
+
+        section(data-transition-speed="fast")
+          h2 K-means Algorithm
           figure.left(style="width: 25%")
             img(src="images/K_Means_Example_Step_1.svg" style="width: 100%")
-            figcaption 1. k initial "means" (in this case k=3) are randomly generated within the data domain (shown in color). 
+            figcaption 1. Randomly initialize K = 3 cluster centroids (red, green, and blue). 
           figure.left(style="width: 25%")
             img(src="images/K_Means_Example_Step_2.svg" style="width: 100%")
-            figcaption 2. k clusters are created by associating every observation with the nearest mean. The partitions here represent the Voronoi diagram generated by the means.
+            figcaption 2. Assign each observation to a cluster based on which centroid they're nearest.
           figure.left(style="width: 25%")
             img(src="images/K_Means_Example_Step_3.svg" style="width: 100%")
-            figcaption 3. The centroid of each of the k clusters becomes the new mean.
+            figcaption 3. Find the mean of the clusters and move the K centriods to those means.
           figure.left(style="width: 25%")
             img(src="images/K_Means_Example_Step_4.svg" style="width: 100%")
-            figcaption 4. Steps 2 and 3 are repeated until convergence has been reached.
+            figcaption 4. Repeat steps 2 and 3 until the centroids stop moving.
 
         section(data-transition-speed="fast")
           h2 Selecting K
-          p In order to apply K-means one must select the number of clusters and an initialization. The choice of the number of K depends on the goal. For segmentation, K is usually definied as part of the problem. For example, a company may employ K sales people, and the goal is to partition a customer data base in to K segments, one of r each sales person, such that the customers assigned to each one are similar as poissbile. Often, however, cluster analysis is used to provide a descriptive statistics for ascerntaining the extent to which the observations comprising the data base fall into natural distinct groupings. Here the number of such K groupings is unkown.
+          p The number of centroids, K, is a required input for the K-mean algorithm. The choice of the size of K depends on the goal. For segmentation applications, K is typically defined by the context of the problem. For example, a salesteam may have K members, and the goal is to assign each salesperson a set of leads such that the customers assigned to each are similar as possible. But often K is unknown.
+
+        section(data-transition-speed="fast")
+          h2 Selecting K
+          p Most often, K is determined manually by visualizing data. This is a common problem in unsupervised learning.
+          p Check out this #[a(href="https://www.youtube.com/watch?v=BVFG7fd1H30") cool video] of K-means simulations with varying $K$s and $N$s.
 
         section(data-transition-speed="fast")
           h2 Hierarchical Clustering
-          p The results of K-means depend on the choice for the number of clusters to be search and a starting configuration assignment, In contrast, hierarchical clustering methods do not require such specifications. Instead, they require the user to specify a measure of dissimliarty between disjiont groups of observations, based on the pairwise dissimilarities among the observations in the two groups. As the name suggests, they rpoduce heirarchical representations in which the clusters at each level of the hierarchy are created by merging clustering at the next lower level. At the lowest level each cluster contains a single observation. At the highest level there is only one cluster containing all the data.
+          p The results of K-means depend on the value of K and starting position of the centroids. Hierarchical clustering methods do not require us to specificy the number of clusters, instead we specify a distance metric between observations. This methods produce hierarchical representations in which the clusters at each level of the hierarchy are created by merging clustering at the next lower level. At the lowest level each cluster contains a single observation. At the highest level there is only one cluster containing all the data.
 
-          
         section(data-transition-speed="fast")
           h2 Clustering Resources
           ol
