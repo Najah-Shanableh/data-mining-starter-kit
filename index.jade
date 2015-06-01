@@ -1095,7 +1095,7 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 #[a(href="http://en.wikipedia.org/wiki/K-means_clustering") K-means Clustering]
-          p On of the most popular clustering algorithms
+          p On of the most popular clustering algorithms.
 
         section(data-transition-speed="fast")
           h2 K-means Algorithm
@@ -1122,8 +1122,25 @@ html(lang="en")
           p Check out this #[a(href="https://www.youtube.com/watch?v=BVFG7fd1H30") cool video] of K-means simulations with varying $K$s and $N$s.
 
         section(data-transition-speed="fast")
-          h2 Hierarchical Clustering
+          h2 #[a(href="http://en.wikipedia.org/wiki/Hierarchical_clustering") Hierarchical Clustering]
           p The results of K-means depend on the value of K and starting position of the centroids. Hierarchical clustering methods do not require us to specificy the number of clusters, instead we specify a distance metric between observations. This methods produce hierarchical representations in which the clusters at each level of the hierarchy are created by merging clustering at the next lower level. At the lowest level each cluster contains a single observation. At the highest level there is only one cluster containing all the data.
+
+        section(data-transition-speed="fast")
+          h2 Methods of hierarchical clustering
+          p There are two main types of hierarchical clustering:
+          ol 
+            li Agglomerative - a 'bottom up' approach in which each observation is initially its own cluster and pairs of observations are iteratively combined.
+            li Divisive - a 'top down' approach in which all observations start in a single cluster and 
+
+        section(data-transition-speed="fast")
+          h2 Dendrograms
+          p A common tool for representing hierarchical clusters is the dendrogram.
+          figure.left(style="width: 45%")
+            img(src="images/circular_dendrogram.png" style="width: 100%")
+            figcaption Circular dendrogram
+          figure.left(style="width: 45%")
+            img(src="images/heatmap_dendrogram.png" style="width: 100%")
+            figcaption Heatmap with row and column dendrograms
 
         section(data-transition-speed="fast")
           h2 Clustering Resources
