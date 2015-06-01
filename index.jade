@@ -1087,15 +1087,11 @@ html(lang="en")
           p The goal of cluster analysis (or segmentation) is to group observations into subsets (clusters) such that objects within a cluster are more closely related to one another than observations in different clusters. The clustering is accomplished by grouping observations according to a #[a(href="http://en.wikipedia.org/wiki/Distance") distance metric].
 
         section(data-transition-speed="fast")
-          h2 Distance
-          figure.right(style="width: 45%")
-            img(src="images/euclidean_dist.jpg" style="width: 100%")
-            figcaption Look familiar? It's an application of the Pythagorean theorem!
-          p You already know one distance metric: #[a(href="http://en.wikipedia.org/wiki/Euclidean_distance") Euclidean distance]. Distances are often referred to as <i>similarities</i> or <i>dissimilarities</i>.
-
-        section(data-transition-speed="fast")
           h2 #[a(href="http://en.wikipedia.org/wiki/K-means_clustering") K-means Clustering]
-          p On of the most popular clustering algorithms.
+          p One of the most popular clustering algorithms, the goal of K-means clustering is to group n observations into k clusters. K-means has essentially two steps: 
+          ol
+            li Cluster assignment step - assign all observations to one fo the centroids based on which is closest.
+            li Centroid shift step - move the centroids to the average value of the points within the cluster.
 
         section(data-transition-speed="fast")
           h2 K-means Algorithm
@@ -1123,14 +1119,28 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 #[a(href="http://en.wikipedia.org/wiki/Hierarchical_clustering") Hierarchical Clustering]
-          p The results of K-means depend on the value of K and starting position of the centroids. Hierarchical clustering methods do not require us to specificy the number of clusters, instead we specify a distance metric between observations. This methods produce hierarchical representations in which the clusters at each level of the hierarchy are created by merging clustering at the next lower level. At the lowest level each cluster contains a single observation. At the highest level there is only one cluster containing all the data.
+          p The results of K-means depend on the value of K and starting position of the centroids, but another clustering method, hierarchical clustering, does not require us to specificy the number of clusters. Instead we specify a distance metric between observations. 
+          p This method produces hierarchical representations in which the clusters at each level of the hierarchy are created by merging clustering at the next lower level. At the lowest level each cluster contains a single observation. At the highest level there is only one cluster containing all the data.
 
         section(data-transition-speed="fast")
           h2 Methods of hierarchical clustering
+          figure.right(style="width: 35%")
+            img(src="images/hier_cluster.jpg" style="width: 100%")
           p There are two main types of hierarchical clustering:
-            ol 
-              li Agglomerative - a 'bottom up' approach in which each observation is initially its own cluster and pairs of observations are iteratively combined.
-              li Divisive - a 'top down' approach in which all observations start in a single cluster and 
+          ol 
+            li Agglomerative - a 'bottom up' approach in which each observation is initially its own cluster and pairs of observations are iteratively combined.
+            li Divisive - a 'top down' approach in which all observations start in a single cluster and recursively split.
+
+        section(data-transition-speed="fast")
+          h2 Distance
+          p To decide which clusters to combine or divide, a distance metric (also called a dissimilarity) between observations is required. How can we measure the distance between two observations?
+
+        section(data-transition-speed="fast")
+          h2 Euclidean Distance
+          figure.right(style="width: 45%")
+            img(src="images/euclidean_dist.jpg" style="width: 100%")
+            figcaption Look familiar? It's an application of the Pythagorean theorem!
+          p You already know one distance metric: #[a(href="http://en.wikipedia.org/wiki/Euclidean_distance") Euclidean distance]. Distances are often referred to as <i>similarities</i> or <i>dissimilarities</i>.
 
         section(data-transition-speed="fast")
           h2 Dendrograms
