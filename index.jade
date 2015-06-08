@@ -1164,7 +1164,7 @@ html(lang="en")
           h4 BI Tech CP303 - Data Mining
           h4 Erin Shellman 
           h4 
-            a(href="#") R Notebook
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/R-markdown-demo.Rmd") R Notebook
 
         section(data-transition-speed="fast")
           h2 You've come a long way, baby
@@ -1193,7 +1193,7 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 And now... share your work!
-          p You've learned a ton about data mining, problem solving and writing technical reports. To make the most of your efforts let's create digital portfolios of work with ShinyApps and Markdown.
+          p You've learned a ton about data mining, problem solving and writing technical reports. To make the most of your efforts, let's create digital portfolios of work with #[a(href="http://rpubs.com/") RPubs] and Markdown.
 
         section(data-transition-speed="fast")
           h2 #[a(href="http://daringfireball.net/projects/markdown/") Markdown]
@@ -1203,8 +1203,12 @@ html(lang="en")
             li a software tool, written in Perl, that converts the plain text formatting to HTML
 
         section(data-transition-speed="fast")
+          h2 An analysis and communication tool combined
+          p Markdown gives us a powerful communication tool that can be embedded with R code so that we can document analyses as we go. This is a powerful workflow because it keeps communication and clarity of thought top of mind. Ultimately our goal is to report and communicate findings, why not do that with a single tool?
+          
+        section(data-transition-speed="fast")
           h2 Reproducibility 
-          p Tools like Excel can be great for doing quick explorations, but as your analyses become increasingly complex, your work becomes increasinly unreproducable. And the lack of reproducibility isn't just for the consumers of your analyses, but also for youself. 
+          p Tools like Excel can be great for doing quick explorations, but as your analyses become complex, your work becomes increasingly unreproducable. That lack of reproducibility isn't just a pain for the consumers of your analyses, but it's a huge pain for you. 
           p.fragment "Prior to shifting to R, my basic approach was to enter data in Excel, import the data into Systat, and then use the command line to do a bunch of manipulations in there. I generally viewed those as one-off manipulations (e.g., calculating log density), and, while I could have saved a command file for those things, I didn’t. This meant that, if I discovered an error in the original Excel file, I needed to redo all that manually." #[a(href="https://dynamicecology.wordpress.com/2015/02/18/the-biggest-benefit-of-my-shift-to-r-reproducibility/") Meghan Duffy]
 
         section(data-transition-speed="fast")
@@ -1217,8 +1221,12 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 #[a(href="http://yihui.name/knitr/") KnitR]
-          p The <i>knitr</i> package was designed to be a transparent engine for dynamic report generation with R.
+          p The <i>knitr</i> package was designed to be a transparent engine for dynamic report generation with R. KnitR is the library that actually compiles the Markdown.
           p.fragment "When I was first starting out, I’d create a bunch of figures and tables and email them to my collaborator with a description of the findings in the body of the email. That was cumbersome for me and for the collaborator. ('Which figure are we talking about, again?')" #[a(href="http://kbroman.org/knitr_knutshell/pages/overview.html") Karl Broman]
+
+        section(data-transition-speed="fast")
+          h2 A better way to communicate
+          p "...Now, I deliver my informal reports to collaborators as html documents that can be viewed in a browser. A big advantage to this is that I don’t have to worry about page breaks. For example, I can have very tall figures, with say 30 panels. That makes it easy to show the results in detail, and you don’t have to worry about how to get figures to fit nicely into a page." #[a(href="http://kbroman.org/knitr_knutshell/pages/overview.html") Karl Broman]
 
         section(data-transition-speed="fast")
           h2 Make a new R Markdown doc
@@ -1226,10 +1234,6 @@ html(lang="en")
             img(src="images/new_markdown.png" style="width: 100%")
             figcaption Open a new Markdown document
           p Once you select a new Markdown document you can choose from documents, presentations, Shiny application or from a template.
-
-        section(data-transition-speed="fast")
-          h2 A better way to communicate
-          p "Now, I deliver my informal reports to collaborators as html documents that can be viewed in a browser. A big advantage to this is that I don’t have to worry about page breaks. For example, I can have very tall figures, with say 30 panels. That makes it easy to show the results in detail, and you don’t have to worry about how to get figures to fit nicely into a page." #[a(href="http://kbroman.org/knitr_knutshell/pages/overview.html") Karl Broman]
 
         section(data-transition-speed="fast")
           h2 Denoting code 
@@ -1250,7 +1254,7 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Or, share your notebooks online!
-          p #[a(href="http://rpubs.com/") RPubs] is a free service from RStudio where you caou upload your R Markdown files.
+          p #[a(href="http://rpubs.com/") RPubs] is a free service from RStudio where you can upload your R Markdown files and view them online. 
 
         section(data-transition-speed="fast")
           h2 Sharing Resources
@@ -1265,16 +1269,12 @@ html(lang="en")
           p Creating this course wasn't easy and I couldn't have done it alone. Huge thanks to my TA Ryan Brush who encouraged and recommended me to teach this class. Big ups to #[a(href="http://brianbeck.com/") Brian Beck] who styled the lecture notes. 
           p Thank you to the #[a(href="https://www.flickr.com/photos/boston_public_library/sets/72157627774101436") Boston Public Library] for posting all the awesome old coal mining postcards on Flickr!
 
-        section
-          section#author
-            h2 But who <i>is</i> #[a(href="http://www.erinshellman.com/") Erin Shellman]?  
-            figure.right(style="width: 30%")
-              img(src="images/shellman.jpg" style="width: 100%")
+        section#author
+          h2 But who <i>is</i> #[a(href="http://www.erinshellman.com/") Erin Shellman]?  
+          figure.right(style="width: 30%")
+            img(src="images/shellman.jpg" style="width: 100%")
 
-            p I’m a programmer and statistician working as a research scientist at #[a(href="http://aws.amazon.com/") Amazon Web Services]. Before AWS, I was a Data Scientist in the Nordstrom Data Lab where I worked on Recommendo, a product recommendations API and Segmento, a custom audience builder for personalized marketing campaigns. My educational background is in biostatistics and bioinformatics and I've had the opportunity to work on data mining problems in lots of different domains. 
-
-          section
-            p #[a(href="mailto:rtbrush@uw.edu") Ryan Brush] is a data management program manager with Microsoft's Global Foundation Services division. This division delivers the core infrastructure and foundational technologies for Microsoft’s 200-plus online businesses, including Bing, Hotmail, MSN, Office 365, Xbox Live and the Windows Azure platform. Brush has more than seven years of experience in enterprise system development with an emphasis on building scalable data and reporting solutions. His experience includes requirements gathering, creating metric road maps, improving data quality and developing data analytics platforms. He also has experience writing SQL queries against large-scale, complex data sets. Prior to working at Microsoft, Brush was a business intelligence consultant with various organizations in the cloud computing, travel and high-tech industries.
+          p I’m a programmer and statistician working as a research scientist at #[a(href="http://aws.amazon.com/") Amazon Web Services]. Before AWS, I was a Data Scientist in the Nordstrom Data Lab where I worked on Recommendo, a product recommendations API and Segmento, a custom audience builder for personalized marketing campaigns. My educational background is in biostatistics and bioinformatics and I've had the opportunity to work on data mining problems in lots of different domains. 
 
     script(src="//cdnjs.cloudflare.com/ajax/libs/foundation/4.1.2/js/foundation.min.js")
     script(src="lib/js/head.min.js")
