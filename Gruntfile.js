@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 
 	// Project configuration
 	grunt.initConfig({
+
     jade: {
       compile: {
         files: {
@@ -125,7 +126,8 @@ module.exports = function(grunt) {
 				tasks: 'sass'
 			},
 			html: {
-				files: [ 'index.html']
+				files: ['index.jade', 'index.html'],
+        tasks: 'jade'
 			},
 			markdown: {
 				files: [ './*.md' ]
@@ -141,32 +143,35 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-sass' );
+  grunt.loadNpmTasks('grunt-contrib-jade');
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-autoprefixer' );
 	grunt.loadNpmTasks( 'grunt-zip' );
 
 	// Default task
-	grunt.registerTask( 'default', [ 'css', 'js' ] );
+	grunt.registerTask('default', ['css', 'js']);
 
 	// JS task
-	grunt.registerTask( 'js', [ 'jshint', 'uglify', 'qunit' ] );
+	grunt.registerTask('js', ['jshint', 'uglify', 'qunit']);
 
 	// Theme CSS
-	grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
+	grunt.registerTask('css-themes', ['sass:themes']);
 
 	// Core framework CSS
-	grunt.registerTask( 'css-core', [ 'sass:core', 'autoprefixer', 'cssmin' ] );
+	grunt.registerTask('css-core', ['sass:core', 'autoprefixer', 'cssmin']);
 
 	// All CSS
-	grunt.registerTask( 'css', [ 'sass', 'autoprefixer', 'cssmin' ] );
+	grunt.registerTask('css', ['sass', 'autoprefixer', 'cssmin']);
 
 	// Package presentation to archive
-	grunt.registerTask( 'package', [ 'default', 'zip' ] );
+	grunt.registerTask('package', ['default', 'zip']);
+
+  grunt.registerTask('build', ['jade', 'sass']);
 
 	// Serve presentation locally
-	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
+	grunt.registerTask('serve', ['build', 'connect', 'watch']);
 
 	// Run tests
-	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
+	grunt.registerTask('test', ['jshint', 'qunit']);
 
 };
