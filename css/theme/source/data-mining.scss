@@ -61,9 +61,17 @@ $selectionColor: #fff;
 
 .reveal p {
     text-align: left;
-    font-size: 40px; 
+    font-size: 30px; 
     //border: 5px solid #111;
-    padding: 20px 30px;
+    padding: 10px 30px 10px 30px;
+    margin: 0 50px;
+}
+
+// top, right, bottom, left
+.reveal p.small {
+    text-align: left;
+    font-size: 25px; 
+    padding: 10px 30px 10px 30px;
     margin: 0 50px;
 }
 
