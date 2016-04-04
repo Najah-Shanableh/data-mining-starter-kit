@@ -68,15 +68,15 @@ html(lang="en")
     .reveal
       .slides
         section.title-slide
-          h2 BI Tech CP303 - Data Mining
-          h4 Erin Shellman - 
+          h1 BI Tech CP303 - Data Mining
+          h2 Erin Shellman - 
              a.active(href="mailto:shellman@uw.edu") shellman@uw.edu
-          h5 <b>TA</b>: Bryan Mayer - 
+          h2 <b>TA</b>: Bryan Mayer - 
              a.active(href="mailto:mayerbry@uw.edu") mayerbry@uw.edu
-          p Welcome! These are lecture notes that accompany an applied course on data mining. Read the #[a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/README.md') syllabus] to find details about assignments and deadlines.
+          p Welcome! These are lecture notes that accompany an applied course on data mining. Read the #[a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/README.md') syllabus] to find details about assignments and due dates.
 
         section#textbook(data-transition-speed="fast")
-          h2 Textbooks
+          h1 Textbooks
           p There is no book required for this course, however there are two great texts available for free online.
           .flex-row
             a.left(href="http://www.mmds.org/")
@@ -85,18 +85,18 @@ html(lang="en")
               img(src="images/hill_lewicki.jpg" style="height: 40%")
             
         section(data-transition-speed="fast")
-          h2 Course Philosophy
+          h1 Course Philosophy
           p Data mining is an applied skill and this course focuses on applications. Each class is a blend of concepts and applications using the programming language R. There are three projects, each consisting of a data mining analysis to solve a business problem and a brief written report of your findings.
 
           p By the end of this course, you'll be able to approach unfamiliar data and quickly find and communicate results.
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
-            h2 Navigating the notes
+            h1 Navigating the notes
             p The notes progress from left to right, and for those interested in exploring more about a topic sometimes there's bonus material in the up, down direction.
 
           section(data-transition-speed="fast")
-            h2 Just like this!
+            h1 Just like this!
 
         section(data-transition-speed="fast")
           h2 Traverse the topics 
@@ -112,9 +112,9 @@ html(lang="en")
           p I'll do my best to keep the slides as updated and accurate as possible.
 
         section#intro.title-slide(data-background="images/data_miner1.jpg" data-background-size="cover")
-          h2 Introduction to Data Mining with R
-          h4 BI Tech CP303 - Data Mining
-          h4 
+          h1 Introduction to Data Mining with R
+          h3 BI Tech CP303 - Data Mining
+          h3 
             a(href='https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/intro-R/introduction-to-r.pdf') R Tutorial
 
         section(data-transition-speed="fast") 
@@ -187,8 +187,8 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h2 Capital Bikeshare 
+          img.right(src="images/crosswalk_lm.png" style="height: 45%")
           p In project 1 you'll analyze data from Washington D.C.'s bikeshare program to predict locations of successful bike stations. An model for this application could be to predict the number of bike rentals per hour as a function of the number of restaurants nearby.
-          img.center(src="images/crosswalk_lm.png" style="height: 45%")
 
         section(data-transition-speed="fast")
           h2 Bot or not?
@@ -1270,8 +1270,12 @@ html(lang="en")
 
     script.
       Reveal.initialize({
-        width: 1200,
-        height: 900,
+        //width: 1200,
+        //height: 900,
+        width: 960,
+        height: 700,
+
+        margin: 0.1,
 
         controls: true,
         progress: true,

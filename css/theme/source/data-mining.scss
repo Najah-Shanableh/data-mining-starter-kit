@@ -19,7 +19,7 @@ $navHoverColor: lighten( $accentColor, 20% );
 
 // headings
 $headingColor: #111;
-$headingMargin: 0 0 20px 0;
+$headingMargin: 0 0 0 0;
 $headingFont: 'Montserrat', Impact, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: -0.03em;
@@ -49,6 +49,16 @@ $selectionColor: #fff;
     background: $mainColor;
 }
 
+.reveal h1 {
+  font-size: 50px;
+  padding: 30px;
+}
+
+.reveal h2 {
+  font-size: 30px;
+  padding: 30px;
+}
+
 .reveal p {
     text-align: left;
     font-size: 40px; 
@@ -58,7 +68,17 @@ $selectionColor: #fff;
 }
 
 .reveal ul li {
-    text-align: left;
+  text-align: left;
+  //border: 5px solid #111;
+  padding: 0px 0px 5px 5px;
+  margin: 0 0 0 140px;
+}
+
+.reveal ol li {
+  text-align: left;
+  //border: 5px solid #111;
+  padding: 0px 0px 5px 5px;
+  margin: 0 0 0 140px;
 }
 
 .reveal section img {

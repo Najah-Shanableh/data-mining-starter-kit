@@ -32,7 +32,7 @@ body {
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  margin: 0 0 20px 0;
+  margin: 0 0 0 0;
   color: #111;
   font-family: "Montserrat", Impact, sans-serif;
   line-height: 1.2em;
@@ -140,6 +140,14 @@ body {
   width: 100%;
   background: #111; }
 
+.reveal h1 {
+  font-size: 50px;
+  padding: 30px; }
+
+.reveal h2 {
+  font-size: 30px;
+  padding: 30px; }
+
 .reveal p {
   text-align: left;
   font-size: 40px;
@@ -147,7 +155,14 @@ body {
   margin: 0 50px; }
 
 .reveal ul li {
-  text-align: left; }
+  text-align: left;
+  padding: 0px 0px 5px 5px;
+  margin: 0 0 0 140px; }
+
+.reveal ol li {
+  text-align: left;
+  padding: 0px 0px 5px 5px;
+  margin: 0 0 0 140px; }
 
 .reveal section img {
   border: none; }
