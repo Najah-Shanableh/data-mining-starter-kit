@@ -327,41 +327,52 @@ html(lang="en")
           p In your first project, you'll help a hypothetical bike share program expand operations by identifying characteristics of successful bike stations. You'll do that by predicting the expected number of rentals per station as a function of the surrounding landscape.
           p We can use ordinary least squares (OLS) regression to estimate real-valued outcomes such as number of rentals per day.  
 
+        section
+          h1 What is linear regression?
+          p Linear regression is a technique used to describe a (dependent) variable in terms of a linear combination of other (independent) variables. Regression with multiple predictors allows the us to answer the question "what is the best predictor of the outcome of interest?"
+          p In data mining, linear regression is a technique that enables us to predict the value of a continuous variable, like ride duration or number of rentals, in terms of the values of other variables, like the number of crosswalks or museums nearby.
+
         section(data-transition-speed="fast")
           h1 Why linear regression?
-          p Linear regression is a simple method for predicting real-valued, continuous variables, <i>e.g.</i> rental duration in minutes. Regression approaches are great to have in your toolbelt due to their ease of interpretability and implementation, power, flexibility, and popularity.
+          p Regression approaches are great to have in your toolbelt due to their ease of interpretability and implementation, power, flexibility, and popularity.
 
         section(data-transition-speed="fast")
           h1 Interpretability
-          p Regression coefficients are interpreted as the average change in the outcome for a unit change in an explanatory variable. Say, for example, we had the following regression equation.
-          p $ duration = 15 + 30 * museums $
-          P The interpretation is that the average ride duration is 15 minutes, and that the average ride time increases by 30 minutes for each museum within a quarter mile radius.
-          p The coefficients also give a rough indication of what variables contribute most to the predicted value, which can be helpful in understanding causal mechanisms and for variable selection.
+          p Regression coefficients are interpreted as the average change in the outcome for a unit change in an explanatory variable. Say for example we had the following regression equation:
+          | $ duration = 15 + 30 * museums $
+          P The interpretation is that the average ride duration is 15 minutes when there are no nearby museums, and the average duration increases by 30 minutes for each museum within a quarter mile radius.
+          p The coefficients also give a rough indication of which variables contribute most to the predicted value, information that can be helpful in understanding causal mechanisms and for variable selection.
 
         section(data-transition-speed="fast")
-          h2 Ease of implementation
-          p Virtually all programming languages have implementations for linear regression, so they can be applied across many applications.
+          h1 Ease of implementation
+          p Most programming languages have out-of-the-box implementations of linear regression, so they can be applied across many applications.
+          figure.right(style="width: 100%")
+            img(src="images/lm-implementations.png" style="width: 100%")
+            figcaption Examples of linear regression implementations in Python, Scala, and R.
 
         section(data-transition-speed="fast")
-          h2 Powerful
+          h1 Powerful
+          figure.right(style="width: 40%")
+            img(src="images/ride-time-predictions.png" style="width: 100%")
+            figcaption Predicted rentals times based on the number of nearby musuems. 
           p In prediction settings, linear models can outperform more complex nonlinear techniques, particularly when working with small training sets or sparse data. This is because regression is an averaging technique, making it less sensitive to missingness and extreme values.
 
         section(data-transition-speed="fast")
-          h2 Flexible
+          h1 Flexible
           p Even in situations where linearity assumptions fail, regression can be applied on transformations of variables such as logarithms. 
 
         section(data-transition-speed="fast")
-          h2 Mathematical foundations
-          p Let's walk through the foundations of regression with just one explanatory variable/#[a(href="http://en.wikipedia.org/wiki/Covariate") covariate]. Regression with just one covariate is called #[a(href="http://en.wikipedia.org/wiki/Simple_linear_regression") simple linear regression]. SLR has a simple framework and is fundamental to understanding more complex models.
+          h1 Mathematical foundations
+          p Let's walk through the foundations of regression with just one explanatory variable/#[a(href="http://en.wikipedia.org/wiki/Covariate") covariate]. Regression with just one covariate is called #[a(href="http://en.wikipedia.org/wiki/Simple_linear_regression") simple linear regression] (SLR). SLR has a simpler framework than multiple regression and is fundamental to understanding more complex models.
 
         section(data-transition-speed="fast")
-          h2 Mathematical foundations
+          h1 Mathematical foundations
           figure.right(style="width: 40%")
             img(src="images/crosswalk_lm.png" style="width: 100%")
           p SLR describes the relationship between an explanatory variable (or <i>independent</i> variable) and an outcome variable (sometimes called the <i>response</i> or <i>dependent variable</i>). It describes how the expected value of an outcome variable changes as the explanatory variable changes. <i>e.g.</i> How does the expected number of rentals change as the number of nearby crosswalks changes?
 
         section(data-transition-speed="fast")
-          h2 Mathematical foundations
+          h1 Mathematical foundations
           p Given $n$ observations of $x$ and $y$,
           | $ (x_1, y_1), (x_2, y_2), \ldots , (x_n, y_n) $
           p the model for a simple linear regression is expressed as
@@ -371,18 +382,18 @@ html(lang="en")
               img(src="images/Linear_Function_Graph.svg" style="width: 100%")
 
         section(data-transition-speed="fast")
-          h2 Which line is the best?
+          h1 Which line is the best?
           p How do we choose $\beta_0$ and $\beta_1$? With visual inspection alone, there seems to be several lines that could be drawn through the center of the points. We need an algorithm for standardizing and automating the process of finding the best one. 
           img.center(src="images/three_lines.png" width="50%" height="50%")
 
         section(data-transition-speed="fast")
-          h2 Errors
+          h1 Errors
           img.right(src="images/residuals.png" width="40%" height="40%")
-          p Data points will not fall exactly on the straight line. The distance of a point from the fitted line is called the error (or residual), $ \epsilon_i $. The errors are assumed to be independent and normally distributed with mean 0 and standard deviation $\sigma$.
+          p Data points will not fall exactly on any straight line we choose, there will always be some error. The distance of a point from the regression line is called the residual error, $ \epsilon_i $. The errors are assumed to be independent and normally distributed with mean 0 and standard deviation $\sigma$.
 
         section(data-transition-speed="fast")
-          h2 Ordinary least squares ftw
-          p The method of #[a(href="http://en.wikipedia.org/wiki/Ordinary_least_squares") Least squares] selects the line that minimizes the sum of the squares of the errors. $\epsilon_i$ is the error of the prediction line for each observation.
+          h1 Ordinary least squares ftw
+          p The method of #[a(href="http://en.wikipedia.org/wiki/Ordinary_least_squares") least squares] selects the line that minimizes the sum of the squares of the errors. $\epsilon_i$ is the error of the prediction line for each observation.
           | $ \epsilon_i = (y_i - \beta_{0} - \beta_{1}x_i) $
           p
           | $ \epsilon_i^2 = (y_i - \beta_{0} - \beta_{1}x_i)^2 $
@@ -390,15 +401,15 @@ html(lang="en")
           | Choose $\beta_0$ and $\beta_1$ so that $\sum\limits_{i=1}^n\epsilon_i^2$ is minimized.
 
         section(data-transition-speed="fast")
-          h2 Intuition
-          p Let's think about what the components of the regression equation represent to gain an intuition. Each $y_i$ is an observed value of the outcome variable. $\beta_{0} + \beta_{1}x_i$ is the estimated, or expected, $y_i$ value. So when we minimize the sum of squared errors we're making $(observed - expected)^2$ as close to 0 as possible.
+          h1 Intuition
+          p Each $y_i$ is an observed value of the outcome variable. $\beta_{0} + \beta_{1}x_i$ is the estimated, or expected, $y_i$ value. So when we minimize the sum of squared errors we're making $(observed - expected)^2$ as close to 0 as possible.
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
-            h2 Assumptions
+            h1 Assumptions
             p To safely apply linear regression without fear of weird results, some assumptions must be met:
               ol
-                li Linearity between the outcome and covariates
+                li Linearity between the outcome and coefficients ($\beta$'s) 
                 li Independence of the errors (no #[a(href="http://en.wikipedia.org/wiki/Autocorrelation") autocorrelation])
                 li Constant variance (#[a(href="http://en.wikipedia.org/wiki/Homoscedasticity") homoscedasticity]) of the errors
                 li Normality of errors
@@ -406,7 +417,7 @@ html(lang="en")
             p We might violate some assumptions and it's application-dependent whether we should be concerned about those violations.
 
           section(data-transition-speed="fast")
-            h2 Diagnostic plots
+            h1 Diagnostic plots
             p In R, if you plot a linear model object, it'll give you a nice collection of diagnostic plots for assessing model assumptions.
             pre
               code.r(data-trim, contenteditable).
@@ -416,11 +427,11 @@ html(lang="en")
             img.center(src="images/diagnostic_plot.png" width="50%" height="50%")
 
         section(data-transition-speed="fast")
-          h2 Interpretation
+          h1 Interpretation
           p Regression equations have a nice interpretation. The intercept $\beta_0$ is the mean value of $y$ when $x = 0$. The slope of the regression line, $\beta_{1}$, is the change in the mean of y for each unit change in x.
 
         section(data-transition-speed="fast")
-          h2 R regression output 
+          h1 R regression output 
           p The regression equation is 
           | $ rentals = 27.53 + 0.49 * crosswalks $.
           p When there are no crosswalks the average number of bike rentals is about 28. For each additional crosswalk, we can expect an additional half rental. Or, for every two additional crosswalks, we can expect another rental.
@@ -448,16 +459,16 @@ html(lang="en")
               F-statistic: 48.88 on 1 and 183 DF,  p-value: 4.92e-11
 
         section
-          h2 Assessing model quality
+          h1 Assessing model quality
           p We've described regression as method for numerical prediction, and used the regression of crosswalks on rentals as an example. Now we want to use that model to predict expected rentals. How do we know if our model is any good? 
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
-            h2 Training and testing sets
+            h1 Training and testing sets
             p We measure prediction quality by simulating new data coming in. We do that by dividing the original data into a <i>training set</i> and a <i>testing set</i>. The <i>training set</i> is used to fit and tune the predictive model. Then, the <i>testing set</i> is used to validate the predictions. Generally construction of the train and test sets should be done completely at random.
 
           section(data-transition-speed="fast")
-            h2 Quick heuristics for study design
+            h1 Quick heuristics for study design
             p  
               ol.left large sample size
                 li 60% train
@@ -471,22 +482,23 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
-            h2 Measuring model quality for continuous outcomes
+            h1 Measuring model quality for continuous outcomes
               p 
                 | $\text{mean squared error (MSE)} = \frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2$
               p
                 | $\text{root mean squared error (RMSE)} = \sqrt{\frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2}$
 
           section(data-transition-speed="fast")
-            h2 Which metric should I use?
+            h1 Which metric should I use?
             p Just try them all, each metric has strengths and weaknesses.
               ul
                 li MSE and RMSE are sensitive to outliers.
                 li Median absolute deviation is often more sensitive to outliers.
 
         section
-          h2 Linear Regression Resources
+          h1 Linear Regression Resources
           ol
+            li #[a(href="http://setosa.io/ev/ordinary-least-squares-regression/") OLS regression Explained Visually]
             li #[a(href="https://class.coursera.org/predmachlearn-012") Practical Machine Learning] is a great Coursera course and is part of the data science specialization from Johns Hopkins.
             li #[a(href="http://cran.r-project.org/web/packages/caret/vignettes/caret.pdf") A Short Introduction to the caret Package]
             li #[a(href="http://www.jstatsoft.org/v28/i05/paper") Building Predictive Models in R Using the caret Package]

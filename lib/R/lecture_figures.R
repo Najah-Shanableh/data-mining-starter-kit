@@ -23,6 +23,24 @@ mean_custs_per_day = custs_per_day %>%
 head(mean_custs_per_day)
 x = merge(mean_custs_per_day, stations, by.x = 'station_start', by.y = 'station')
 
+# predictions 
+to_plot = data.frame(museums = 0:20,
+                     rentals = 15 + 30 * museums)
+
+ggplot(data = to_plot, aes(x = museums, y = rentals)) +
+  geom_point(size = 4) +
+  geom_line(size = 1, alpha = 0.70) +
+  theme_minimal() +
+  scale_x_continuous('Number of nearby museums') + 
+  scale_y_continuous('Rental duration (minutes)') +
+  theme(
+    text = element_text(family = 'Neuton'),
+    title = element_text(size = 12),
+    axis.ticks = element_blank(),
+    axis.text.x = element_text(size = 25),
+    axis.text.y = element_text(size = 25),
+    axis.title = element_text(size = 25))
+
 ggplot(x, aes(x = crossing, y = mean_rentals)) +
   geom_smooth(method = 'lm', size = 2) +
   geom_point(size = 5, alpha = 0.60) +
