@@ -314,31 +314,29 @@ html(lang="en")
             li #[a(href="http://onepager.togaware.com/") Hands-On Data Sciece with R]
             li #[a(href="http://datamining.togaware.com/") Data mining resources]
 
-        section#regression(data-background="images/data_miner2.jpg" data-background-size="cover")
-          h2 Linear regression
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
+        section#regression.title-slide(data-background="images/data_miner2.jpg" data-background-size="cover")
+          h1 Prediction of continuous outcomes with linear regression
+          h2 BI Tech CP303 - Data Mining
           h4 
-            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/linear-regression-in-R.Rmd") R Notebook
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/linear-regression-in-R.Rmd") R Tutorial
 
         section
-          h2 How many rentals per day?
+          h1 What makes a successful station?
           figure.right(style="width: 40%")
             img(src="images/crosswalk_lm.png" style="width: 100%")
-          p Predicting the expected number of bike rentals from a station per day is useful in lots of applications:
-            ul
-              li Allocating bikes across stations
-              li Budgeting for monthly bike maintenance
-              li Picking the best locations for new stations
+          p In your first project, you'll help a hypothetical bike share program expand operations by identifying characteristics of successful bike stations. You'll do that by predicting the expected number of rentals per station as a function of the surrounding landscape.
           p We can use ordinary least squares (OLS) regression to estimate real-valued outcomes such as number of rentals per day.  
 
         section(data-transition-speed="fast")
-          h2 Why linear regression?
-          p Linear regression is a relatively simple method for predicting real-valued variables. It's great to have in your toolbelt due to the ease of interpretability and implementation, power, and flexibility.
+          h1 Why linear regression?
+          p Linear regression is a simple method for predicting real-valued, continuous variables, <i>e.g.</i> rental duration in minutes. Regression approaches are great to have in your toolbelt due to their ease of interpretability and implementation, power, flexibility, and popularity.
 
         section(data-transition-speed="fast")
-          h2 Interpretability
-          p Regression coefficients have a straight-forward interpretation as the average change in the outcome for a unit change in an explanatory variable, all else equal. The coefficients also give a rough indication of what variables contribute most to the predicted value, which can be helpful in understanding causal mechanisms and for variable selection.
+          h1 Interpretability
+          p Regression coefficients are interpreted as the average change in the outcome for a unit change in an explanatory variable. Say, for example, we had the following regression equation.
+          p $ duration = 15 + 30 * museums $
+          P The interpretation is that the average ride duration is 15 minutes, and that the average ride time increases by 30 minutes for each museum within a quarter mile radius.
+          p The coefficients also give a rough indication of what variables contribute most to the predicted value, which can be helpful in understanding causal mechanisms and for variable selection.
 
         section(data-transition-speed="fast")
           h2 Ease of implementation
