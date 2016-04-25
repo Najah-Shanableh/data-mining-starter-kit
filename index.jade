@@ -324,7 +324,7 @@ html(lang="en")
           h1 What makes a successful station?
           figure.right(style="width: 40%")
             img(src="images/crosswalk_lm.png" style="width: 100%")
-          p In your first project, you'll help a hypothetical bike share program expand operations by identifying characteristics of successful bike stations. You'll do that by predicting the expected number of rentals per station as a function of the surrounding landscape.
+          p In your first project, you'll help a hypothetical bike-share program expand operations by identifying characteristics of successful bike stations. You'll do that by predicting the expected number of rentals per station as a function of the surrounding landscape.
           p We can use ordinary least squares (OLS) regression to estimate real-valued outcomes such as number of rentals per day.  
 
         section
@@ -340,8 +340,8 @@ html(lang="en")
           h1 Interpretability
           p Regression coefficients are interpreted as the average change in the outcome for a unit change in an explanatory variable. Say for example we had the following regression equation:
           | $ duration = 15 + 30 * museums $
-          P The interpretation is that the average ride duration is 15 minutes when there are no nearby museums, and the average duration increases by 30 minutes for each museum within a quarter mile radius.
-          p The coefficients also give a rough indication of which variables contribute most to the predicted value, information that can be helpful in understanding causal mechanisms and for variable selection.
+          P The interpretation is that the average ride duration is 15 minutes when there are no nearby museums ($museums = 0$), and the average duration increases by 30 minutes for each museum within a quarter mile radius.
+          p The coefficients also give an indication of which variables contribute most to the predicted value, information that can be helpful in evaluating which are the best predictors.
 
         section(data-transition-speed="fast")
           h1 Ease of implementation
@@ -354,7 +354,7 @@ html(lang="en")
           h1 Powerful
           figure.right(style="width: 40%")
             img(src="images/ride-time-predictions.png" style="width: 100%")
-            figcaption Predicted rentals times based on the number of nearby musuems. 
+            figcaption Predicted rentals times based on the number of nearby musuems (duration = 15 + 30 * museums). 
           p In prediction settings, linear models can outperform more complex nonlinear techniques, particularly when working with small training sets or sparse data. This is because regression is an averaging technique, making it less sensitive to missingness and extreme values.
 
         section(data-transition-speed="fast")
@@ -388,7 +388,7 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h1 Errors
-          img.right(src="images/residuals.png" width="40%" height="40%")
+          img.right(src="images/residuals.png" width="50%" height="50%")
           p Data points will not fall exactly on any straight line we choose, there will always be some error. The distance of a point from the regression line is called the residual error, $ \epsilon_i $. The errors are assumed to be independent and normally distributed with mean 0 and standard deviation $\sigma$.
 
         section(data-transition-speed="fast")
@@ -432,11 +432,8 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h1 R regression output 
-          p The regression equation is 
-          | $ rentals = 27.53 + 0.49 * crosswalks $.
-          p When there are no crosswalks the average number of bike rentals is about 28. For each additional crosswalk, we can expect an additional half rental. Or, for every two additional crosswalks, we can expect another rental.
           pre
-            code.r(data-trim, contenteditable).
+            code(data-trim contenteditable).
               model = lm(rentals ~ crossing, data = data)
               summary(model)
 
@@ -460,11 +457,14 @@ html(lang="en")
 
         section
           h1 Assessing model quality
-          p We've described regression as method for numerical prediction, and used the regression of crosswalks on rentals as an example. Now we want to use that model to predict expected rentals. How do we know if our model is any good? 
+          p We've discussed how regression is a tool for numerical prediction. When we use a model to make predictions, how do we know if the model is any good? To assess model quality, we quantify its <i>predictive accuracy</i>.
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
-            h1 Training and testing sets
+            h1 Hold-out sets
+            figure.right(style="width: 45%")
+              img(src="images/train_test.png" style="width: 100%")
+              figcaption #[a(href="http://scott.fortmann-roe.com/docs/MeasuringError.html") Measuring error]
             p We measure prediction quality by simulating new data coming in. We do that by dividing the original data into a <i>training set</i> and a <i>testing set</i>. The <i>training set</i> is used to fit and tune the predictive model. Then, the <i>testing set</i> is used to validate the predictions. Generally construction of the train and test sets should be done completely at random.
 
           section(data-transition-speed="fast")
@@ -484,9 +484,9 @@ html(lang="en")
           section(data-transition-speed="fast")
             h1 Measuring model quality for continuous outcomes
               p 
-                | $\text{mean squared error (MSE)} = \frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2$
-              p
-                | $\text{root mean squared error (RMSE)} = \sqrt{\frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2}$
+                | $\text{mean absolute error (MAE)} = \\ \frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)$
+              p 
+                | $\text{root mean squared error (RMSE)} = \\ \sqrt{\frac{1}{n} \sum\limits_{i=1}^n (prediction_i - observed_i)^2}$
 
           section(data-transition-speed="fast")
             h1 Which metric should I use?
@@ -504,36 +504,35 @@ html(lang="en")
             li #[a(href="http://www.jstatsoft.org/v28/i05/paper") Building Predictive Models in R Using the caret Package]
 
         section#selection(data-background="images/data_miner3.jpg" data-background-size="cover")
-          h2 Feature and Model Selection
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
+          h1 Feature and Model Selection
+          h2 BI Tech CP303 - Data Mining
           h4 
-            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/linear-regression-in-R.Rmd") R Notebook
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/linear-regression-in-R.Rmd") R Tutorial 
 
         section
           section
-            h2 Simplify
+            h1 Simplify
             p In the last section we built a regression model with 117 predictors. Unfortunately that's so many predictors that it's virtually impossible to interpret our results. Not only that, but to use a model that big for prediction would be a nightmare. It means that for every candidate station, we'd have to plug in 117 variables about the location and weather into the model to get the expected number of rentals. Yuck.
             p This week we'll explore automated methods for reducing model size while maintaining prediction accuracy.
 
           section(data-transition-speed="fast")
-            h2 #[a(href="http://en.wikipedia.org/wiki/Curse_of_dimensionality") The curse of dimensionality]
+            h1 #[a(href="http://en.wikipedia.org/wiki/Curse_of_dimensionality") The curse of dimensionality]
             img.right(src="images/microarray.jpg" width="30%" height="30%")
             p Linear regression works well when the number of observations, $n$, is larger than the number of predictors, $p$. In a data mining context we sometimes have data where $p >> n$. An example of this from the biomedical science is microarray technology. One tissue sample can produce over 50,000 observations making $p$ orders of magnitude larger than $n$. 
 
           section(data-transition-speed="fast")
-            h2 
+            h1 
             p The "curse of dimensionality" is not a problem of high-dimensional data, but a joint problem of the data and the algorithm being applied. It arises when the algorithm does not scale well to high-dimensional data, typically due to needing an amount of time or memory that is exponential in the number of dimensions of the data.
 
         section(data-transition-speed="fast")
-          h2 Improve predictions
+          h1 Improve predictions
           figure.right(style="width: 35%")
             img(src="images/bias_variance.png" style="width: 100%")
             figcaption #[a(href="http://scott.fortmann-roe.com/docs/BiasVariance.html") Understanding the Bias-Variance Tradeoff]
           p Besides reducing the size of the unwieldy model, we also want to improve prediction accuracy. Accuracy can sometimes be improved by shrinking certain coefficients to zero. When we shrink coefficients we exchange a some bias to reduce the variance of the predicted values, and may improve the overall prediction accuracy.
 
         section(data-transition-speed="fast")
-          h2 What's a poor modeler to do?
+          h1 What's a poor modeler to do?
           p We'll talk about a couple methods for reducing our model size and improving prediction accuracy:
           ul 
             li combination of features 
@@ -541,30 +540,30 @@ html(lang="en")
             li shrinkage 
 
         section(data-transition-speed="fast")
-          h2 Combining features
+          h1 Combining features
           p We'll talk about clustering methods that can be used to combine features later on, but for now we can combine some features with simple addition.
           pre
             code.r(data-trim, contenteditable).
               nightlife = bar + club + pub + nightclub 
 
         section(data-transition-speed="fast")
-          h2 Subset selection
+          h1 Subset selection
           p Subset selection methods use OLS regression, but limit the number of predictors $k$ allowed to remain in the model. They iteratively add dor remove predictors to the model until $k$ predictors are included. 
 
         section(data-transition-speed="fast")
-          h2 Forward selection
+          h1 Forward selection
           p Fitting every possible subset of predictors will take eternity. Forward-stepwise selection (or just forward selection) starts with just the intercept and sequentially adds predictors to the model.  
 
         section(data-transition-speed="fast")
-          h2 Backward selection
+          h1 Backward selection
           p Backward-stepwise selection (or just backward selection) starts with the full model, and sequentially deletes predictors that have the least impact on the fit.
 
         section(data-transition-speed="fast")
-          h2 How to pick $k$?
+          h1 How to pick $k$?
           p These selection methods all rely on the value of $k$, but how do we choose? Cross validation!
 
         section(data-transition-speed="fast")
-          h2 Use #[a(href="http://en.wikipedia.org/wiki/Cross-validation_(statistics)") Cross validation] to determine the best parameter values
+          h1 Use #[a(href="http://en.wikipedia.org/wiki/Cross-validation_(statistics)") Cross validation] to determine the best parameter values
           figure.right(style="width: 30%")
             img(src="images/crossvalidation.png" style="width: 100%")
             figcaption #[a(href="http://scott.fortmann-roe.com/docs/MeasuringError.html") Accurately Measuring Model Prediction Error]
