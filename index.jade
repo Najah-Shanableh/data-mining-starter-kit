@@ -40,7 +40,7 @@ html(lang="en")
                     li.active
                       a.active(href='#/regression') Linear regression
                     li.active
-                      a.active(href='#/selection') Feature selection 
+                      a.active(href='#/selection') Model selection 
                     li.active
                       a.active(href='#/logistic') Logistic regression
                     li.active
@@ -60,8 +60,6 @@ html(lang="en")
                       a.active(href='#/textbook') textbook
                     li.active
                       a.active(href='#/author') the author
-                    li.active
-                      a.active(href='#/acknowledgements') acknowledgements
                 li.active.not-click
                   a.active(href='https://github.com/erinshellman/data-mining-starter-kit/issues') Report a bug
 
@@ -77,10 +75,12 @@ html(lang="en")
 
         section#textbook(data-transition-speed="fast")
           h1 Textbooks
-          p There is no book required for this course, however there are two great texts available for free online.
+          p Everything you need for this course is in these notes and R tutorials, but there are some great textbooks available for free online.
           .flex-row
             a.left(href="http://www.mmds.org/")
               img(src="images/mmds.jpg" style="height: 40%")
+            a.right(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/")
+              img(src="images/elem-statistical-learning.png" style="height: 40%")
             a.right(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques")
               img(src="images/hill_lewicki.jpg" style="height: 40%")
             
@@ -315,7 +315,7 @@ html(lang="en")
             li #[a(href="http://datamining.togaware.com/") Data mining resources]
 
         section#regression.title-slide(data-background="images/data_miner2.jpg" data-background-size="cover")
-          h1 Prediction of continuous outcomes with linear regression
+          h1 Predicting numerical outcomes with linear regression
           h2 BI Tech CP303 - Data Mining
           h4 
             a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/linear-regression-in-R.Rmd") R Tutorial
@@ -324,24 +324,28 @@ html(lang="en")
           h1 What makes a successful station?
           figure.right(style="width: 40%")
             img(src="images/crosswalk_lm.png" style="width: 100%")
-          p In your first project, you'll help a hypothetical bike-share program expand operations by identifying characteristics of successful bike stations. You'll do that by predicting the expected number of rentals per station as a function of the surrounding landscape.
-          p We can use ordinary least squares (OLS) regression to estimate real-valued outcomes such as number of rentals per day.  
+          p Your first project is to help a hypothetical bike-share program expand operations by identifying characteristics of successful bike stations. You'll do that by predicting the expected number of rentals per station as a function of the surrounding landscape.
+          p Linear Regression is a technique for estimating numerical outcomes such as number of rentals per day or the ride time in minutes.  
 
         section
           h1 What is linear regression?
-          p Linear regression is a technique used to describe a (dependent) variable in terms of a linear combination of other (independent) variables. Regression with multiple predictors allows the us to answer the question "what is the best predictor of the outcome of interest?"
+          p Linear regression is a method to describe an outcome variable in terms of a linear combination of predictor variables. Regression with multiple predictors allows the us to answer the question "what is the best predictor of the outcome of interest?"
           p In data mining, linear regression is a technique that enables us to predict the value of a continuous variable, like ride duration or number of rentals, in terms of the values of other variables, like the number of crosswalks or museums nearby.
 
         section(data-transition-speed="fast")
           h1 Why linear regression?
-          p Regression approaches are great to have in your toolbelt due to their ease of interpretability and implementation, power, flexibility, and popularity.
+          p Regression approaches are great to have in your toolbelt due to their ease of 
+          ol
+            li interpretability 
+            li implementation 
+            li flexibility
+            li popularity
 
         section(data-transition-speed="fast")
           h1 Interpretability
-          p Regression coefficients are interpreted as the average change in the outcome for a unit change in an explanatory variable. Say for example we had the following regression equation:
+          p Regression coefficients have an explanatory interpretation. In the case of a regression with a single predictor, the coefficients are interpreted as the average change in the outcome for a unit change in an explanatory variable. Say for example we had the following regression equation:
           | $ duration = 15 + 30 * museums $
           P The interpretation is that the average ride duration is 15 minutes when there are no nearby museums ($museums = 0$), and the average duration increases by 30 minutes for each museum within a quarter mile radius.
-          p The coefficients also give an indication of which variables contribute most to the predicted value, information that can be helpful in evaluating which are the best predictors.
 
         section(data-transition-speed="fast")
           h1 Ease of implementation
@@ -369,7 +373,9 @@ html(lang="en")
           h1 Mathematical foundations
           figure.right(style="width: 40%")
             img(src="images/crosswalk_lm.png" style="width: 100%")
-          p SLR describes the relationship between an explanatory variable (or <i>independent</i> variable) and an outcome variable (sometimes called the <i>response</i> or <i>dependent variable</i>). It describes how the expected value of an outcome variable changes as the explanatory variable changes. <i>e.g.</i> How does the expected number of rentals change as the number of nearby crosswalks changes?
+          p SLR describes the relationship between an outcome and a single predictor variable. The regession equation expresses how the average of the outcome variable changes over the range of the predictor variable. 
+          p <i>e.g.</i> How does the expected number of rentals change as the number of nearby crosswalks changes?
+
 
         section(data-transition-speed="fast")
           h1 Mathematical foundations
@@ -504,16 +510,43 @@ html(lang="en")
             li #[a(href="http://www.jstatsoft.org/v28/i05/paper") Building Predictive Models in R Using the caret Package]
 
         section#selection(data-background="images/data_miner3.jpg" data-background-size="cover")
-          h1 Feature and Model Selection
+          h1 Model Selection
           h2 BI Tech CP303 - Data Mining
           h4 
             a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%201/linear-regression-in-R.Rmd") R Tutorial 
 
         section
+          h1 The full model
+          p We'll refer to the regression with all available predictors as a <i>full model</i>. The full model of the number of rentals contains 71 predictors, which is too many to meaningfully interpret and may be challenging to apply in practice.
+          p Further, models with many predictors risk being over-parameterized, or <i>overfit</i>.
+
+        section
+          h1 #[a(href="https://en.wikipedia.org/wiki/Overfitting") Overfitting]
+          p Overfitting occurs when a model is trained too closely to a particular training set and as a result fails to generalize to new data. 
+          figure.right(style="width: 100%")
+            img(src="images/overfitting.png" style="width: 100%")
+            figcaption Underspecified models like the one on the left are said to exhibit 'high bias.' That is, they are opinionated about the nature of the relationship between x and y, specifically that y changes linearly as a function of x. Overspecified models like the one on the right are said to exhibit 'high variance' that is, their predictive accuracy is highly variable because the model is overtrained to a specific data context. 
+
+        section(data-transition-speed="fast")
+          h1 Bias/variance trade-offs
+          figure.right(style="width: 35%")
+            img(src="images/bias_variance.png" style="width: 100%")
+            figcaption #[a(href="http://scott.fortmann-roe.com/docs/BiasVariance.html") Understanding the Bias-Variance Tradeoff]
+          p Besides reducing the size of the unwieldy model, we also want to improve prediction accuracy. Accuracy can sometimes be improved by shrinking certain coefficients to zero. When we shrink coefficients we exchange a some bias to reduce the variance of the predicted values, and may improve the overall prediction accuracy.
+
+        section
           section
-            h1 Simplify
-            p In the last section we built a regression model with 117 predictors. Unfortunately that's so many predictors that it's virtually impossible to interpret our results. Not only that, but to use a model that big for prediction would be a nightmare. It means that for every candidate station, we'd have to plug in 117 variables about the location and weather into the model to get the expected number of rentals. Yuck.
-            p This week we'll explore automated methods for reducing model size while maintaining prediction accuracy.
+            h1 Simplifying the full model
+            p This week we'll discuss methods for reducing model size while maintaining prediction accuracy that will make the final model practical to apply and that are not overfit.
+            ol 
+              li <i>Reduce predictors</i>
+                ul
+                  li combination of features
+                  li feature selection
+              li <i>Regularization</i> - keep all predictors, but shrink the parameter values
+                ul
+                  li ridge regression
+                  li lasso
 
           section(data-transition-speed="fast")
             h1 #[a(href="http://en.wikipedia.org/wiki/Curse_of_dimensionality") The curse of dimensionality]
@@ -525,188 +558,97 @@ html(lang="en")
             p The "curse of dimensionality" is not a problem of high-dimensional data, but a joint problem of the data and the algorithm being applied. It arises when the algorithm does not scale well to high-dimensional data, typically due to needing an amount of time or memory that is exponential in the number of dimensions of the data.
 
         section(data-transition-speed="fast")
-          h1 Improve predictions
-          figure.right(style="width: 35%")
-            img(src="images/bias_variance.png" style="width: 100%")
-            figcaption #[a(href="http://scott.fortmann-roe.com/docs/BiasVariance.html") Understanding the Bias-Variance Tradeoff]
-          p Besides reducing the size of the unwieldy model, we also want to improve prediction accuracy. Accuracy can sometimes be improved by shrinking certain coefficients to zero. When we shrink coefficients we exchange a some bias to reduce the variance of the predicted values, and may improve the overall prediction accuracy.
-
-        section(data-transition-speed="fast")
-          h1 What's a poor modeler to do?
-          p We'll talk about a couple methods for reducing our model size and improving prediction accuracy:
-          ul 
-            li combination of features 
-            li feature selection
-            li shrinkage 
-
-        section(data-transition-speed="fast")
-          h1 Combining features
-          p We'll talk about clustering methods that can be used to combine features later on, but for now we can combine some features with simple addition.
+          h1 Combining like features
+          p The bikeshare data set includes information about nearby amenities like the number of restaurants, statues, parking lots and cafes. Since we're mostly working with counts, one simple way to reduce the number of variables is to combine like features. 
           pre
             code.r(data-trim, contenteditable).
               nightlife = bar + club + pub + nightclub 
+              tourism = tourism_artwork + tourism_hotel + tourism_information
 
         section(data-transition-speed="fast")
           h1 Subset selection
           p Subset selection methods use OLS regression, but limit the number of predictors $k$ allowed to remain in the model. They iteratively add dor remove predictors to the model until $k$ predictors are included. 
 
         section(data-transition-speed="fast")
-          h1 Forward selection
-          p Fitting every possible subset of predictors will take eternity. Forward-stepwise selection (or just forward selection) starts with just the intercept and sequentially adds predictors to the model.  
+          h1 Forward and backward selection
+          ul
+            li <i>Forward selection</i> starts with the intercept and sequentially adds predictors to the model.  
+            li <i>Backward selection</i> starts with the full model and sequentially deletes predictors that have the least contribution to model fit.
 
         section(data-transition-speed="fast")
-          h1 Backward selection
-          p Backward-stepwise selection (or just backward selection) starts with the full model, and sequentially deletes predictors that have the least impact on the fit.
+          h1 How should we set parameter values?
+          p Both forward and backward selection requires that we specify a parameter value, $k$. but how do we choose? Cross validation!
 
-        section(data-transition-speed="fast")
-          h1 How to pick $k$?
-          p These selection methods all rely on the value of $k$, but how do we choose? Cross validation!
-
-        section(data-transition-speed="fast")
-          h1 Use #[a(href="http://en.wikipedia.org/wiki/Cross-validation_(statistics)") Cross validation] to determine the best parameter values
+        section#cross_validation(data-transition-speed="fast")
+          h1 Use #[a(href="http://en.wikipedia.org/wiki/Cross-validation_(statistics)") cross validation] to determine the best parameter values
           figure.right(style="width: 30%")
             img(src="images/crossvalidation.png" style="width: 100%")
             figcaption #[a(href="http://scott.fortmann-roe.com/docs/MeasuringError.html") Accurately Measuring Model Prediction Error]
           p Cross-validation works by splitting the data up into sets of $n$ folds. Your model building and error estimation procedure is then repeated $n$ times. After completing a 5-fold cross-validation you'd have 5 error estimates and can average to obtain a robust estimate of the prediction error.
 
         section(data-transition-speed="fast")
-          h2 Shrinkage
-          p In our model of daily rentals, many predictors had quite small coefficients. For example, the coefficient on the number of stop signs, <i>stops</i>, is about -0.09. Since the outcome is rentals per day, a coeffcient this small means we'd need about 10 additional stop signs to reduce the expected rentals by 1. In other words, it's not contributing much to our predicted values.
+          h1 Cross Validation with caret
+          p show simple example code
+
+        section(data-transition-speed="slow")
+          h1 Shrinkage
+          figure.right(style="width: 40%")
+            img(src="images/high-variance.png" style="width: 100%")
+            figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") Elements of Statistical Learning]
+          p By reducing the full model using subset selection the final model is interpretable and potentially even has better predictive accuracy than the full model. However we got there by throwing potentially useful predictors out of the model.        
+          p High variance explain figure.
 
         section(data-transition-speed="fast")
-          section(data-transition-speed="fast")
-            h2 High variance
-            p You might have observed some coefficients with high variance. We have a lot of predictors, and when many are correlated, we violate the assumption of independence between predictors and the result is often high variance. A large positive coefficient on one predictor can be canceled by a similarly large negative coefficient on its correlate. Shrinking coefficients alleviates this problem, in part because some predictors will shrink to zero and drop out. 
-
-          section(data-transition-speed="fast")
-            h2 Lower variance, higher bias
-            p Applying the ridge regression penalty has the effect of shrinking the estimates toward zero which reduces variance but introduces bias.
+          h1 Shrinkage
+          p If instead we wanted to retain the number of predictors, but prevent overfitting we could apply <i>shrinkage</i> methods. Say more about it. What are shrinkage methods? What are these methods?
+          ol
+            li Ridge Regression: what is its distinguishing feature?
+            li Lasso Regression: what is its distinguishing feature?
 
         section(data-transition-speed="fast")
-          h2 Ridge regression
+          h1 Ridge regression
           p Ridge regression <i>shrinks</i> regression coefficients by penalizing based on the coefficient size. In ordinary least squares, we picked $\beta$s that minimize our squared errors. Now we do that, but include a penalty parameter.
           p $ \epsilon_i^2 = \sum\limits_{i} (y_i - x^T_i\beta)^2 + \lambda\sum\limits_{j = 1}^p \beta_j^2 $ 
-          p(class="fragment current-visible") OLS + penalty
+          p(class="fragment current-visible") or, OLS + penalty
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
-            h2 Choosing $\lambda$
+            h1 Choosing $\lambda$
             figure.right(style="width: 35%")
               img(src="images/ridge_coef.png" style="width: 100%")
               figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") The Elements of Statistical Learning]
-            p The penalty parameter $\lambda$ controls the level of shrinking. $\lambda = 0$ will give you exactly the same coefficients as OLS. Beyond that, the choice of $\lambda$ will depend on the data and model, and we'll use cross validation to determine the best value.
+            p $\lambda$ is a complexity parameter that controls the amount of coefficient shrinkage. The penalty parameter $\lambda$ controls the level of shrinking. $\lambda = 0$ will give you exactly the same coefficients as OLS. Beyond that, the choice of $\lambda$ will depend on the data and model, and we'll use cross validation to determine the best value.
 
         section(data-transition-speed="fast")
           section(data-transition-speed="fast")
-            h2 Lasso
+            h1 Lasso
             p Like ridge regression, lasso is a shrinkage method with a major difference.
             p $\epsilon_i^2 = \sum\limits_{i} (y_i - x^T_i\beta)^2$ subject to $\sum\limits_{j = 1}^p |{\beta_j}| \leq t$   
 
           section(data-transition-speed="fast")
-            h2 Lasso
+            h1 Lasso
             p Making t sufficiently small will cause some of the coefficients to be exactly zero, making the lasso method similar to a subset selection.
 
         section(data-transition-speed="fast")
-          h2 Choosing $t$
+          h1 Choosing $t$
           figure.right(style="width: 35%")
             img(src="images/lasso_coef.png" style="width: 100%")
             figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") The Elements of Statistical Learning]
           p If $t_0 \geq \sum\limits_{j = 1}^p |\beta_j|$, the lasso estimates and the OLS estimates are identical. If $t = t_0/2$ then the least squares coefficients are shrunk by about 50% on average. Once again we can pick the $t$ that gives the lowest test error, and we'll learn how to do that in <i>caret</i>.
 
-        section(data-transition-speed="fast")
-          h2 Ethics
-          p Read #[a(href="http://www.theatlantic.com/features/archive/2014/07/why-poor-schools-cant-win-at-standardized-testing/374287/") this] article about how big data can be used to increase class divides.
-          
-        section(data-transition-speed="fast")
-          h2 Data are neutral, our conclusions are not.
-          p The Capitol Bikeshare dataset couldn't be more innocuous, but outside of privacy and security issues, it's almost never the data that create ethical dilemas, it's our application of the data and the conclusions we draw.
-            ul
-              li What if your analysis showed that the best performing bike stations were in the wealthiest neighborhoods? 
-              li What if bikes are frequently used for commmuting in low-income areas?
-              li What effect would removing stations in low-income neighborhoods have on their local economy?
-              li Is it ok to charge more to rent in worse-performing areas to make up the difference?
+        section(data-transition-speed="slow")
+          h1 Which method should I use?
+          p We discussed 3 methods for model selection, forward/backward selection, ridge regression, and the lasso, but which should you use and why? As usual, your choice in method is typically informed from your application. 
+          p If model size is a practical concern then forward/backward selection with a sensible $k$ could be a good choice. For example, if the data you're working with is quite expensive to collect like human surveys then in the future you'd like to reduce the number of variables to record.
+          p If predictors come cheap and you want to tune the regression for better performance, then consider ridge regression or the lasso. For example maybe your data are performance metrics from webserver logs and data collection is simple.
+
+        section(data-transition-speed="slow")
+          h1 Diagram of project 1 
 
         section(data-transition-speed="fast")
-          h2 It's not always about the data you've got, it's also what you haven't.
-          p What variables are omitted from your data that could invalidate your findings?
-
-        section(data-transition-speed="fast")
-          h2 Simpson's paradox
-          p A classic example of Simpson's paradox is from the University of California, Berkeley when they were sued for bias against women applicants to graduate programs. Admissions figures for fall 1973 showed that men were more likely to be admitted.
-          div
-            table.table-hover
-              thead
-                tr
-                  th 
-                  th Applicants
-                  th Admitted
-              tbody
-                tr
-                  th Men
-                    td.number 8442
-                    td.number 44%
-                tr
-                  th Women
-                    td.number 4321
-                    td.number 35%
-
-        section(data-transition-speed="fast")
-          h2 Simpson's paradox
-          p However when examining the individual departments, the effect disappeared and even slightly reversed. It appears that these women applied to competitive departments with low admission rates more often than men who applied to less-competitive departments with higher admission rates.
-          div
-            table.table-hover
-              caption Data from the 6 largest departments
-              thead
-                tr
-                  th(rowspan="2") Department
-                  th(colspan="2") Men
-                  th(colspan="2") Women
-                tr
-                  th Applicants
-                  th Admitted
-                  th Applicants
-                  th Admitted
-              tbody
-                tr
-                  th A
-                    td.number 825
-                    td.number 62%
-                    td.number 108
-                    td.number 82%
-                tr
-                  th B
-                    td.number 560
-                    td.number 63%
-                    td.number 25
-                    td.number 68%
-                tr
-                  th C
-                    td.number 325
-                    td.number 37%
-                    td.number 593
-                    td.number 34%
-                tr
-                  th D
-                    td.number 417
-                    td.number 33%
-                    td.number 375
-                    td.number 35%
-                tr
-                  th E
-                    td.number 191
-                    td.number 28%
-                    td.number 393
-                    td.number 24%
-                tr
-                  th F
-                    td.number 272
-                    td.number 6%
-                    td.number 341
-                    td.number 7%
-
-        section(data-transition-speed="fast")
-          h2 Simpsons example
-          p Imagine you sent out a survey to homes nearby the bike stations and found that only 30% of people near poor-performing stations knew how to ride a bike? How would this change your conclusions and course of action?
+          h1 Key points slides
+          ul
+            li add some points
 
         section
           h2 Feature Selection Resources
@@ -1239,18 +1181,13 @@ html(lang="en")
             li #[a(href="http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf") R Markdown Cheatsheet]
             li #[a(href="http://www.noamross.net/blog/2013/1/7/collaborating-with-r.html") A guide to tools for collaboration with R] by Noam Ross
 
-        section#acknowledgements
-          h2 Thanks buddies!
-          p Creating this course wasn't easy and I couldn't have done it alone. Huge thanks to my TA Ryan Brush who encouraged and recommended me to teach this class. Big ups to #[a(href="http://brianbeck.com/") Brian Beck] who styled the lecture notes. 
-          p Thank you to the #[a(href="https://www.flickr.com/photos/boston_public_library/sets/72157627774101436") Boston Public Library] for posting all the awesome old coal mining postcards on Flickr!
-
         section#author
           h2 But who <i>is</i> #[a(href="http://www.erinshellman.com/") Erin Shellman]?  
           figure.right(style="width: 30%")
             img(src="images/shellman.jpg" style="width: 100%")
 
-          p I’m a statistician, programmer, and senior data scientist at #[a(href="http://zymergen.com/") Zymergen]. I’ve done research and data science in a broad range of industries including retail, cloud computing, and biotechnology. Along the way, I built product recommendations, web scrapers, interactive visualizations, and analyzed terabytes of data. I’m passionate about technology education and teach data mining at the University of Washington’s school for Professional and Continuing Education and Python programming in an after-school #[a(href="http://girlswhocode.com/") Girls Who Code] club. I also co-organize the Seattle chapter of #[a(href="http://www.meetup.com/Seattle-PyLadies/") PyLadies], an international mentorship group for women who program in Python.
-
+          p I’m a statistician, programmer, and senior data scientist at #[a(href="http://zymergen.com/") Zymergen]. I’ve done research and data science in a broad range of industries including retail, cloud computing, and biotechnology. Along the way, I built product recommendations, web scrapers, interactive visualizations, and analyzed terabytes of data.     
+          
     script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/headjs/0.96/head.min.js")

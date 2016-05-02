@@ -2,6 +2,7 @@
 library(dplyr)
 library(ggplot2)
 library(lubridate)
+require(cowplot)
 
 setwd('~/projects/BI-TECH-CP303/projects/project 1')
 usage = read.delim('./data/usage_2012.tsv',
@@ -107,7 +108,52 @@ summary(model)
 
 plot_model = lm(mean_rentals ~ crossing, data = x)
 
+# Overfitting
+a = ggplot(filter(bikeshare, season == 'Summer'), aes(x = crossing, y = num_rentals)) +
+  geom_point(alpha = 0.60) +
+  geom_smooth(method = 'lm') +
+  scale_x_continuous('Number of cross walks') +
+  scale_y_continuous('Number of rentals') +
+  annotate('text', x = 60, y = 20000, label = '"High Bias"', size = 12, color = '#e7ad52') +
+  ggtitle(substitute(paste('num_rentals = ', beta[0], '+', beta[1], '* crosswalks', sep = ' '))) +
+  theme_minimal() +
+  theme(
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.title = element_text(size = 20),
+    plot.title = element_text(size = 20))
 
+b = ggplot(filter(bikeshare, season == 'Summer'), aes(x = crossing, y = num_rentals)) +
+  geom_point(alpha = 0.60) +
+  geom_smooth(span = 0.80) +
+  scale_x_continuous('Number of cross walks') +
+  scale_y_continuous('Number of rentals') +
+  ggtitle(substitute(paste('num_rentals = ', beta[0], '+', beta[1], '* crosswalks', '+', beta[2], '*', crosswalks^2, sep = ' '))) +
+  theme_minimal() +
+  theme(
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.title = element_text(size = 20),
+    plot.title = element_text(size = 20))
+
+c = ggplot(filter(bikeshare, season == 'Summer'), aes(x = crossing, y = num_rentals)) +
+  geom_point(alpha = 0.60) +
+  geom_smooth(span = 0.23) +
+  scale_x_continuous('Number of cross walks') +
+  scale_y_continuous('Number of rentals') +
+  annotate('text', x = 60, y = 20000, label = '"High Variance"', size = 12, color = '#e7ad52') +
+  ggtitle(substitute(paste('num_rentals = ', beta[0], '+', beta[1], '* crosswalks', '+', beta[2], '*', crosswalks^2, '+', beta[3], '*', crosswalks^3, sep = ' '))) +
+  theme_minimal() +
+  theme(
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.title = element_text(size = 20),
+    plot.title = element_text(size = 20))
+
+plot_grid(a, b, c, nrow = 1)
 
 # Logistic regression example figure
 
