@@ -527,13 +527,6 @@ html(lang="en")
             img(src="images/overfitting.png" style="width: 100%")
             figcaption Underspecified models like the one on the left are said to exhibit 'high bias.' That is, they are opinionated about the nature of the relationship between x and y, specifically that y changes linearly as a function of x. Overspecified models like the one on the right are said to exhibit 'high variance' that is, their predictive accuracy is highly variable because the model is overtrained to a specific data context. 
 
-        section(data-transition-speed="fast")
-          h1 Bias/variance trade-offs
-          figure.right(style="width: 35%")
-            img(src="images/bias_variance.png" style="width: 100%")
-            figcaption #[a(href="http://scott.fortmann-roe.com/docs/BiasVariance.html") Understanding the Bias-Variance Tradeoff]
-          p Besides reducing the size of the unwieldy model, we also want to improve prediction accuracy. Accuracy can sometimes be improved by shrinking certain coefficients to zero. When we shrink coefficients we exchange a some bias to reduce the variance of the predicted values, and may improve the overall prediction accuracy.
-
         section
           section
             h1 Simplifying the full model
@@ -588,22 +581,57 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h1 Cross Validation with caret
-          p show simple example code
+          figure(style="width: 80%")
+            img(src="images/forward-selection-cross-validation.png" style="width: 100%")
+            figcaption This plot shows how the RMSE changes as the parameter value $k$ changes. 
 
         section(data-transition-speed="slow")
-          h1 Shrinkage
+          h1 Subset selection summary
           figure.right(style="width: 40%")
             img(src="images/high-variance.png" style="width: 100%")
             figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") Elements of Statistical Learning]
-          p By reducing the full model using subset selection the final model is interpretable and potentially even has better predictive accuracy than the full model. However we got there by throwing potentially useful predictors out of the model.        
-          p High variance explain figure.
+          p After reducing the full model using subset selection, the final model is interpretable and potentially has better predictive accuracy than the full model. However we got there by throwing predictors out of the model.        
+          p Selection methods do not guarantee that the subsets from the stepwise procedures contain the same variables or even be the "best" performing subset. There's also the possibility of multiple, equally good models.
 
         section(data-transition-speed="fast")
-          h1 Shrinkage
-          p If instead we wanted to retain the number of predictors, but prevent overfitting we could apply <i>shrinkage</i> methods. Say more about it. What are shrinkage methods? What are these methods?
-          ol
-            li Ridge Regression: what is its distinguishing feature?
-            li Lasso Regression: what is its distinguishing feature?
+          h1 Multi-collinearity
+          p In contexts where there are many predictors, some of them are likely correlated. Fitting regression with correlated predictors causes the model to be highly variable and produces unstable estimates of the coefficients. 
+          p When predictors are correlated they are said to exhibit #[a(href="https://en.wikipedia.org/wiki/Multicollinearity") multicollinearity], and in general it's something we want to avoid.
+
+        section(data-transition-speed="fast")
+          h1 Variance inflation
+          p Take, for example, the regression model:
+            | $\text{num_rentals} = \beta_0 + \beta_1*\text{embassy} + \beta_2*\text{diplomatic_embassy}$.
+          p These two predictors are virtually the same, have a correlation of 0.99, and models that include both of them display highly unstable coefficient values.
+
+        section(data-transition-speed="fast")
+          h1 Variance inflation
+          pre
+            code.r(data-trim, contenteditable).
+              summary(lm(num_rentals ~ embassy + diplomatic_embassy, data = bikeshare))
+
+              Call:
+              lm(formula = num_rentals ~ embassy + diplomatic_embassy, data = bikeshare)
+
+              Residuals:
+                  Min      1Q  Median      3Q     Max 
+              -5857.3 -2112.1  -919.1  1118.9 24867.9 
+
+              Coefficients:
+                                 Estimate Std. Error t value Pr(>|t|)    
+              (Intercept)         2668.14      99.85  26.721   <2e-16 ***
+              embassy             2168.61    1102.25   1.967   0.0494 *  
+              diplomatic_embassy -1260.87    1113.48  -1.132   0.2578    
+              ---
+              Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+              Residual standard error: 3105 on 998 degrees of freedom
+              Multiple R-squared:  0.0297,	Adjusted R-squared:  0.02775 
+              F-statistic: 15.27 on 2 and 998 DF,  p-value: 2.931e-07
+
+        section(data-transition-speed="fast")
+          h1 Shrinkage methods
+          p Coefficient shrinkage methods penalize coefficient values so they do not exceed some threshold.
 
         section(data-transition-speed="fast")
           h1 Ridge regression
@@ -643,12 +671,15 @@ html(lang="en")
           p If predictors come cheap and you want to tune the regression for better performance, then consider ridge regression or the lasso. For example maybe your data are performance metrics from webserver logs and data collection is simple.
 
         section(data-transition-speed="slow")
-          h1 Diagram of project 1 
+          h1 Constructing an analysis plan
 
         section(data-transition-speed="fast")
-          h1 Key points slides
-          ul
-            li add some points
+          h1 Model Selection Summary
+          ol
+            li <i>Full models</i> can be impractical and lead to overfitting.
+            li Subset selection methods add, remove, or both add and remove predictors sequentially depending on the improvements in fit.
+            li Skrinkage methods penalize coefficient size to 
+            li Subset selection and shrinkage methods all require additional parameters to work, <i>e.g.</i> $k$, $\lambda$, and $t$. Cross-validation can be used to identify optimal values of required parameters.
 
         section
           h2 Feature Selection Resources
