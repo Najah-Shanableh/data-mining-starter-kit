@@ -687,14 +687,13 @@ html(lang="en")
             li #[a(href="http://topepo.github.io/caret/training.html") Modeling training and tuning with caret]
 
         section#logistic(data-background="images/data_miner4.jpg" data-background-size="cover")
-          h2 Classification with Logistic Regression 
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
+          h1 Classification with Logistic Regression 
+          h2 BI Tech CP303 - Data Mining
           h4 
-            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%202/logistic-regression-in-R.Rmd") R Notebook
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%202/logistic-regression-in-R.Rmd") R tutorial
 
         section#classification
-          h2 Classification
+          h1 Classification
           p We use classification techniques when we're trying to assign something to a category.
           ul 
             li Spam or not spam
@@ -703,14 +702,14 @@ html(lang="en")
           p(class="fragment current-visible") In our case, the outcome $y$ is either 0 or 1: $y \in{\{0, 1\}}$
 
         section(data-transition="linear" data-transition-speed="fast")
-          h2 Identifying spam
+          h1 Identifying spam
           p We could build a spam classifier with a linear regression predicting whether a message is spam. The predictor is the number of occurrences of the character '$' in a message.
-          figure(style="width: 45%; margin: 0 auto")
+          figure(style="width: 50%; margin: 0 auto")
             img(src="images/is_it_spam.png" width="100%")
 
         section(data-transition="linear" data-transition-speed="fast")
-          h2 Identifying spam
-          figure.right(style="width: 45%")
+          h1 Identifying spam
+          figure.right(style="width: 50%")
             img(src="images/is_it_spam_2.png" width="100%")
           p Then to predict the class, create a threshold on $y$:
             ul(class="fragment")
@@ -719,8 +718,8 @@ html(lang="en")
           p(class="fragment current-visible") Messages with more than eight '$'s, will be labeled as spam.
 
         section(data-transition="linear" data-transition-speed="fast")
-          h2 Identifying spam
-          p What if an extreme value is observed later? The current rule isn't violated, but when we refit the model with the new data, the classifier begins to misclassify.
+          h1 Identifying spam
+          p What if an extreme value is observed later? The current rule isn't violated, but when we refit the model with the new data, the model begins to misclassify.
           figure.left(style="width: 45%; margin: 0 auto")
             img(src="images/is_it_spam_2.png" width="100%")
           figure.right(style="width: 45%; margin: 0 auto")
@@ -728,11 +727,11 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           section
-            h2 We need a new tool
-            p In a classification setting we know the outcome $y$ can only take the values $0$ or $1$, but in linear regression, $y$ could be much larger than $1$ and much smaller than $0$. Our current tool, linear regression, won't work well for classification problems. Instead we can use another type of regression called, #[a(href="http://en.wikipedia.org/wiki/Logistic_regression") logistic regression].
+            h1 We need a new tool
+            p In binary classification the outcome, $y$, can only take the values $0$ or $1$, but linear regression produces predictions for $y$ that could be much larger than $1$ and much smaller than $0$. To make binary predictions in the last example, we imposed a threshold at $y=0.50$, but that threshold is arbitrary. Our previous prediction tool, linear regression, won't work well for classification problems. Instead we can use another type of regression called, #[a(href="http://en.wikipedia.org/wiki/Logistic_regression") logistic regression].
 
           section(data-transition="linear" data-transition-speed="fast")
-            h2 History of GLM
+            h1 History of GLM
             p Articulated in Nelder and Wedderburn in 1972 paper in Journal of the Royal Statistical Society.
             p GLMs are composed of three parts:
               ol
@@ -741,33 +740,38 @@ html(lang="en")
                 li A link function that connects the means of the response to the linear predictor
 
           section(data-transition-speed="fast")
-            h2 Logistic regression GLM parts
+            h1 Logistic regression GLM parts
             ol 
               li Exponential family model:
               li Linear predictor: $ \eta_{i} = \sum_{k = 1}^{p} X_{ik}\beta_k $
               li Link: $ g(\mu) = \eta = \log{\mu \over 1-\mu} $
 
         section(data-transition-speed="fast")
-          h2 Deriving logistic regression
+          h1 Deriving logistic regression
             p <b>Goal:</b> $0 \leq predictions \leq 1$
             p(class="fragment") $y = \beta_0 + \beta_{1}x$ &#10143 Simple Linear Regression
-            p(class="fragment") How can we transform the right hand size to be between 0 and 1 like the outcome?
+            p(class="fragment") How can we transform the right hand size to produce values that are between 0 and 1, like the outcome?
               p(class="fragment") $g(z) = \frac{1}{1+e^{-z}}$ &#10143 Logistic (or sigmoid) function
             p(class="fragment") $z = \beta_0 + \beta_{1}x$
             p(class="fragment") $y = \frac{1}{1 + e^{-(\beta_0 + \beta_{1}x)}}$ &#10143 Logistic Regression
 
         section(data-transition-speed="fast")
-          h2 The logistic function $g(z) = \frac{1}{1+e^{-z}}$
-          figure(style="width: 50%; margin: 0 auto")
+          h1 The logistic function $g(z) = \frac{1}{1+e^{-z}}$
+          figure(style="width: 65%; margin: 0 auto")
             img(src="images/logit_function.png" width="100%")
 
         section(data-transition-speed="fast")
-          h2 How to interpret predictions?
-          p Model predictoins represent the probability $y = 1$ given the data $x$.
+          h1 The logistic function $g(z) = \frac{1}{1+e^{-z}}$
+          figure(style="width: 65%; margin: 0 auto")
+            img(src="images/multi_logit_function.png" width="100%")
+
+        section(data-transition-speed="fast")
+          h1 How to interpret predictions?
+          p Model predictions represent the probability that $y = 1$ given the data $x$.
           p <i>e.g.</i> The probability of a message being spam, given the number of $\$'s$. If I get a value of 0.70 from my model, then $p(\text{message is spam}\mid 10 \text{\$'s}) = 0.70$.
 
         section(data-transition-speed="fast")
-          h2 How do we decide the class?
+          h1 How do we decide the class?
           p The <i>decision boundary</i> separates the region where the model predicts $y = 1$ from the region where the model predicts $y = 0$.
           ul
             li If $y \geq 0.5$, then the message is spam
@@ -779,7 +783,7 @@ html(lang="en")
               img(src="images/upper_decision_boundary.png" width="100%")
 
         section(data-transition-speed="fast")
-          h2 How do we decide the class?
+          h1 How do we decide the class?
           figure.right(style="width: 35%; margin: 0 auto")
             img(src="images/decision_boundary.png" width="100%")
           p $p(\text{spam}) = -0.80 + 0.10*\text{number of \$s}$
@@ -789,47 +793,46 @@ html(lang="en")
           p The line at $x = 8$ is called the <i>decision boundary</i>.
 
         section(data-transition-speed="fast")
-          h2 Bot <i>or</i> Not?
+          h1 Bot <i>or</i> Not?
           p Like many Internet giants Twitter makes money by selling ads, but they’ve got an insidious infestation eroding their advertising credibility: bots. More than 23 million of them. Twitter bots are automatons living in the Twittersphere and ranging wildly in capability. At their most complex they use speech patterns that can, at times, fool humans. 
           p When advertisers pay for engagement, they aren’t interested in a four-hour flame war between a gamergate bot and a Kanye bot. When advertisers analyze social data they want to be sure the numbers are the result of human activity. 
 
         section(data-transition-speed="fast")
-          h2 Bot <i>or</i> Not?
+          h1 Bot <i>or</i> Not?
           p For project 2, we'll use Twitter user data to build a classifier for identifying bots.
 
         section(data-transition-speed="fast" data-background="images/not_a_bot.png" data-background-size="cover")
-          h2.right Not a bot...
+          h1.right Not a bot...
 
         section(data-transition-speed="fast" data-background="images/twitter_bot.png" data-background-size="cover")
-          h2.right Spot a bot!
+          h1.right Spot a bot!
 
         section
-          h2 Logistic Regression Resources
+          h1 Logistic Regression Resources
           ol
             li #[a(href="http://www.ats.ucla.edu/stat/r/dae/logit.htm") R Data Analysis Examples: Logit Regression]
             li #[a(href="http://www.ats.ucla.edu/stat/mult_pkg/faq/general/odds_ratio.htm") FAQ: How do I interpret odds ratios in logistic regression?]
             li #[a(href="http://rpubs.com/ryankelly/ml_logistic") Classification tutorial in R] from Ryan Kelly
 
         section#trees(data-background="images/data_miner5.jpg" data-background-size="cover")
-          h2 Classification with Trees
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
+          h1 Classification with Trees
+          h2 BI Tech CP303 - Data Mining
           h4 
             a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%202/classification-trees-in-R.pdf") R Notebook
 
         section
-          h2 Classification with trees
+          h1 Classification with trees
           p Tree-based methods are a conceptually simple but powerful method for classification (and regression). They work well in non-linear settings where regression might underperform.
 
         section(data-transition-speed="fast")
-          h2 Tree methods are intuitive 
+          h1 Tree methods are intuitive 
           figure.right(style="width: 45%")
             img(src="images/decision_tree.gif" style="width: 100%")
             figcaption Example tree from #[a(href="https://onlinecourses.science.psu.edu/stat557/node/83") here].
           p An advantage of classification trees is their interpretability. For example in a clinical setting, they mirror the way that a clinician might think.
 
         section(data-transition-speed="fast")
-          h2 The construction of trees is iterative
+          h1 The construction of trees is iterative
           p The basic algorithm can be summarized by the following steps: 
             ol
               li Start with all the input variables and repeat:
@@ -840,51 +843,51 @@ html(lang="en")
             figcaption Ron Meir's #[a(href="http://webee.technion.ac.il/people/rmeir/BoostingTutorial.pdf") boosting tutorial].
 
         section(data-transition-speed="fast")
-          h2 How to determine the splitting point?
+          h1 How to determine the splitting point?
           p Pick the split points that yield the greatest 'purity' in the resulting subset. One measure that could be used is the overall misclassification error. 
           p A misclassification error of 0 implies perfect purity and 0.5 implies an even mixture of both classes and no 'purity.'
 
         section(data-transition-speed="fast")
-          h2 Trees get big
+          h1 Trees get big
           p Tree methods can suffer from #[a(href="http://en.wikipedia.org/wiki/Overfitting") overfitting], which occurs when our model is too tuned to the training data. When models are overfit they generalize poorly and exhibit high variance and poor prediction accuracy on new data.
 
         section(data-transition-speed="fast")
-          h2 #[a(href="https://onlinecourses.science.psu.edu/stat557/node/93") Pruning]
+          h1 #[a(href="https://onlinecourses.science.psu.edu/stat557/node/93") Pruning]
           figure.right(style="width: 45%")
             img(src="images/tree-trimming-pruning-sl.jpg" style="width: 100%")
           p When we were doing regression, we started by fitting the <i>full model</i>. The full model had the lowest RMSE, but was also prohibitively complex. Tree methods can suffer a similar weakness in that resulting trees tend to be large and too complex. Just like regression, a smaller tree with fewer splits often leads to lower variance, easier interpretation and lower test errors, at the cost of a little bias.
 
         section(data-transition-speed="fast")
-          h2 Complexity penalty, $Cp$ 
+          h1 Complexity penalty, $Cp$ 
           p The complexity penality ranges from 0 to 1 and penalizes the number of terminal nodes in the tree. A high value of $Cp$ corresponds to a decreased likelihood of a branch split and lower $Cp$ penalizes less dramatically. In <i>caret</i>, the <i>train()</i> function will identify an optimal $Cp$ for us.
 
         section(data-transition-speed="fast")
-          h2 The forest for the trees
+          h1 The forest for the trees
           p Single trees are simple to compute and pretty easy to understand, but they are susceptible to high variance when tested on new data. Methods such as boosting, bagging and random forests have been developed to overcome this problem.
 
         section(data-transition-speed="fast")
-          h2 Boosting
+          h1 Boosting
           p Boosting works by combining the output of many weak classifiers to produce a powerful consensus tree. A weak classifier is one whose error rate is only slightly better than random guessing.
 
         section(data-transition-speed="fast")
-          h2 #[a(href="http://en.wikipedia.org/wiki/AdaBoost") AdaBoost]
+          h1 #[a(href="http://en.wikipedia.org/wiki/AdaBoost") AdaBoost]
           figure.right(style="width: 45%")
             img(src="images/adaboost.png" style="width: 100%")
             figcaption #[a(href="http://statweb.stanford.edu/~tibs/ElemStatLearn/") The Elements of Statistical Learning]
           p Short for adaptive boosting, AdaBoost is one of the most popular boosting algorithms. AdaBoost is adaptive in the sense that subsequent weak learners are boosted in favor of the cases previously misclassified.
 
         section(data-transition-speed="fast")
-          h2 Bootstrap aggregating (bagging)
+          h1 Bootstrap aggregating (bagging)
           figure.right(style="width: 40%")
             img(src="images/bagging.png" style="width: 100%")
           p Bagging procedures work by randomly resampling data and refitting the model multiple times. The final model is determined by either averaging or taking a <i>majority vote</i> to form a single model. 
 
         section(data-transition-speed="fast")
-          h2 Random Forest
+          h1 Random Forest
           p Random forest is a special type of bagging algorithm that resamples both the variables and the data used to fit the model. It's one of the best performing classifiers.
 
         section
-          h2 Tree Resources
+          h1 Tree Resources
           ol
             li #[a(href="https://rpubs.com/ryankelly/dtrees") Tree-based Methods]. A great tutorial from Ryan Kelly.
             li #[a(href="https://en.wikipedia.org/wiki/Decision_tree_learning") Decision Tree Learning]
@@ -896,9 +899,8 @@ html(lang="en")
             img(src="images/familyPlantDeciduous.jpg" style="width: 100%")
 
         section#rules(data-background="images/data_miner6.jpg" data-background-size="cover")
-          h2 Association rule mining
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
+          h1 Association rule mining
+          h2 BI Tech CP303 - Data Mining
           h4 
             a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%203/association-rules-in-R.Rmd") R Notebook
 
