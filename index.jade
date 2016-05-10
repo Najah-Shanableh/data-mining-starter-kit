@@ -713,13 +713,13 @@ html(lang="en")
             img(src="images/is_it_spam_2.png" width="100%")
           p Then to predict the class, create a threshold on $y$:
             ul(class="fragment")
-              li if $y \geq 0.5$, spam
-              li if $y < 0.5$, not spam
+              li if $x \geq 8$, spam
+              li if $x < 8$, not spam
           p(class="fragment current-visible") Messages with more than eight '$'s, will be labeled as spam.
 
         section(data-transition="linear" data-transition-speed="fast")
           h1 Identifying spam
-          p What if an extreme value is observed later? The current rule isn't violated, but when we refit the model with the new data, the model begins to misclassify.
+          p What if an extreme value is observed later? The current rule isn't violated, but the refit model begins to misclassify.
           figure.left(style="width: 45%; margin: 0 auto")
             img(src="images/is_it_spam_2.png" width="100%")
           figure.right(style="width: 45%; margin: 0 auto")
