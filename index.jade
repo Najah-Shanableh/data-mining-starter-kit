@@ -853,15 +853,15 @@ html(lang="en")
             li Gini Purity
 
         section(data-transition-speed="fast")
-          h1 Misclassification
-          p A measure of homogeneity is the overall misclassification error:
-                    | $misclassification = $
-                    p A misclassification error of 0 implies perfect purity and 0.5 implies an even mixture of both classes (<i>i.e.</i> bot and not) and no 'purity.'
+          h1 Misclassification purity
+          p This measure of node purity estimates the probability 
+          p $misclassification = 1 - p(y = 1), \text{if y = 1 is the reference class.}$
+          p A misclassification error of 0 implies perfect purity and 0.5 implies an even mixture of both classes (<i>i.e.</i> bot and not) and no 'purity.'
 
         section(data-transition-speed="fast")
           h1 Gini Impurity
-          p Gini impurity is a measure of how often an observation would be incorrectly classified if it was randomly labeled according to the distribution of classes in the split. Gini impurity is computed by summing the probability of each item being chosen times the probability of a classification mistake, <i>i.e.</i> $1 - prob(random guess is correct)$. 
-          p $\text{Gini Impurity} = \sum_{i=1}^{k} p_i(1-p_i) = 1 - \sum_{i=1}^{k} p_i^2$
+          p Gini impurity is a measure of how often an observation would be incorrectly classified if it was randomly labeled according to the distribution of classes in the split. Gini impurity is computed by summing the probability of each item being chosen times the probability of a classification mistake, <i>i.e.</i> $1 - prob(\text{random guess is correct})$. 
+          p $\text{Gini Impurity} = \sum_{i=1}^{k} p_i(1-p_i) = 1 - \sum_{i=1}^{k} p_i^2$ where $k$ is the class (<i>e.g.</i> 'bot', 'not')
           p A gini impurity of 0 indicates all observations in the node fall into a single category.
 
         section(data-transition-speed="fast")
@@ -900,7 +900,22 @@ html(lang="en")
 
         section(data-transition-speed="fast")
           h1 Boosting
-          p Boosting works by combining the output of many weak classifiers to produce a powerful consensus tree. A weak classifier is one whose error rate is only slightly better than random guessing.
+          figure.right(style="width: 45%")
+            img(src="images/boosting_starting_point.png" style="width: 100%")
+            figcaption 
+          p Boosting works by combining the output of many potentially weak classifiers to produce a powerful consensus tree. A weak classifier is one whose error rate is only slightly better than random guessing.
+          p Let's use this toy example to walk-through the process.
+
+        section(data-transition-speed="fast")
+          figure(style="width: 50%")
+            img(src="images/boosting.png" style="width: 100%")
+            figcaption 
+
+        section(data-transition-speed="fast")
+          h1 
+          figure.right(style="width: 100%")
+            img(src="images/boosting_result.png" style="width: 100%")
+            figcaption 
 
         section(data-transition-speed="fast")
           h1 #[a(href="http://en.wikipedia.org/wiki/AdaBoost") AdaBoost]

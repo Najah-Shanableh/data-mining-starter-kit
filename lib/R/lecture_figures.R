@@ -278,3 +278,32 @@ ggplot(sig1, aes(x = x, y = y)) +
 ggplot(data, aes(y = friends_count, x = followers_count, color = factor(bot))) +
          geom_point(size = 4, alpha = 0.50)
 
+# purity plot
+df = expand.grid(1:4, 1:4)
+df$outcome = 0
+df[df$Var1 == 4 & df$Var2 == 4, ]$outcome = 1
+
+ggplot(df, aes(x = Var1, y = Var2, color = factor(outcome))) +
+  geom_point(size = 10) + 
+  theme_minimal() + 
+  theme(
+    legend.position = 'none',
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title = element_blank())
+
+df = expand.grid(1:4, 1:4)
+df$outcome = 0
+df[df$Var1 > 2, ]$outcome = 1
+
+ggplot(df, aes(x = Var1, y = Var2, color = factor(outcome))) +
+  geom_point(size = 10) + 
+  theme_minimal() + 
+  theme(
+    legend.position = 'none',
+    text = element_text(family = 'Neuton'),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title = element_blank())
+
