@@ -818,51 +818,84 @@ html(lang="en")
           h1 Classification with Trees
           h2 BI Tech CP303 - Data Mining
           h4 
-            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%202/classification-trees-in-R.pdf") R Notebook
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%202/classification-trees-in-R.pdf") R Tutorial
 
-        section
+        section(data-transition-speed="slow")
           h1 Classification with trees
-          p Tree-based methods are a conceptually simple but powerful method for classification (and regression). They work well in non-linear settings where regression might underperform.
+          figure.right(style="width: 45%")
+            img(src="images/non-linear_classification.png" style="width: 100%")
+          p Tree-based methods are a conceptually simple and powerful method for classification (and regression). They work well in non-linear settings where regression can underperform.
 
         section(data-transition-speed="fast")
-          h1 Tree methods are intuitive 
+          h1 Classification with trees
           figure.right(style="width: 45%")
             img(src="images/decision_tree.gif" style="width: 100%")
-            figcaption Example tree from #[a(href="https://onlinecourses.science.psu.edu/stat557/node/83") here].
-          p An advantage of classification trees is their interpretability. For example in a clinical setting, they mirror the way that a clinician might think.
+          p Besides working well in non-linear settings, an advantage of decision trees is their interpretability. 
+          p For example in a clinical setting, they mirror the way that a clinician might think when assessing patient disease risk.
 
         section(data-transition-speed="fast")
           h1 The construction of trees is iterative
-          p The basic algorithm can be summarized by the following steps: 
-            ol
-              li Start with all the input variables and repeat:
-              li Find the variable and split that best "separates" the outcome
-              li Divide the data into two groups on that split
-          figure(style="width: 35%; margin: 0 auto")
+          figure.right(style="width: 35%; margin: 0 auto")
             img(src="images/tree_splitting.png" style="width: 100%")
-            figcaption Ron Meir's #[a(href="http://webee.technion.ac.il/people/rmeir/BoostingTutorial.pdf") boosting tutorial].
+            figcaption Visualization of a series of splits in two-dimensions. #[a(href="http://webee.technion.ac.il/people/rmeir/BoostingTutorial.pdf") Source.]
+          p Decisions trees are created by interatively splitting predictors to create increasingly homogenous groups. The basic algorithm can be summarized by the following steps: 
+          p Start with all predictors and repeat:
+            ol
+              li Find the variable and split that best "separates" the outcome, <i>i.e.</i> creates homogenous groups
+              li Divide the data into two groups on that split
+              li Stop when the groups are too small or sufficiently homogenous
 
         section(data-transition-speed="fast")
           h1 How to determine the splitting point?
-          p Pick the split points that yield the greatest 'purity' in the resulting subset. One measure that could be used is the overall misclassification error. 
-          p A misclassification error of 0 implies perfect purity and 0.5 implies an even mixture of both classes and no 'purity.'
+          p The first step in our algorithm is to determine the predictor that best splits the data into homogenous groups (sometimes refered to as <i>node purity</i>). There are many measures of node purity, but two common ones we'll see used in caret:
+          ul
+            li Misclassification
+            li Gini Purity
 
         section(data-transition-speed="fast")
-          h1 Trees get big
+          h1 Misclassification
+          p A measure of homogeneity is the overall misclassification error:
+                    | $misclassification = $
+                    p A misclassification error of 0 implies perfect purity and 0.5 implies an even mixture of both classes (<i>i.e.</i> bot and not) and no 'purity.'
+
+        section(data-transition-speed="fast")
+          h1 Gini Impurity
+          p Gini impurity is a measure of how often an observation would be incorrectly classified if it was randomly labeled according to the distribution of classes in the split. Gini impurity is computed by summing the probability of each item being chosen times the probability of a classification mistake, <i>i.e.</i> $1 - prob(random guess is correct)$. 
+          p $\text{Gini Impurity} = \sum_{i=1}^{k} p_i(1-p_i) = 1 - \sum_{i=1}^{k} p_i^2$
+          p A gini impurity of 0 indicates all observations in the node fall into a single category.
+
+        section(data-transition-speed="fast")
+          h1 Example splits
+          p Suppose we had two candidate splits:
+          figure.left(style="width: 45%; margin: 0 auto")
+            img(src="images/purity_a.png" style="width: 100%")
+            figcaption $misclassification = 1 / 16 = 0.06$ $gini = 1 - [(1 / 16)^2 + (15 / 16)^2] = 0.12$
+          
+          figure.right(style="width: 45%; margin: 0 auto")
+            img(src="images/purity_b.png" style="width: 100%")
+            figcaption $misclassification = 8 / 16 = 0.50$ $gini = 1 - [(8 / 16)^2 + (8 / 16)^2] = 0.50$
+
+        section(data-transition-speed="fast")
+          figure(style="width: 80%; margin: 0 auto")
+            img(src="images/impurity.png" style="width: 100%")
+            figcaption 
+
+        section(data-transition-speed="slow")
+          h1 Controlling tree complexity
           p Tree methods can suffer from #[a(href="http://en.wikipedia.org/wiki/Overfitting") overfitting], which occurs when our model is too tuned to the training data. When models are overfit they generalize poorly and exhibit high variance and poor prediction accuracy on new data.
 
         section(data-transition-speed="fast")
           h1 #[a(href="https://onlinecourses.science.psu.edu/stat557/node/93") Pruning]
           figure.right(style="width: 45%")
             img(src="images/tree-trimming-pruning-sl.jpg" style="width: 100%")
-          p When we were doing regression, we started by fitting the <i>full model</i>. The full model had the lowest RMSE, but was also prohibitively complex. Tree methods can suffer a similar weakness in that resulting trees tend to be large and too complex. Just like regression, a smaller tree with fewer splits often leads to lower variance, easier interpretation and lower test errors, at the cost of a little bias.
+          p When we were doing linear regression, we started by fitting the <i>full model</i>, which sometimes had the lowest RMSE, but was also prohibitively complex. Tree methods can suffer a similar weakness in that resulting trees tend to be large and too complex. Just like regression, a smaller tree with fewer splits often leads to lower variance, easier interpretation and lower test errors, at the cost of a little bias.
 
         section(data-transition-speed="fast")
           h1 Complexity penalty, $Cp$ 
           p The complexity penality ranges from 0 to 1 and penalizes the number of terminal nodes in the tree. A high value of $Cp$ corresponds to a decreased likelihood of a branch split and lower $Cp$ penalizes less dramatically. In <i>caret</i>, the <i>train()</i> function will identify an optimal $Cp$ for us.
 
-        section(data-transition-speed="fast")
-          h1 The forest for the trees
+        section(data-transition-speed="slow")
+          h1 Reducing variance
           p Single trees are simple to compute and pretty easy to understand, but they are susceptible to high variance when tested on new data. Methods such as boosting, bagging and random forests have been developed to overcome this problem.
 
         section(data-transition-speed="fast")
@@ -881,17 +914,20 @@ html(lang="en")
           figure.right(style="width: 40%")
             img(src="images/bagging.png" style="width: 100%")
           p Bagging procedures work by randomly resampling data and refitting the model multiple times. The final model is determined by either averaging or taking a <i>majority vote</i> to form a single model. 
+          p The goal of bagging is to reduce variance by averaging many models.
 
         section(data-transition-speed="fast")
           h1 Random Forest
           p Random forest is a special type of bagging algorithm that resamples both the variables and the data used to fit the model. It's one of the best performing classifiers.
+          figure(style="width: 100%")
+            img(src="images/random_forest.png" style="width: 100%")
+            figcaption Assume you've got a data set with 5 rows labeled: [1, 2, 3, 4, 5] and three predictors: [A, B, C]. The diagram above shows 4 hypothetical trees that could be constructed from those inputs. Note that the observations are sampled with replacement so some rows occur multiple times. The number of predictors to sample in each iteration is 2, rather than the 3 available in total. #[a(href="http://www.thefactmachine.com/random-forests/") Source.]
 
         section
           h1 Tree Resources
           ol
             li #[a(href="https://rpubs.com/ryankelly/dtrees") Tree-based Methods]. A great tutorial from Ryan Kelly.
             li #[a(href="https://en.wikipedia.org/wiki/Decision_tree_learning") Decision Tree Learning]
-            li #[a(href="https://class.coursera.org/predmachlearn-013") Practical Machine Learning]
             li #[a(href="https://onlinecourses.science.psu.edu/stat557/node/83") Penn State Data Mining course notes]. Great intro to decision trees.
             li #[a(href="http://webee.technion.ac.il/people/rmeir/BoostingTutorial.pdf") Boosting Tutorial] by Ron Meir.
             li #[a(href="http://www.statsoft.com/Textbook/Classification-Trees") Classification Trees overview] from Statsoft
