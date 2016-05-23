@@ -953,39 +953,38 @@ html(lang="en")
           h1 Association rule mining
           h2 BI Tech CP303 - Data Mining
           h4 
-            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%203/association-rules-in-R.Rmd") R Notebook
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%203/association-rules-in-R.Rmd") R Tutorial
 
         section
-          h2 A new paradigm
-          p At this point you've built models to predict two outcome types: continuous and binary. Your predictivie models were based on training samples and predictive accuracy was assessed using a test set. This class of problems is called <i>supervised learning</i> because we observe the true value of the outcome, and those observations serve as a "teacher" for that model, providing it the correct answer and allowing us to compute measures of accuracy. <i>e.g.</i> RMSE and accuracy measurements.
-          p For the remainder of the course, we'll discuss an <i>unsupervised learning</i> problem where we have no outcome variable at all.
+          h1 Farewell to supervised learning
+          p At this point you've built models to predict numerical and binary outcomes. Your models were based on a training set and predictive accuracy was assessed with a testing set. This class of problems is called <i>supervised learning</i> because we observe the true value of the outcome, and those observations serve as a "teacher" for that model, providing it the correct answer and allowing us to compute measures of accuracy. <i>e.g.</i> RMSE and accuracy measurements.
 
         section(data-transition-speed="fast")
-          h2 #[a(href="http://en.wikipedia.org/wiki/Unsupervised_learning") Unsupervised Learning]
+          h1 #[a(href="http://en.wikipedia.org/wiki/Unsupervised_learning") Unsupervised Learning]
           p In <i>unsupervised learning</i> applications, the goal is to find hidden structure in data when we do not observe an outcome. Since we have no observed outcome to compare our predictions with, we cannot compute an error to measure the predictive accuracy of our models. This distinguishes unsupervised from supervised learning.
  
         section(data-transition-speed="fast")
-          h2 Association Rule Mining
-          p Association rule mining is a popular tool for discovering patterns between variables in large transactional databases. The goal is to find recurring associations. 
-          p For example, Nordstom records transaction information from their stores and online. 
+          h1 Association Rule Mining
+          p Association rule mining is a powerful and popular tool for discovering patterns between variables in large transactional databases. The goal is to find recurring associations. 
+
         section(data-transition-speed="fast")
-          h2 Market basket analysis
+          h1 Market basket analysis
           p In a retail context, association rule mining is often referred to as "market basket" analysis. In this context the observations are sales transactions, such as those occurring at the checkout counter of a store.
           p The resulting association rules can be very valuable for use in cross-marketing in promotions, catalog design, consumer segmentation based and product recommendation.
 
         section(data-transition-speed="fast")
-          h2 Formalizing market basket analysis
+          h1 Formalizing market basket analysis
           p $I = \{item_1, item_2, \dots, item_n\}$ is a collection of binary attributes called <i>items</i>.
           p $D = \{t_1, t_2, \dots, t_m\}$ is a set of uniquely labeled transactions in the dataset.
           p <i>Rules</i> take the form $X \Rightarrow Y$ where $X, Y \subseteq I$
 
         section(data-transition-speed="fast")
-          h2 Rules
+          h1 Rules
           p $X \Rightarrow Y$
           p The itemsets on the left-hand-side (LHS) are called the <i>antecedent</i> and the itemsets on the right-hand-side (RHS) are called the <i>consequent</i> of the rule.
 
         section(data-transition-speed="fast")
-          h2 Grocery store example
+          h1 Grocery store example
           p The pool of items is $I = \{milk, bread, butter, beer\}$
           div
             p The transaction dataset:
@@ -1012,54 +1011,54 @@ html(lang="en")
                   td.number bread, butter
 
         section(data-transition-speed="fast")
-          h2 Filtering rules
+          h1 Filtering rules
           p To identify interesting rules from all possible combinations, we need to construct a measure of significance. The most common constraints are imposed with the <i>support</i> and <i>confidence</i>. 
           p Association rules are rules which surpass a user-specified minimum support and minimum confidence threshold.
 
         section(data-transition-speed="fast")
-          h2 #[a(href="http://en.wikipedia.org/wiki/Association_rule_learning#Useful_Concepts") Support]
+          h1 #[a(href="http://en.wikipedia.org/wiki/Association_rule_learning#Useful_Concepts") Support]
           p The <i>support</i> of an itemset is the proportion of transactions in the data which contain the itemset.
           p $support(A \Rightarrow B) = P(A \cup B)$
 
         section(data-transition-speed="fast")
-          h2 Support
+          h1 Support
           p In the grocery example, the itemset $\{milk, bread\}$ occurs in 2 of 5 transactions, so it has a support of 2/5 = 0.4 = 40%. 
           p What is the support for $\{bread, butter\}$?
  
         section(data-transition-speed="fast")
-          h2 Confidence
+          h1 Confidence
           p The <i>confidence</i> of a rule is an estimate of the conditional probability $p(B|A)$, the probability of finding the RHS of the rule in transactions under the condition that these transactions also contain the LHS.
           p $confidence(A \Rightarrow B) = \frac{support(A \cup B)}{support(A)}$
 
         section(data-transition-speed="fast")
-          h2 Confidence
+          h1 Confidence
           p The rule $\{milk, bread\} \Rightarrow \{butter\}$ has a confidence of 0.2/0.4 = 0.5, meaning that for 50% of the transactions containing $\{milk, bread\}$ the rule holds.         
         section(data-transition-speed="fast")
-          h2 Constraining rules
+          h1 Constraining rules
           p When association rules are constructed, they must satisfy both minimal support and confidence thresholds, however even with these requirements we're often left with a long list of candidate rules. We can further reduce the pool of rules using the <i>lift</i> metric.
           
         section(data-transition-speed="fast")
-          h2 Lift
+          h1 Lift
           p $lift(A \Rightarrow B) = \frac{support(A \cup B)}{support(A) \times support(B)}$
           p Lift is the deviation in the support of the whole rule from the support expected under independence given the supports of the LHS and the RHS. Larger lift indicates stronger associations.
 
         section(data-transition-speed="fast")
-          h2 Interpreting lift
+          h1 Interpreting lift
           p A lift of 1 indicates that the association between the LHS and RHS is exactly what we'd expect if there is no relationship between the itemsets on either side, <i>i.e.</i> the itemsets are independent. Imagine you're at the grocery story buying your bread, butter and milk, and you remember that you need vacuum cleaner bags.
           p Lift values greater than 1 indicate that there's some depedence between the itemsets. For example chips and salsa, or beer and pretzels.
  
         section(data-transition-speed="fast")
-          h2 The #[a(href="http://en.wikipedia.org/wiki/Apriori_algorithm") apriori algorithm]
+          h1 The #[a(href="http://en.wikipedia.org/wiki/Apriori_algorithm") apriori algorithm]
           figure.right(style="width: 45%")
             img(src="images/apriori.png" style="width: 100%")
           p The <i>apriori</i> algorithm is an iterative, breadth-first approach to finding frequent itemsets and deriving association rules from them.
 
         section(data-transition-speed="fast")
-          h2 Data
+          h1 Data
           p In project 3 we'll use a dataset created from crawling Amazon.com. The crawler collected sets of recommended products from scraping the <i>Customers who bought this item also bought</i> feature on the website. The data were collected in March 2003.
 
         section
-          h2 Association Rules Resources
+          h1 Association Rules Resources
           ol 
             li #[a(href="http://www.rdatamining.com/examples/association-rules") Association Rule Example]
             li #[a(href="http://www.rdatamining.com/docs/association-rule-mining-with-r") Association Rule Mining in R]
