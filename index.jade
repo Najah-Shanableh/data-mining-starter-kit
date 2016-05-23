@@ -979,11 +979,6 @@ html(lang="en")
           p <i>Rules</i> take the form $X \Rightarrow Y$ where $X, Y \subseteq I$
 
         section(data-transition-speed="fast")
-          h1 Rules
-          p $X \Rightarrow Y$
-          p The itemsets on the left-hand-side (LHS) are called the <i>antecedent</i> and the itemsets on the right-hand-side (RHS) are called the <i>consequent</i> of the rule.
-
-        section(data-transition-speed="fast")
           h1 Grocery store example
           p The pool of items is $I = \{milk, bread, butter, beer\}$
           div
@@ -1011,24 +1006,25 @@ html(lang="en")
                   td.number bread, butter
 
         section(data-transition-speed="fast")
+          h1 Rules
+          p $X \Rightarrow Y$
+          p The itemsets on the left-hand-side (LHS) are called the <i>antecedent</i> and the itemsets on the right-hand-side (RHS) are called the <i>consequent</i> of the rule.
+
+        section(data-transition-speed="fast")
           h1 Filtering rules
-          p To identify interesting rules from all possible combinations, we need to construct a measure of significance. The most common constraints are imposed with the <i>support</i> and <i>confidence</i>. 
+          p To identify interesting rules from all possible combinations, we need to construct a measure of significance. The most common constraints are imposed with the <i>support</i>, <i>confidence</i>, and <i>lift</i>. 
           p Association rules are rules which surpass a user-specified minimum support and minimum confidence threshold.
 
         section(data-transition-speed="fast")
           h1 #[a(href="http://en.wikipedia.org/wiki/Association_rule_learning#Useful_Concepts") Support]
           p The <i>support</i> of an itemset is the proportion of transactions in the data which contain the itemset.
-          p $support(A \Rightarrow B) = P(A \cup B)$
-
-        section(data-transition-speed="fast")
-          h1 Support
           p In the grocery example, the itemset $\{milk, bread\}$ occurs in 2 of 5 transactions, so it has a support of 2/5 = 0.4 = 40%. 
           p What is the support for $\{bread, butter\}$?
  
         section(data-transition-speed="fast")
           h1 Confidence
-          p The <i>confidence</i> of a rule is an estimate of the conditional probability $p(B|A)$, the probability of finding the RHS of the rule in transactions under the condition that these transactions also contain the LHS.
-          p $confidence(A \Rightarrow B) = \frac{support(A \cup B)}{support(A)}$
+          p The <i>confidence</i> of a rule, $X \Rightarrow Y$, answers the question "for what proportion of the transactions does this rule apply?", and is an estimate of the conditional probability $p(Y|X)$.
+          p $confidence(X \Rightarrow Y) = \frac{\text{proportion of transactions containing the itemsets in X and Y}}{\text{Proportion of transactions containg the itemset X}}$
 
         section(data-transition-speed="fast")
           h1 Confidence
@@ -1054,8 +1050,8 @@ html(lang="en")
           p The <i>apriori</i> algorithm is an iterative, breadth-first approach to finding frequent itemsets and deriving association rules from them.
 
         section(data-transition-speed="fast")
-          h1 Data
-          p In project 3 we'll use a dataset created from crawling Amazon.com. The crawler collected sets of recommended products from scraping the <i>Customers who bought this item also bought</i> feature on the website. The data were collected in March 2003.
+          h1 College Scorecard Data
+          p In project 3 we'll use a dataset released from the White House last year called the College Scorecard. The purpose of the scorecard is to give students and parents more information for making college decisions and includes data about colleges (<i>e.g.</i> size, composition of student body, common majors) and data about labor market outcomes (<i>e.g.</i> median earnings after graduation, unemployment rates, and debt).  
 
         section
           h1 Association Rules Resources
@@ -1065,9 +1061,8 @@ html(lang="en")
             li #[a(href="http://www.salemmarafi.com/code/market-basket-analysis-with-r/") Market Basket Analysis with R]
 
         section#clustering(data-background="images/data_miner7.jpg" data-background-size="cover")
-          h2 Clustering
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
+          h1 Clustering
+          h2 BI Tech CP303 - Data Mining
           h4 
             a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%203/clustering-in-R.Rmd") R Notebook
 
@@ -1160,9 +1155,8 @@ html(lang="en")
             li #[a(href="http://www.rdatamining.com/docs/data-clustering-with-r") Data Clustering with R], from RDataMining.com.
 
         section#share(data-background="images/data_miner9.jpg" data-background-size="cover")
-          h2 Sharing is caring!
-          h4 BI Tech CP303 - Data Mining
-          h4 Erin Shellman 
+          h1 Sharing is caring!
+          h2 BI Tech CP303 - Data Mining
           h4 
             a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/R-markdown-demo.Rmd") R Notebook
 
