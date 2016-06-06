@@ -1064,32 +1064,34 @@ html(lang="en")
           h1 Clustering
           h2 BI Tech CP303 - Data Mining
           h4 
-            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%203/clustering-in-R.Rmd") R Notebook
-
-        section
-          h2 
-          p Last time, we used 'market baskets' from Amazon.com to generate association rules between products based on purchasing behavior. We can then use the resulting rules to make product recommendations. Now, suppose we didn't have any knowledge of purchasing behavior and only knew features of the product themselves <i>e.g.</i> from the product catalog. Can we use that information to create a recommender?
+            a(href="https://github.com/erinshellman/BI-TECH-CP303/blob/master/projects/project%203/clustering-in-R.Rmd") R Tutorial
 
         section(data-transition-speed="fast")
-          h2 Content-based recommendations
-          figure.right(style="width: 45%")
-            img(src="images/pandora.png" style="width: 100%")
-            figcaption Pandora uses a #[a(href="http://en.wikipedia.org/wiki/Music_Genome_Project") music genome] with over 450 attritubes to measure song similarity. 
-          p Recommendations based on the attributes, or features, of products are called <i>content-based</i> (or product-based) recommendations. The assumption is that customers are inclined to favor products that are similar to ones they already like.
+          h1 Clustering
+          figure.right(style="width: 35%")
+            img(src="images/cluster.png" style="width: 100%")
+          p The goal of cluster analysis (or segmentation) is to group observations into subsets (clusters) such that observations within a cluster are more closely related to one another than observations in different clusters. 
+          p Clustering is accomplished by grouping observations according to a #[a(href="http://en.wikipedia.org/wiki/Distance") distance metric].
 
         section(data-transition-speed="fast")
-          h2 Clustering
-          p The goal of cluster analysis (or segmentation) is to group observations into subsets (clusters) such that objects within a cluster are more closely related to one another than observations in different clusters. The clustering is accomplished by grouping observations according to a #[a(href="http://en.wikipedia.org/wiki/Distance") distance metric].
+          h1 Discovering categories 
+          p Often cluster analysis is used to identify distinct subgroups in data. Retailers often use shopper "personas" to represent patterns of shopping, <i>e.g.</i> Spendy Sally and Cheap Chad. Clustering techniques could be applied in that context to identify categories of shoppers.
 
         section(data-transition-speed="fast")
-          h2 #[a(href="http://en.wikipedia.org/wiki/K-means_clustering") K-means Clustering]
-          p One of the most popular clustering algorithms, the goal of K-means clustering is to group n observations into k clusters. K-means has essentially two steps: 
+          h1 Defining similarity is the key
+          p The essential component of all clustering techniqiues is a measure of similarity (or dissimilarity) between observations. Once the measure of similarity is defined, the clustering method groups the observations based on the measure of similarity.
+
+        section(data-transition-speed="fast")
+          h1 #[a(href="http://en.wikipedia.org/wiki/K-means_clustering") $k$-means Clustering]
+          p One of the most popular clustering algorithms, the goal of $k$-means clustering is to group $n$ observations into $k$ clusters. $k$-means has essentially two steps: 
           ol
-            li Cluster assignment step - assign all observations to one fo the centroids based on which is closest.
-            li Centroid shift step - move the centroids to the average value of the points within the cluster.
+            li <i>Cluster assignment step</i> - assign all observations to one of the centroids based on which is closest.
+            li <i>Centroid shift step</i> - move the centroids to the average value of the points within the cluster.
+            li Stop when the centroids stop moving.
+
 
         section(data-transition-speed="fast")
-          h2 K-means Algorithm
+          h1 $k$-means Algorithm
           figure.left(style="width: 25%")
             img(src="images/K_Means_Example_Step_1.svg" style="width: 100%")
             figcaption 1. Randomly initialize K = 3 cluster centroids (red, green, and blue). 
@@ -1104,41 +1106,45 @@ html(lang="en")
             figcaption 4. Repeat steps 2 and 3 until the centroids stop moving.
 
         section(data-transition-speed="fast")
-          h2 Selecting K
-          p The number of centroids, K, is a required input for the K-mean algorithm. The choice of the size of K depends on the goal. For segmentation applications, K is typically defined by the context of the problem. For example, a salesteam may have K members, and the goal is to assign each salesperson a set of leads such that the customers assigned to each are similar as possible. But often K is unknown.
+          h1 Selecting $k$
+          p The number of centroids, $k$, is a required input for the $k$-means algorithm. The choice of the size of $k$ depends on the goal. For segmentation applications, $k$ is typically defined by the context of the problem. For example, a salesteam may have $k$ members, and the goal is to assign each salesperson a set of leads such that the customers assigned to each are similar as possible. But often $k$ is unknown.
+          p Check out this #[a(href="https://www.youtube.com/watch?v=BVFG7fd1H30") cool video] of $k$-means simulations with varying $k$s and $n$s.
 
         section(data-transition-speed="fast")
-          h2 Selecting K
-          p Most often, K is determined manually by visualizing data. This is a common problem in unsupervised learning.
-          p Check out this #[a(href="https://www.youtube.com/watch?v=BVFG7fd1H30") cool video] of K-means simulations with varying $K$s and $N$s.
-
-        section(data-transition-speed="fast")
-          h2 #[a(href="http://en.wikipedia.org/wiki/Hierarchical_clustering") Hierarchical Clustering]
-          p The results of K-means depend on the value of K and starting position of the centroids, but another clustering method, hierarchical clustering, does not require us to specificy the number of clusters. Instead we specify a distance metric between observations. 
+          h1 #[a(href="http://en.wikipedia.org/wiki/Hierarchical_clustering") Hierarchical Clustering]
+          p The results of $k$-means depend on the value of $k$ and starting position of the centroids, but another clustering method, hierarchical clustering, does not require us to specificy the number of clusters. Instead we specify a distance metric between observations. 
           p This method produces hierarchical representations in which the clusters at each level of the hierarchy are created by merging clustering at the next lower level. At the lowest level each cluster contains a single observation. At the highest level there is only one cluster containing all the data.
 
         section(data-transition-speed="fast")
-          h2 Methods of hierarchical clustering
+          h1 Methods of hierarchical clustering
           figure.right(style="width: 35%")
             img(src="images/hier_cluster.jpg" style="width: 100%")
           p There are two main types of hierarchical clustering:
           ol 
-            li Agglomerative - a 'bottom up' approach in which each observation is initially its own cluster and pairs of observations are iteratively combined.
-            li Divisive - a 'top down' approach in which all observations start in a single cluster and recursively split.
+            li <i>Agglomerative</i> - a 'bottom up' approach in which each observation is initially its own cluster and pairs of observations are iteratively combined.
+            li <i>Divisive</i> - a 'top down' approach in which all observations start in a single cluster and recursively split.
 
         section(data-transition-speed="fast")
-          h2 Distance
+          h1 Agglomerative clustering
+          p To construct the hierarchy, we'll repeat the following steps until there's only one cluster left:
+          ol 
+            li Identify the closest set of clusters
+            li Merge them into one cluster
+            li Remove their unclustered nodes
+
+        section(data-transition-speed="fast")
+          h1 Distance
           p To decide which clusters to combine or divide, a distance metric (also called a dissimilarity) between observations is required. How can we measure the distance between two observations?
 
         section(data-transition-speed="fast")
-          h2 Euclidean Distance
+          h1 Euclidean Distance
           figure.right(style="width: 45%")
             img(src="images/euclidean_dist.jpg" style="width: 100%")
             figcaption Look familiar? It's an application of the Pythagorean theorem!
           p You already know one distance metric: #[a(href="http://en.wikipedia.org/wiki/Euclidean_distance") Euclidean distance]. Distances are often referred to as <i>similarities</i> or <i>dissimilarities</i>.
 
         section(data-transition-speed="fast")
-          h2 Dendrograms
+          h1 Dendrograms
           p A common tool for representing hierarchical clusters is the dendrogram. The distance between observations is represented on a dendrogram by the length of the edge.
           figure.left(style="width: 45%")
             img(src="images/circular_dendrogram.png" style="width: 100%")
@@ -1148,7 +1154,7 @@ html(lang="en")
             figcaption Heatmap with row and column dendrograms
 
         section(data-transition-speed="fast")
-          h2 Clustering Resources
+          h1 Clustering Resources
           ol
             li Nice presentation by #[a(href="http://www.slideshare.net/PhamCuong/clustering-technique-for-collaborative-filtering-recommendation-and-application-to-venue-recommendation") Pham Cuong] about clustering techniques for recommendations.
             li #[a(href="http://manuals.bioinformatics.ucr.edu/home/R_BioCondManual#R_clustering") Clustering and Data Mining in R]
