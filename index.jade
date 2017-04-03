@@ -159,19 +159,6 @@ html(lang="en")
             blockquote The most commonly accepted definition of “data mining” is the discovery of “models” for data." Where 'model' could mean a statistical model, and machine learning model or an algorithm like mapreduce. #[a(href='http://www.mmds.org/') Leskovec, Rajaraman, Ullman]
             blockquote Data Mining is an analytic process designed to explore data in search of consistent patterns and/or systematic relationships between variables, and then to validate the findings by applying the detected patterns. #[a(href="http://www.statsoft.com/Textbook/Data-Mining-Techniques") Hill & Lewicki]
 
-        section(data-transition-speed="fast") 
-          section(data-transition-speed="fast") 
-            h1 How do statistics and machine learning relate?
-            p Statistics and machine learning are tools that we employ in our data mining process. Generally the field of statistics is concerned with the analysis and interpretation of data, while the field of machine learning is primarily focused on prediction. Machine learning is less concerned with interpretation and validity of statistical assumptions (to the extent that they don't negatively influence the model's ability to predict).
-
-          section(data-transition-speed="fast")
-            p To learn more about the different paradigms of inferential statistics and machine learning I highly recommend #[a(href="http://faculty.smu.edu/tfomby/eco5385/lecture/Breiman%27s%20Two%20Cultures%20paper.pdf") Statistical Modeling: The Two Cultures] by Leo Breiman.
-
-        section(data-transition-speed="fast")
-          h1 Machine Learning
-          p #[a(href="http://en.wikipedia.org/wiki/Machine_learning") Machine learning] is a discipline originating in artificial intelligence that creates and investigates algorithms that help machines <i>learn</i> from data. A machine can be said to learn if its behavior changes such that it performs better in the future.
-          p Applications of machine learning are often in automated systems such as spam detectors, recommendation engines, or self-driving cars.
-
         section(data-transition-speed="fast")
           h1 Same techniques, different goal
           p You'll find that many of the techniques you've used in an analysis setting are identical to those used in machine learning, for example, linear and logistic regression. The key difference is that in machine learning, we'll judge our model quality by assessing its ability to predict on hold-out data, rather than through goodness-of-fit metrics like $ R^2 $ or AIC.
@@ -180,22 +167,30 @@ html(lang="en")
           h1 Lets look at some examples
           p Data mining problems generally fall into one of three classes and we're going to get some hands-on experience with all three:
             ol
-              li numerical prediction 
-              li classification (or #[a(href="http://en.wikipedia.org/wiki/Supervised_learning") supervised learning])
-              li clustering and #[a(href="http://en.wikipedia.org/wiki/Unsupervised_learning") unsupervised learning]
+              li Prediction of continuous outcomes
+              li Classification (or #[a(href="http://en.wikipedia.org/wiki/Supervised_learning") supervised learning])
+              li Clustering and #[a(href="http://en.wikipedia.org/wiki/Unsupervised_learning") unsupervised learning]
 
         section(data-transition-speed="fast")
-          h1 Capital Bikeshare 
-          img.right(src="images/crosswalk_lm.png" style="height: 45%")
-          p In project 1 you'll analyze data from Washington D.C.'s bikeshare program to predict locations of successful bike stations. An model for this application could be to predict the number of bike rentals as a function of the number of restaurants nearby.
+          h1 Forest fires
+          figure.right(style="width: 45%")
+            img(src="images/forest_fire.jpg" style="height: 45%")
+            figcaption #[a(href="https://commons.wikimedia.org/wiki/File:Fire-Forest.jpg") CC 2.0 Generic ]
+          p In the first unit, you'll use a collection of meteorological data and regression techniques to predict the burn area of a nature park in Portugal.
 
         section(data-transition-speed="fast")
-          h1 Bot or not?
-          p In project 2, you'll build a classifier to distinguish Twitter bots from humans.
+          h1 Credit card default
+          figure.right(style="width: 45%")
+            img(src="images/Visa-Mastercard.jpg" style="height: 45%")
+            figcaption #[a(href="https://commons.wikimedia.org/wiki/File:Visa-Mastercard.jpg") CC Share Alike 4.0 International]
+          p In the second unit you will build classification models with logistic regresson and decision trees to identify customers who will default on their next credit card payment.
 
         section(data-transition-speed="fast")
-          h1 Pandora 2.0
-          p In project 3, you'll use association rule mining and clustering to build a song recommender using a subset of the Million Song Dataset.
+          h1 College ranking
+          figure.right(style="width: 45%")
+            img(src="images/college.jpg" style="height: 35%")
+            figcaption #[a(href="https://commons.wikimedia.org/wiki/File:Emmanuel_College_Front_Court,_Cambridge,_UK_-_Diliff.jpg") Photo by DAVID ILIFF. License: CC-BY-SA 3.0]
+          p In the third unit you'll use the unsupervised learning approaches of association rule mining and clustering to help prospective students identify cheaper alternatives to the US News and World Reports college rankings.
 
         section(data-transition-speed="fast")
           h1 Limitations of data mining
